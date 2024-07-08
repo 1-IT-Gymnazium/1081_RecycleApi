@@ -12,4 +12,12 @@ namespace RecycleApp.Data.Entities
         public string Name { get; set; }
         public string Description { get; set; }
     }
+
+    public static class CategoryExtentions
+    {
+        public static IQueryable<Category> FilterDeleted(this IQueryable<Category> query)
+            => query
+            ;
+    }
+
 }

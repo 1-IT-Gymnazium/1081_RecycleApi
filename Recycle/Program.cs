@@ -1,19 +1,24 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using NodaTime;
 using RecycleApp.Data;
 
-namespace RecycleApp;
+namespace Recycle.Api;
 
 public class Program
 {
-    public static void Main(string[] args)
+    private static string ContentRootPath = Directory.GetCurrentDirectory();
+
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
 
         builder.Services.AddControllers();
+
+        builder.Services.AddSingleton<IClock>(SystemClock.Instance);
 
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
