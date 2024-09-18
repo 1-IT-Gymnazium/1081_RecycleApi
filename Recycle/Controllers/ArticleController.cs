@@ -17,6 +17,7 @@ namespace Recycle.Api.Controllers
         private readonly IClock _clock;
         private readonly AppDbContext _dbContext;
 
+        //TODO: Refactor
         public ArticleController(
             ILogger<ArticleController> logger,
             IClock clock,
