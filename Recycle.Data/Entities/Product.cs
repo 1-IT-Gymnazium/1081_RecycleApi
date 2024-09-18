@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Recycle.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,8 @@ namespace RecycleApp.Data.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        public Guid PartId { get; set; }
+        public Part Part { get; set; }
     }
 }

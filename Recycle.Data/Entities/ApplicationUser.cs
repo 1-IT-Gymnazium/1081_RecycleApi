@@ -17,5 +17,6 @@ namespace RecycleApp.Data.Entities
         public int DateOfBirth { get; set; }
         public string Email { get; set; }
         public int PhoneNumber { get; set; }
+        public DateTime DateOfRegistration { get; set; }
     }
 }
