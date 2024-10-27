@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NodaTime;
-using RecycleApp.Data;
+using Recycle.Data;
 
 namespace Recycle.Api;
 
@@ -51,6 +51,5 @@ public class Program
         app.Run();
 
     }
-
 }
 

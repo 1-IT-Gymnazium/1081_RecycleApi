@@ -1,33 +1,34 @@
 ﻿using NodaTime;
+using Recycle.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RecycleApp.Data.Entities
+namespace Recycle.Data.Entities;
+
+public class Article : ITrackable
 {
-    public class Article
-    {
-        public Guid Id { get; set; }
-        public string Heading { get; set; } = null!;
-        public string Text { get; set; } = null!;
-        public string AuthorsName { get; set; } = null!;
-        public Instant DateOfCreation { get; set; }
-        public string Annotation { get; set; } = null!;
-        public Instant? DeletedAt { get; set; }
+    public Guid Id { get; set; }
+    public string Heading { get; set; } = null!;
+    public string Text { get; set; } = null!;
+    public string AuthorsName { get; set; } = null!;
+    public string Annotation { get; set; } = null!;
 
-        public void SetDeleteBySystem(Instant instant)
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public static class ArticleExtensions
-    {
-        public static IQueryable<Article> FilterDeleted(this IQueryable<Article> query)
-            => query
-            .Where(x => x.DeletedAt == null)
-            ;
-    }
+    public Instant CreatedAt { get; set; }
+    public string CreatedBy { get; set; } = null!;
 
+    public Instant ModifiedAt { get; set; }
+    public string ModifiedBy { get; set; } = null!;
+
+    public Instant? DeletedAt { get; set; }
+    public string? DeletedBy { get; set; }
+}
+public static class ArticleExtensions
+{
+    public static IQueryable<Article> FilterDeleted(this IQueryable<Article> query)
+        => query
+        .Where(x => x.DeletedAt == null)
+        ;
 }
