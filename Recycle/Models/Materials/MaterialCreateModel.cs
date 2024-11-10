@@ -6,11 +6,12 @@ namespace Recycle.Api.Models.Materials;
 public class MaterialCreateModel
 {
     [Required(ErrorMessage = "{0} is required.", AllowEmptyStrings = false)]
+    public Guid Id { get; set; }
     public string Name { get; set; } = null!;
 
     public string? Description { get; set; }
 }
-public static class CategoryCreateModelExtentions
+public static class MaterialCreateModelExtentions
 {
     public static MaterialCreateModel ToUpdate(this Material source) => new()
     {

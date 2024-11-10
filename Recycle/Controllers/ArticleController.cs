@@ -6,6 +6,7 @@ using NodaTime;
 using Recycle.Api.Models.Articles;
 using Recycle.Data;
 using Recycle.Data.Entities;
+using Recycle.Data.Interfaces;
 
 namespace Recycle.Api.Controllers;
 
@@ -27,12 +28,6 @@ public class ArticleController : ControllerBase
         _clock = clock;
         _dbContext = dbContext;
     }
-    [HttpGet("api/v1/Article/test")]
-    /*       public async Task<ActionResult<DateTime>> Get()
-           {
-               return Ok(DateTime.Now);
-           }
-    */
     [HttpGet("api/v1/Article")]
     public async Task<ActionResult<List<ArticleDetailModel>>> GetList()
     {
@@ -77,7 +72,7 @@ public class ArticleController : ControllerBase
             Heading = model.Heading,
             Annotation = model.Annotation,
         };
-        // var uniqueCheck
+        //var uniqueCheck
 
         _dbContext.Add(newArticle);
         await _dbContext.SaveChangesAsync();
@@ -94,7 +89,7 @@ public class ArticleController : ControllerBase
     [HttpPatch("api/v1/Article/{id:guid}")]
     public async Task<ActionResult<ArticleDetailModel>> Update(
         [FromRoute] Guid id,
-        [FromBody] JsonPatchDocument<ArticleCreateModel> patch)
+        [FromBody] JsonPatchDocument<ArticleDetailModel> patch)
 
     {
         var dbEntity = await _dbContext
@@ -105,7 +100,7 @@ public class ArticleController : ControllerBase
             return NotFound();
         }
         var toUpdate = dbEntity.ToDetail();
-        //patch.ApplyTo(toUpdate);
+        patch.ApplyTo(toUpdate);
 
         var uniqueCheck = await _dbContext
             .Set<Article>()
@@ -113,7 +108,7 @@ public class ArticleController : ControllerBase
 
         if (uniqueCheck)
         {
-            ModelState.AddModelError<ArticleCreateModel>(x => x.Heading, "Heading is not unique");
+            ModelState.AddModelError<ArticleDetailModel>(x => x.Heading, "Heading is not unique");
         }
 
         if (!(ModelState.IsValid && TryValidateModel(toUpdate)))
@@ -143,7 +138,7 @@ public class ArticleController : ControllerBase
         {
             return NotFound();
         }
-        //dbEntity.SetDeleteBySystem(_clock.GetCurrentInstant());
+        dbEntity.SetDeleteBySystem(_clock.GetCurrentInstant());
         await _dbContext.SaveChangesAsync();
         return NoContent();
     }

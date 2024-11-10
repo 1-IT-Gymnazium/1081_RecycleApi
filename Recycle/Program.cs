@@ -16,8 +16,6 @@ public class Program
 
         // Add services to the container.
 
-        builder.Services.AddControllers();
-
         builder.Services.AddSingleton<IClock>(SystemClock.Instance);
 
         builder.Services.AddDbContext<AppDbContext>(options =>
@@ -28,6 +26,8 @@ public class Program
                 builder.UseNodaTime();
             });
         });
+
+        builder.Services.AddControllers().AddNewtonsoftJson();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -42,7 +42,7 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
+        //app.usehttpsredirection();
 
         app.UseAuthorization();
 

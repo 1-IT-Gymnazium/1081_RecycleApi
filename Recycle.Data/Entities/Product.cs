@@ -1,4 +1,4 @@
-﻿using NodaTime;
+using NodaTime;
 using Recycle.Data.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ public class Product : ITrackable
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
-    public int EAN { get; set; }
+    public string EAN { get; set; }
     public string? Description { get; set; }
     public bool IsVerified { get; set; }
     public string? PicturePath { get; set; }
@@ -28,3 +28,11 @@ public class Product : ITrackable
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
 }
+public static class ProductExtentions
+{
+    public static IQueryable<Product> FilterDeleted(this IQueryable<Product> query)
+        => query
+        .Where(x => x.DeletedAt == null)
+        ;
+}
+
