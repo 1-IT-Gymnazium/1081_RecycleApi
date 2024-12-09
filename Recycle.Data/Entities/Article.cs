@@ -1,4 +1,5 @@
-﻿using NodaTime;
+using NodaTime;
+using Recycle.Data.Entities.Identity;
 using Recycle.Data.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,10 @@ public class Article : ITrackable
     public Guid Id { get; set; }
     public string Heading { get; set; } = null!;
     public string Text { get; set; } = null!;
-    public string AuthorsName { get; set; } = null!;
     public string Annotation { get; set; } = null!;
+    public string? PicturePath { get; set; } = null;
+    public ApplicationUser Author { get; set; } = null!;
+    public Guid AuthorId { get; set; }
 
     public Instant CreatedAt { get; set; }
     public string CreatedBy { get; set; } = null!;

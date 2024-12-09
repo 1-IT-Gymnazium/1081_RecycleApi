@@ -1,4 +1,5 @@
 using Recycle.Api.Models.Articles;
+using Recycle.Api.Utilities;
 using Recycle.Data.Entities;
 
 namespace Recycle.Api.Models.Products;
@@ -14,7 +15,7 @@ public class ProductDetailModel
 }
 public static class ProductDetailModelExtensions
 {
-    public static ProductDetailModel ToDetail(this Product source)
+    public static ProductDetailModel ToDetail(this IApplicationMapper mapper, Product source)
         => new()
         {
             Id = source.Id,

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using Recycle.Api.Models.Products;
+using Recycle.Api.Utilities;
 using Recycle.Data;
 using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
@@ -18,40 +19,56 @@ public class ProductController : ControllerBase
     private readonly ILogger<ProductController> _logger;
     private readonly IClock _clock;
     private readonly AppDbContext _dbContext;
+    private readonly IApplicationMapper _mapper;
 
-    public ProductController(ILogger<ProductController> logger, IClock clock, AppDbContext dbContext)
+    public ProductController(ILogger<ProductController> logger, IClock clock, AppDbContext dbContext, IApplicationMapper mapper)
     {
         _logger = logger;
         _clock = clock;
         _dbContext = dbContext;
+        _mapper = mapper;
     }
+    /// <summary>
+    /// Creates a new product entity from model
+    /// </summary>
+    /// <param name="model">
+    ///Data model which is providing informations about the created Product
+    /// </param>
+    /// <returns>
+    /// ActionResult is idicating 
+    /// </returns>
     [HttpPost("api/v1/Product/")]
-    public async Task<ActionResult> Create([FromBody] ProductCreateModel model)
+    public async Task<ActionResult> CreateProduct([FromBody] ProductCreateModel model)
     {
-        var newEntity = new Product
+        var now = _clock.GetCurrentInstant();
+        var newProduct = new Product
         {
             Id = Guid.NewGuid(),
             Name = model.Name,
             EAN = model.EAN,
             Description = model.Description,
             PicturePath = model.PicturePath,
-            CreatedBy = model.CreatedBy,
-            ModifiedBy = model.ModifiedBy
-        };
-        _dbContext.Add(newEntity);
-        await _dbContext.SaveChangesAsync();
-        return Ok();
+        }
+        .SetCreateBySystem(now);
+
+        newProduct = await _dbContext.Products.FirstAsync(x => x.Id == newProduct.Id);
+
+        var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
+            ?? throw new Exception();
+        return Created(url, _mapper.ToDetail(newProduct));
     }
 
     [HttpGet("api/v1/Product/")]
-    public async Task<ActionResult<List<ProductDetailModel>>> GetList()
+    public async Task<ActionResult<List<ProductViewModel>>> GetListProduct()
     {
-        var dbEntities = _dbContext.Products.ToList();
+        var dbEntities = _dbContext
+            .Products
+            .Select(_mapper.ToDetail);
 
         return Ok(dbEntities);
     }
     [HttpGet("api/v1/Product{Id:Guid}")]
-    public async Task<ActionResult<ProductCreateModel>> GetById(
+    public async Task<ActionResult<ProductViewModel>> GetProductById(
         [FromRoute] Guid id
         )
     {
@@ -63,15 +80,11 @@ public class ProductController : ControllerBase
         {
             return NotFound();
         };
-        var product = new ProductCreateModel
+        var product = new ProductViewModel
         {
            Id = dbEntity.Id,
            EAN = dbEntity.EAN,
            Name = dbEntity.Name,
-           Description = dbEntity.Description,
-           PicturePath = dbEntity.PicturePath,
-           CreatedBy = dbEntity.CreatedBy,
-           ModifiedBy = dbEntity.ModifiedBy,
         };
         return Ok(product);
     }
@@ -87,11 +100,12 @@ public class ProductController : ControllerBase
         {
             return NotFound();
         }
-        var productToUpdate = dbEntity.ToDetail();
+
+        var productToUpdate = _mapper.ToDetail(dbEntity);
         patch.ApplyTo(productToUpdate);
         var uniqueCheck = await _dbContext
             .Set<Product>()
-            .AnyAsync(x => x.EAN == productToUpdate.EAN);
+            .AnyAsync(x => x.Id != id && x.EAN == productToUpdate.EAN);
         if (uniqueCheck)
         {
             ModelState.AddModelError<ProductDetailModel>(x => x.EAN, "Ean is not unique");
@@ -104,6 +118,7 @@ public class ProductController : ControllerBase
         dbEntity.Name = productToUpdate.Name;
         dbEntity.Description = productToUpdate.Description;
         dbEntity.PicturePath = productToUpdate.PicturePath;
+        dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
 
         await _dbContext.SaveChangesAsync();
 
@@ -111,10 +126,10 @@ public class ProductController : ControllerBase
             .Set<Product>()
             .FirstOrDefaultAsync(x => x.Id == id);
 
-        return Ok(dbEntity.ToDetail());
+        return Ok(_mapper.ToDetail(dbEntity));
     }
     [HttpDelete("api/v1/Product/{Id:Guid}")]
-    public async Task<ActionResult> DeleteProduct(
+    public async Task<IActionResult> DeleteProduct(
         [FromRoute] Guid id)
     {
         var dbEntity = await _dbContext

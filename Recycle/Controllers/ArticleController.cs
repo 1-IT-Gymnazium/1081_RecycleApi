@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using Recycle.Api.Models.Articles;
+using Recycle.Api.Utilities;
 using Recycle.Data;
 using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
@@ -32,7 +34,8 @@ public class ArticleController : ControllerBase
     public async Task<ActionResult<List<ArticleDetailModel>>> GetList()
     {
         var dbEntities = await _dbContext
-            .Set<Article>()
+            .Articles
+            .Include(x => x.Author)
             .FilterDeleted()
             .ToListAsync();
 
@@ -44,7 +47,8 @@ public class ArticleController : ControllerBase
         )
     {
         var dbEntity = await _dbContext
-            .Set<Article>()
+            .Articles
+            .Include(x => x.Author)
             .FilterDeleted()
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
@@ -60,6 +64,7 @@ public class ArticleController : ControllerBase
         };
         return Ok(result);
     }
+    [Authorize]
     [HttpPost("api/v1/Article")]
     public async Task<ActionResult> Create(
         [FromRoute] ArticleCreateModel model
@@ -71,14 +76,18 @@ public class ArticleController : ControllerBase
             Id = Guid.NewGuid(),
             Heading = model.Heading,
             Annotation = model.Annotation,
-        };
+            AuthorId = User.GetUserId(),
+            PicturePath = model.PicturePath,
+        }
+        .SetCreateBySystem(now);
         //var uniqueCheck
 
         _dbContext.Add(newArticle);
         await _dbContext.SaveChangesAsync();
 
         var dbEntity = await _dbContext
-            .Set<Article>()
+            .Articles
+            .Include(x => x.Author)
             .FirstAsync(x => x.Id == newArticle.Id);
         var url = Url.Action(nameof(Get), new { dbEntity.Id }) ??
         throw new Exception("Failed to generate url");
@@ -86,6 +95,7 @@ public class ArticleController : ControllerBase
     }
     // more oprtions to build update 
     // [HttpPut]
+    [Authorize]
     [HttpPatch("api/v1/Article/{id:guid}")]
     public async Task<ActionResult<ArticleDetailModel>> Update(
         [FromRoute] Guid id,
@@ -118,6 +128,8 @@ public class ArticleController : ControllerBase
 
         dbEntity.Heading = toUpdate.Heading;
         dbEntity.Annotation = toUpdate.Annotation;
+        dbEntity.PicturePath = toUpdate.PicturePath;
+        dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
 
         await _dbContext.SaveChangesAsync();
 
@@ -127,7 +139,8 @@ public class ArticleController : ControllerBase
         return Ok(dbEntity.ToDetail());
     }
     [HttpDelete("api/v1/Article/{id}")]
-    public async Task<ActionResult> Delete(
+    // For empty result always use Interface.(IActionResult)
+    public async Task<IActionResult> DeleteArticle(
         [FromRoute] Guid id)
     {
         var dbEntity = await _dbContext

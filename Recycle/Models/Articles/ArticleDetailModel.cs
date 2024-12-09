@@ -1,4 +1,4 @@
-﻿using NodaTime.Text;
+using NodaTime.Text;
 using Recycle.Data.Entities;
 
 namespace Recycle.Api.Models.Articles;
@@ -9,6 +9,7 @@ public class ArticleDetailModel
     public string Heading { get; set; } = null!;
     public string Annotation { get; set; } = null!;
     public string AuthorsName { get; set; } = null!;
+    public string PicturePath { get; set; }
     public string CreatedAt { get; set; } = null!;
 }
 public static class ArticleDetailModelExtensions
@@ -19,7 +20,8 @@ public static class ArticleDetailModelExtensions
             Id = source.Id,
             Heading = source.Heading,
             Annotation = source.Annotation,
-            AuthorsName = source.AuthorsName,
+            AuthorsName = source.Author.Username,
+            PicturePath = source.PicturePath,
             CreatedAt = InstantPattern.ExtendedIso.Format(source.CreatedAt),
         };
 }

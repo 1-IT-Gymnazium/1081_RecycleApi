@@ -1,8 +1,12 @@
 
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NodaTime;
+using Recycle.Api.Utilities;
 using Recycle.Data;
+using Recycle.Data.Entities.Identity;
 
 namespace Recycle.Api;
 
@@ -12,11 +16,16 @@ public class Program
 
     public static async Task Main(string[] args)
     {
+        var ContentRootPath = Directory.GetCurrentDirectory();
+
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
 
+        builder.Host.UseContentRoot(ContentRootPath);
+
         builder.Services.AddSingleton<IClock>(SystemClock.Instance);
+        builder.Services.AddScoped<IApplicationMapper, ApplicationMapper>();
 
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
@@ -28,6 +37,26 @@ public class Program
         });
 
         builder.Services.AddControllers().AddNewtonsoftJson();
+
+        builder.Services.AddIdentityCore<ApplicationUser>(options =>
+            options.SignIn.RequireConfirmedAccount = true
+            )
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddSignInManager()
+            .AddDefaultTokenProviders();
+
+        builder.Services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequireDigit = true;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireNonAlphanumeric = true;
+            options.Password.RequireUppercase = true;
+            options.Password.RequiredLength = 6;
+            options.Password.RequiredUniqueChars = 1;
+        });
+
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -44,6 +73,7 @@ public class Program
 
         //app.usehttpsredirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();
