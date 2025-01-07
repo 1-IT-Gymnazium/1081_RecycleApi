@@ -7,22 +7,26 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using Recycle.Api.Models.Authorization;
+using Recycle.Api.Services;
 using Recycle.Data.Entities.Identity;
 using Recycle.Data.Interfaces;
 
-namespace TwitterEdu.Api.Controllers;
+namespace Recycle.Api.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
+    private readonly EmailSenderService _emailService;
     private readonly IClock _clock;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
 
     public AuthController(
+        EmailSenderService emailSenderService,
         IClock clock,
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager)
     {
+        _emailService = emailSenderService;
         _clock = clock;
         _signInManager = signInManager;
         _userManager = userManager;
@@ -33,7 +37,7 @@ public class AuthController : ControllerBase
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Register(
-       [FromBody] SignInModel model
+       [FromBody] RegisterModel model
        )
     {
         var validator = new PasswordValidator<ApplicationUser>();
@@ -42,7 +46,10 @@ public class AuthController : ControllerBase
         var newUser = new ApplicationUser
         {
             Id = Guid.NewGuid(),
-            Username = model.Username,
+            FirstName = model.FirstName,
+            LastName = model.LastName,
+            DateOfBirth = model.DateOfBirth,
+            UserName = model.UserName,
             Email = model.Email,
         }.SetCreateBySystem(now);
 
@@ -50,18 +57,24 @@ public class AuthController : ControllerBase
 
         if (!checkPassword.Succeeded)
         {
-            ModelState.AddModelError<SignInModel>(
+            ModelState.AddModelError<RegisterModel>(
                 x => x.Password, string.Join("\n", checkPassword.Errors.Select(x => x.Description)));
             return ValidationProblem(ModelState);
         }
 
         // Method with SaveChanges()!
-        await _userManager.CreateAsync(newUser);
+        var result = await _userManager.CreateAsync(newUser);
         // Method with SaveChanges()!
-        await _userManager.AddPasswordAsync(newUser, model.Password);
+        var pswRslt = await _userManager.AddPasswordAsync(newUser, model.Password);
 
         var token = string.Empty;
         token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+
+        await _emailService.AddEmailToSendAsync(
+        model.Email,
+        "Potvrzení registrace",
+        $"<a href=\"http://localhost:5100/api/v1/Auth/ValidateToken?token={token}&email={model.Email}\">{token}</a>"
+        );
 
         return Ok(token);
     }
@@ -104,10 +117,7 @@ public class AuthController : ControllerBase
         [FromBody] TokenModel model
         )
     {
-        var normalizedMail = model.Email.ToUpperInvariant();
-        var user = await _userManager
-            .Users
-            .SingleOrDefaultAsync(x => !x.EmailConfirmed && x.NormalizedEmail == normalizedMail);
+        var user = await _userManager.FindByEmailAsync(model.Email);
 
         if (user == null)
         {

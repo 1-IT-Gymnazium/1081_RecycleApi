@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
 
 namespace Recycle.Api.Controllers;
-
+[ApiController]
 public class PartController : ControllerBase
 {
     private readonly ILogger<ProductController> _logger;
@@ -27,6 +28,16 @@ public class PartController : ControllerBase
     [HttpPost("api/v1/Part/")]
     public async Task<ActionResult> CreatePart([FromBody] PartCreateModel model)
     {
+    var checkPart = await _dbContext
+    .Set<Part>()
+    .AnyAsync(x => x.Name == model.Name);
+        if (checkPart)
+        {
+            ModelState
+                   .AddModelError(nameof(model.Name), $"Part with the name of {model.Name} already exists!");
+            return ValidationProblem(ModelState);
+        }
+
         var now =_clock.GetCurrentInstant();
         var newPart = new Part
         {
@@ -42,14 +53,17 @@ public class PartController : ControllerBase
 
         return Ok();
     }
-    [HttpGet("api/v1/Part")]
-    public async Task<ActionResult<List<PartViewModel>>> GetListPart()
+    [HttpGet("api/v1/Part/")]
+    public async Task<ActionResult<List<PartDetailModel>>> GetListPart()
     {
-        var dbEntities = _dbContext.Parts.ToList();
-        return Ok();
+        var dbEntities = _dbContext
+            .Parts
+            .FilterDeleted()
+            .ToList();
+        return Ok(dbEntities);
     }
-    [HttpGet("api/v1/Part{Id:Guid}")]
-    public async Task<ActionResult<PartViewModel>> GetById(
+    [HttpGet("api/v1/Part/{id:guid}")]
+    public async Task<ActionResult<PartDetailModel>> GetById(
         [FromRoute] Guid id)
     {
         var dbEntity = await _dbContext
@@ -60,7 +74,7 @@ public class PartController : ControllerBase
         {
             return NotFound();
         };
-        var part = new PartViewModel
+        var part = new PartDetailModel
         {
             Id = dbEntity.Id,
             Name = dbEntity.Name,
@@ -68,7 +82,7 @@ public class PartController : ControllerBase
         };
         return Ok(part);
     }
-    [HttpPatch("api/v1/Part{id:Guid}")]
+    [HttpPatch("api/v1/Part/{id:guid}")]
     public async Task<ActionResult<PartDetailModel>> UpdatePart(
         [FromRoute] Guid id,
         [FromBody] JsonPatchDocument<PartDetailModel> patch)
@@ -99,7 +113,7 @@ public class PartController : ControllerBase
 
         return Ok(_mapper.ToDetail(dbEntity));
     }
-    [HttpDelete("api/v1/Part/{id:Guid}")]
+    [HttpDelete("api/v1/Part/{id:guid}")]
     public async Task<IActionResult> DeletePart(
         [FromRoute] Guid id)
     {

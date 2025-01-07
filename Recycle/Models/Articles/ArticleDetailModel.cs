@@ -20,7 +20,7 @@ public static class ArticleDetailModelExtensions
             Id = source.Id,
             Heading = source.Heading,
             Annotation = source.Annotation,
-            AuthorsName = source.Author.Username,
+            AuthorsName = source.Author.UserName,
             PicturePath = source.PicturePath,
             CreatedAt = InstantPattern.ExtendedIso.Format(source.CreatedAt),
         };

@@ -31,13 +31,24 @@ public class MaterialController : ControllerBase
     [HttpPost("api/v1/Material/")]
     public async Task<ActionResult> Create([FromBody] MaterialCreateModel model)
     {
+        var checkMaterial = await _dbContext
+            .Set<Material>()
+            .AnyAsync(x => x.Name == model.Name);
+        if (checkMaterial)
+        {
+            ModelState
+                .AddModelError(nameof(model.Name), $"Material with this {model.Name} exists!");
+            return ValidationProblem(ModelState);
+        }
+
         var now = _clock.GetCurrentInstant();
         var newMaterial = new Material
         {
             Id = Guid.NewGuid(),
             Name = model.Name,
             Description = model.Description,
-        };
+        }
+        .SetCreateBySystem(now);
         _dbContext.Add(newMaterial);
         await _dbContext.SaveChangesAsync();
         return Ok();
@@ -49,7 +60,7 @@ public class MaterialController : ControllerBase
 
         return Ok(dbEntities);
     }
-    [HttpPost("api/v1/Material/{Guid:Id}")]
+    [HttpGet("api/v1/Material/{id:guid}")]
     public async Task<ActionResult<MaterialDetailModel>> GetById(
         [FromRoute] Guid id)
     {
@@ -70,7 +81,7 @@ public class MaterialController : ControllerBase
         return Ok(material);
     }
 
-        [HttpPatch("api/v1/Product{id:Guid}")]
+        [HttpPatch("api/v1/Material/{id:guid}")]
 
         public async Task<ActionResult<MaterialDetailModel>> UpdateMaterial(
             [FromRoute] Guid id,
@@ -108,7 +119,7 @@ public class MaterialController : ControllerBase
 
             return Ok(dbEntity.ToDetail());
         }
-        [HttpDelete("api/v1/Product/{Id:Guid}")]
+        [HttpDelete("api/v1/Material/{id:guid}")]
         public async Task<IActionResult> DeleteMaterial(
         [FromRoute] Guid id)
         {

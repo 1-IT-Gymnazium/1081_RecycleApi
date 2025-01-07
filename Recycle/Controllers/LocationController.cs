@@ -11,7 +11,7 @@ using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
 
 namespace Recycle.Api.Controllers;
-
+[ApiController]
 public class LocationController : ControllerBase
 {
     private readonly ILogger<LocationController> _logger;
@@ -27,29 +27,67 @@ public class LocationController : ControllerBase
         _mapper = mapper;
     }
     [HttpPost("api/v1/Location/")]
-    public async Task<ActionResult> CreateTrashCan(
+    public async Task<ActionResult<LocationDetailModel>> CreateLocation(
     [FromBody] LocationCreateModel model)
     {
+    var checkLocation = await _dbContext
+    .Set<Location>()
+    .AnyAsync(x => x.Name == model.Name);
+        if (checkLocation)
+        {
+            ModelState
+                   .AddModelError(nameof(model.Name), $"Location with the name of {model.Name} already exists!");
+            return ValidationProblem(ModelState);
+        }
+
         var now = _clock.GetCurrentInstant();
-        var newTrashCan = new Location
+        var newLocation = new Location
         {
             Id = Guid.NewGuid(),
             Name = model.Name,
-            Region = model.Region,
         }
         .SetCreateBySystem(now);
 
-        _dbContext.Add(newTrashCan);
+        _dbContext.Add(newLocation);
         await _dbContext.SaveChangesAsync();
-        return Ok();
+
+        newLocation = await _dbContext
+            .Locations
+            .FirstAsync(x => x.Id == newLocation.Id);
+
+        var url = Url.Action(nameof(GetListLocations), new { newLocation.Id })
+            ?? throw new Exception();
+        return Created(url, _mapper.ToDetail(newLocation));
     }
     [HttpGet("api/v1/Location/")]
     public async Task<ActionResult<List<LocationDetailModel>>> GetListLocations()
     {
-        var dbEntities = _dbContext.TrashCans.ToList();
+        var dbEntities = _dbContext
+            .Locations
+            .FilterDeleted()
+            .ToList();
         return Ok(dbEntities);
     }
-    [HttpGet("api/v1/Location{Id:Guid}")]
+    [HttpGet("api/v1/Location/{id:guid}")]
+    public async Task<ActionResult<LocationDetailModel>> GetById(
+        [FromRoute] Guid id)
+    {
+        var dbEntity = await _dbContext
+            .Set<Location>()
+            .FilterDeleted()
+            .FirstOrDefaultAsync();
+        if (dbEntity == null)
+        {
+            return NotFound();
+        }
+        var location = new LocationDetailModel
+        {
+            Id = dbEntity.Id,
+            Name = dbEntity.Name,
+        };
+        return Ok(location);
+    }
+    [HttpPatch("api/v1/Location/{id:guid}")]
     public async Task<ActionResult<LocationDetailModel>> UpdateLocation(
     [FromRoute] Guid id,
     [FromBody] JsonPatchDocument<LocationDetailModel> patch
@@ -78,7 +116,6 @@ public class LocationController : ControllerBase
             return ValidationProblem(ModelState);
         }
         dbEntity.Name = locationToUpdate.Name;
-        dbEntity.Region = locationToUpdate.Region;
 
         await _dbContext.SaveChangesAsync();
 
@@ -87,6 +124,8 @@ public class LocationController : ControllerBase
             .FirstOrDefaultAsync(x => x.Id == id);
         return Ok(_mapper.ToDetail(dbEntity));
     }
+
+    [HttpDelete("api/v1/Location/{id:guid}")]
     public async Task<IActionResult> DeleteMaterial(
     [FromRoute] Guid id)
     {

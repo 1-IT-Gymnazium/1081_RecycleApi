@@ -11,7 +11,7 @@ using Recycle.Data.Interfaces;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Recycle.Api.Controllers;
-
+[ApiController]
 public class TrashCanController : ControllerBase
 {
     private readonly ILogger<TrashCanController> _logger;
@@ -30,6 +30,16 @@ public class TrashCanController : ControllerBase
     public async Task<ActionResult> CreateTrashCan(
         [FromBody] TrashCanCreateModel model)
     {
+    var checkTrashCan = await _dbContext
+    .Set<TrashCan>()
+    .AnyAsync(x => x.Name == model.Name);
+        if (checkTrashCan)
+        {
+            ModelState
+                   .AddModelError(nameof(model.Name), $"Part with the name of {model.Name} already exists!");
+            return ValidationProblem(ModelState);
+        }
+
         var now = _clock.GetCurrentInstant();
         var newTrashCan = new TrashCan
         {
@@ -46,12 +56,34 @@ public class TrashCanController : ControllerBase
         return Ok();
     }
     [HttpGet("api/v1/TrashCan/")]
-    public async Task<ActionResult<List<TrashCanViewModel>>> GetListTrashCan()
+    public async Task<ActionResult<List<TrashCanDetailModel>>> GetListTrashCan()
     {
-        var dbEntities = _dbContext.TrashCans.ToList();
+        var dbEntities = _dbContext
+            .TrashCans
+            .Select(_mapper.ToDetail);
         return Ok(dbEntities);
     }
-    [HttpGet("api/v1/TrashCan{Id:Guid}")]
+    [HttpGet("api/v1/TrashCan/{id:guid}")]
+    public async Task<ActionResult<TrashCanDetailModel>> GetById(
+        [FromRoute] Guid id)
+    {
+        var dbEntity = await _dbContext
+            .Set<TrashCan>()
+            .FilterDeleted()
+            .FirstOrDefaultAsync(x => x.Id == id);
+        if (dbEntity == null)
+        {
+            return NotFound();
+        }
+        var trashCan = new TrashCanDetailModel
+        {
+            Id = dbEntity.Id,
+            Name = dbEntity.Name,
+            PicturePath = dbEntity.PicturePath,
+        };
+        return Ok(trashCan);
+    }
+    [HttpPatch("api/v1/TrashCan/{id:guid}")]
     public async Task<ActionResult<TrashCanDetailModel>> UpdateTrashCan(
         [FromRoute] Guid id,
         [FromBody] JsonPatchDocument<TrashCanDetailModel> patch
@@ -91,7 +123,7 @@ public class TrashCanController : ControllerBase
             .FirstOrDefaultAsync ( x => x.Id == id);
         return Ok(_mapper.ToDetail(dbEntity));
     }
-    [HttpDelete("api/v1/TrashCan{Id:Guid}")]
+    [HttpDelete("api/v1/TrashCan/{id:guid}")]
     public async Task<IActionResult> DeleteTrashCan(
         [FromRoute] Guid id)
     {

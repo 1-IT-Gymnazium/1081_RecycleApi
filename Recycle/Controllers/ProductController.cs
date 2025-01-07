@@ -40,6 +40,17 @@ public class ProductController : ControllerBase
     [HttpPost("api/v1/Product/")]
     public async Task<ActionResult> CreateProduct([FromBody] ProductCreateModel model)
     {
+        var checkProduct =
+            await _dbContext
+            .Set<Product>()
+            .AnyAsync(x => x.Name == model.Name);
+        if (checkProduct)
+        {
+            ModelState
+                   .AddModelError(nameof(model.Name), $"Product with the name of {model.Name} already exists!");
+            return ValidationProblem(ModelState);
+        }
+        
         var now = _clock.GetCurrentInstant();
         var newProduct = new Product
         {
@@ -48,27 +59,45 @@ public class ProductController : ControllerBase
             EAN = model.EAN,
             Description = model.Description,
             PicturePath = model.PicturePath,
+            ProductParts = new List<ProductPart>()
         }
         .SetCreateBySystem(now);
+        foreach (var id in model.PartIds)
+        {
+            var part = await _dbContext.Parts.FirstOrDefaultAsync(x => x.Id == id);
+            if (part == null)
+            {
+                ModelState
+                    .AddModelError(nameof(model.PartIds), $"Part with id {id} not found");
+            }
+            //newProduct.ProductParts.Add(new() { PartId = id });
+            newProduct.ProductParts = newProduct.ProductParts ?? new List<ProductPart>();
 
-        newProduct = await _dbContext.Products.FirstAsync(x => x.Id == newProduct.Id);
+        }
+        await _dbContext.AddAsync(newProduct);
+        await _dbContext.SaveChangesAsync();
+
+        newProduct = await _dbContext
+            .Products
+            .FirstAsync(x => x.Id == newProduct.Id);
 
         var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
-            ?? throw new Exception();
+            ?? throw new Exception("failed to generate url");
         return Created(url, _mapper.ToDetail(newProduct));
     }
 
     [HttpGet("api/v1/Product/")]
-    public async Task<ActionResult<List<ProductViewModel>>> GetListProduct()
+    public async Task<ActionResult<List<ProductDetailModel>>> GetListProduct()
     {
         var dbEntities = _dbContext
             .Products
+            .FilterDeleted()
             .Select(_mapper.ToDetail);
 
         return Ok(dbEntities);
     }
-    [HttpGet("api/v1/Product{Id:Guid}")]
-    public async Task<ActionResult<ProductViewModel>> GetProductById(
+    [HttpGet("api/v1/Product/{id:guid}")]
+    public async Task<ActionResult<ProductDetailModel>> GetProductById(
         [FromRoute] Guid id
         )
     {
@@ -80,7 +109,7 @@ public class ProductController : ControllerBase
         {
             return NotFound();
         };
-        var product = new ProductViewModel
+        var product = new ProductDetailModel
         {
            Id = dbEntity.Id,
            EAN = dbEntity.EAN,
@@ -88,7 +117,7 @@ public class ProductController : ControllerBase
         };
         return Ok(product);
     }
-    [HttpPatch("api/v1/Product{id:Guid}")]
+    [HttpPatch("api/v1/Product/{id:guid}")]
     public async Task<ActionResult<ProductDetailModel>> UpdateProduct(
         [FromRoute] Guid id,
         [FromBody] JsonPatchDocument<ProductDetailModel> patch)
@@ -128,7 +157,13 @@ public class ProductController : ControllerBase
 
         return Ok(_mapper.ToDetail(dbEntity));
     }
-    [HttpDelete("api/v1/Product/{Id:Guid}")]
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpDelete("api/v1/Product/{id:guid}")]
     public async Task<IActionResult> DeleteProduct(
         [FromRoute] Guid id)
     {

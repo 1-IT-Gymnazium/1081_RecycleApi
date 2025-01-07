@@ -20,10 +20,8 @@ public class Part : ITrackable
 
     public PartType Type { get; set; }
 
-    public Guid ProductId { get; set; }
-    public Product Product { get; set; }
-
-    public ICollection<Material> Materials { get; set; }
+    public ICollection<ProductPart> ProductParts { get; set; }
+    public ICollection<PartMaterial> PartMaterials { get; set; }
     public Instant CreatedAt { get; set; }
     public string CreatedBy { get; set; } = null!;
 

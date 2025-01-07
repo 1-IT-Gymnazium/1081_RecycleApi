@@ -9,7 +9,6 @@ public class LocationDetailModel
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = null!;
-    public Regions Region { get; set; }
 }
 public static class LocationDetailModelExtensions
 {
@@ -18,6 +17,5 @@ public static class LocationDetailModelExtensions
         {
             Id = source.Id,
             Name = source.Name,
-            Region = source.Region,
         };
 }

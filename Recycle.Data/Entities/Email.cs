@@ -7,11 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
-
-public class Location : ITrackable
+public class Email : ITrackable
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
+
+    public string Sender { get; set; } = null!;
+
+    public string Receiver { get; set; } = null!;
+
+    public string Subject { get; set; } = null!;
+
+    public string Body { get; set; } = null!;
+
+    public Instant ScheduledAt { get; set; }
+
+    public Instant? SentAt { get; set; }
+
     public Instant CreatedAt { get; set; }
     public string CreatedBy { get; set; } = null!;
 
@@ -20,12 +31,5 @@ public class Location : ITrackable
 
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
+}
 
-    public ICollection<TrashCanMaterialLocation> TrashCanMaterialLocations { get; set; }
-}
-public static class LocationExtentions
-{
-    public static IQueryable<Location> FilterDeleted(this IQueryable<Location> query)
-        => query
-        .Where(x => x.DeletedAt == null);
-}

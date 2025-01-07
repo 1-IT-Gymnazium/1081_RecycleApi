@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NodaTime;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,11 @@ using Recycle.Data;
 namespace Recycle.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241211094533_userDeletedProperty")]
+    partial class userDeletedProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,59 +216,6 @@ namespace Recycle.Data.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("Recycle.Data.Entities.Email", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Instant>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Instant?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("text");
-
-                    b.Property<Instant>("ModifiedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifiedBy")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Receiver")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Instant>("ScheduledAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Sender")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<Instant?>("SentAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Emails");
-                });
-
             modelBuilder.Entity("Recycle.Data.Entities.Identity.ApplicationUser", b =>
                 {
                     b.Property<Guid>("Id")
@@ -286,9 +236,8 @@ namespace Recycle.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("DateOfBirth")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("DateOfBirth")
+                        .HasColumnType("integer");
 
                     b.Property<Instant?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
@@ -304,12 +253,14 @@ namespace Recycle.Data.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
@@ -415,6 +366,9 @@ namespace Recycle.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Region")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
@@ -454,7 +408,12 @@ namespace Recycle.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("PartId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PartId");
 
                     b.ToTable("Materials");
                 });
@@ -500,33 +459,17 @@ namespace Recycle.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("Parts");
-                });
-
-            modelBuilder.Entity("Recycle.Data.Entities.PartMaterial", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("MaterialId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PartId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("PartId");
-
-                    b.ToTable("PartMaterials");
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Product", b =>
@@ -575,32 +518,6 @@ namespace Recycle.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Recycle.Data.Entities.ProductPart", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("PartId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProductId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProductId1")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("ProductId1");
-
-                    b.ToTable("ProductParts");
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.TrashCan", b =>
@@ -789,46 +706,24 @@ namespace Recycle.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Recycle.Data.Entities.PartMaterial", b =>
+            modelBuilder.Entity("Recycle.Data.Entities.Material", b =>
                 {
-                    b.HasOne("Recycle.Data.Entities.Material", "Material")
-                        .WithMany("PartMaterials")
-                        .HasForeignKey("MaterialId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Recycle.Data.Entities.Part", "Part")
-                        .WithMany("PartMaterials")
+                        .WithMany("Materials")
                         .HasForeignKey("PartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Material");
 
                     b.Navigation("Part");
                 });
 
-            modelBuilder.Entity("Recycle.Data.Entities.ProductPart", b =>
+            modelBuilder.Entity("Recycle.Data.Entities.Part", b =>
                 {
-                    b.HasOne("Recycle.Data.Entities.Part", "Part")
-                        .WithMany("ProductParts")
-                        .HasForeignKey("PartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Recycle.Data.Entities.Product", null)
-                        .WithMany("ProductParts")
+                    b.HasOne("Recycle.Data.Entities.Product", "Product")
+                        .WithMany("Parts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Recycle.Data.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Part");
 
                     b.Navigation("Product");
                 });
@@ -874,21 +769,17 @@ namespace Recycle.Data.Migrations
 
             modelBuilder.Entity("Recycle.Data.Entities.Material", b =>
                 {
-                    b.Navigation("PartMaterials");
-
                     b.Navigation("TrashCanMaterialLocations");
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Part", b =>
                 {
-                    b.Navigation("PartMaterials");
-
-                    b.Navigation("ProductParts");
+                    b.Navigation("Materials");
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Product", b =>
                 {
-                    b.Navigation("ProductParts");
+                    b.Navigation("Parts");
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.TrashCan", b =>

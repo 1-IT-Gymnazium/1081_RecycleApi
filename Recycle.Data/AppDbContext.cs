@@ -12,16 +12,19 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid
     {
     }
 
-    public DbSet<ApplicationUser> Users { get; set; }
+    public new DbSet<ApplicationUser> Users { get; set; }
     public DbSet<Article> Articles { get; set; }
     public DbSet<Part> Parts { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<TrashCan> TrashCans { get; set; }
     public DbSet<Material> Materials { get; set; }
     public DbSet<Location> Locations { get; set; }
+    public DbSet<Email> Emails { get; set; } = null!;
 
     public DbSet<TrashCanMaterialLocation> TrashCansMaterialLocations { get; set; }
-    public DbSet<UserRole> UserRoles { get; set; }
+    public new DbSet<UserRole> UserRoles { get; set; }
+    public DbSet<ProductPart> ProductParts { get; set; }
+    public DbSet<PartMaterial> PartMaterials { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,5 +33,11 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid
         modelBuilder.Ignore<IdentityRoleClaim<Guid>>();
 
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Product>()
+    .HasMany(p => p.ProductParts)
+    .WithOne()
+    .HasForeignKey(pp => pp.ProductId)
+    .OnDelete(DeleteBehavior.Cascade);
     }
 }

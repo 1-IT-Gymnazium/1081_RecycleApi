@@ -24,7 +24,9 @@ public class TrashCan : ITrackable
         Cartons = 4,
         Electronics = 5,
         Bio = 6,
-        ComunalTrash = 7,
+        CommunalTrash = 7,
+        Metal= 8,
+        Textile = 9,
         // i dont remember more = complete!!!
     }
 

@@ -13,7 +13,6 @@ using Recycle.Data.Interfaces;
 namespace Recycle.Api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
 public class ArticleController : ControllerBase
 {
     private readonly ILogger<ArticleController> _logger;
@@ -30,7 +29,47 @@ public class ArticleController : ControllerBase
         _clock = clock;
         _dbContext = dbContext;
     }
-    [HttpGet("api/v1/Article")]
+    //[Authorize]
+    [HttpPost("api/v1/Article/")]
+    public async Task<ActionResult> Create(
+        [FromBody] ArticleCreateModel model
+        )
+    {
+        var checkArticle =
+            await _dbContext
+            .Set<Article>()
+            .AnyAsync(x => x.Heading == model.Heading);
+        if (checkArticle)
+        {
+            ModelState
+                   .AddModelError(nameof(model.Heading), $"Article with the name of {model.Heading} already exists!");
+            return ValidationProblem(ModelState);
+        }
+
+        var now = _clock.GetCurrentInstant();
+        var newArticle = new Article
+        {
+            Id = Guid.NewGuid(),
+            Heading = model.Heading,
+            Annotation = model.Annotation,
+            AuthorId = User.GetUserId(),
+            PicturePath = model.PicturePath,
+        }
+        .SetCreateBySystem(now);
+
+        await _dbContext.AddAsync(newArticle);
+        await _dbContext.SaveChangesAsync();
+
+        newArticle = await _dbContext
+           .Articles
+           .Include(x => x.Author)
+           .FirstAsync(x => x.Id == newArticle.Id);
+        var url = Url.Action(nameof(Get), new { newArticle.Id }) ??
+        throw new Exception("Failed to generate url");
+        return Created(url, newArticle.ToDetail());
+    }
+
+    [HttpGet("api/v1/Article/")]
     public async Task<ActionResult<List<ArticleDetailModel>>> GetList()
     {
         var dbEntities = await _dbContext
@@ -41,7 +80,7 @@ public class ArticleController : ControllerBase
 
         return Ok(dbEntities.Select(x => x.ToDetail()));
     }
-    [HttpGet("api/v1/Article{id:guid}")]
+    [HttpGet("api/v1/Article/{id:guid}")]
     public async Task<ActionResult<ArticleDetailModel>> Get(
         [FromRoute] Guid id
         )
@@ -64,38 +103,9 @@ public class ArticleController : ControllerBase
         };
         return Ok(result);
     }
-    [Authorize]
-    [HttpPost("api/v1/Article")]
-    public async Task<ActionResult> Create(
-        [FromRoute] ArticleCreateModel model
-        )
-    {
-        var now = _clock.GetCurrentInstant();
-        var newArticle = new Article
-        {
-            Id = Guid.NewGuid(),
-            Heading = model.Heading,
-            Annotation = model.Annotation,
-            AuthorId = User.GetUserId(),
-            PicturePath = model.PicturePath,
-        }
-        .SetCreateBySystem(now);
-        //var uniqueCheck
-
-        _dbContext.Add(newArticle);
-        await _dbContext.SaveChangesAsync();
-
-        var dbEntity = await _dbContext
-            .Articles
-            .Include(x => x.Author)
-            .FirstAsync(x => x.Id == newArticle.Id);
-        var url = Url.Action(nameof(Get), new { dbEntity.Id }) ??
-        throw new Exception("Failed to generate url");
-        return Created(url, dbEntity.ToDetail());
-    }
     // more oprtions to build update 
     // [HttpPut]
-    [Authorize]
+    //[Authorize]
     [HttpPatch("api/v1/Article/{id:guid}")]
     public async Task<ActionResult<ArticleDetailModel>> Update(
         [FromRoute] Guid id,
@@ -138,7 +148,7 @@ public class ArticleController : ControllerBase
             .FirstAsync(x => x.Id == id);
         return Ok(dbEntity.ToDetail());
     }
-    [HttpDelete("api/v1/Article/{id}")]
+    [HttpDelete("api/v1/Article/{id:guid}")]
     // For empty result always use Interface.(IActionResult)
     public async Task<IActionResult> DeleteArticle(
         [FromRoute] Guid id)

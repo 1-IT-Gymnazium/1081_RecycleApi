@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NodaTime;
+using Recycle.Api.BackgroundServices;
+using Recycle.Api.Services;
+using Recycle.Api.Settings;
 using Recycle.Api.Utilities;
 using Recycle.Data;
 using Recycle.Data.Entities.Identity;
@@ -38,7 +41,7 @@ public class Program
 
         builder.Services.AddControllers().AddNewtonsoftJson();
 
-        builder.Services.AddIdentityCore<ApplicationUser>(options =>
+        builder.Services.AddIdentity<ApplicationUser, Role>(options =>
             options.SignIn.RequireConfirmedAccount = true
             )
             .AddEntityFrameworkStores<AppDbContext>()
@@ -57,6 +60,9 @@ public class Program
 
         builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
+        builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
+        builder.Services.AddScoped<EmailSenderService>();
+        builder.Services.AddHostedService<EmailSenderBackgroundService>();
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
