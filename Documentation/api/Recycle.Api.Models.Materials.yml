@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Models.Materials
+  commentId: N:Recycle.Api.Models.Materials
+  id: Recycle.Api.Models.Materials
+  children:
+  - Recycle.Api.Models.Materials.CategoryDetailModelExtentions
+  - Recycle.Api.Models.Materials.MaterialCreateModel
+  - Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+  - Recycle.Api.Models.Materials.MaterialDetailModel
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Models.Materials
+  nameWithType: Recycle.Api.Models.Materials
+  fullName: Recycle.Api.Models.Materials
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Models.Materials.MaterialCreateModel
+  commentId: T:Recycle.Api.Models.Materials.MaterialCreateModel
+  parent: Recycle.Api.Models.Materials
+  href: Recycle.Api.Models.Materials.MaterialCreateModel.html
+  name: MaterialCreateModel
+  nameWithType: MaterialCreateModel
+  fullName: Recycle.Api.Models.Materials.MaterialCreateModel
+- uid: Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+  commentId: T:Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+  parent: Recycle.Api.Models.Materials
+  href: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html
+  name: MaterialCreateModelExtentions
+  nameWithType: MaterialCreateModelExtentions
+  fullName: Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+- uid: Recycle.Api.Models.Materials.MaterialDetailModel
+  commentId: T:Recycle.Api.Models.Materials.MaterialDetailModel
+  parent: Recycle.Api.Models.Materials
+  href: Recycle.Api.Models.Materials.MaterialDetailModel.html
+  name: MaterialDetailModel
+  nameWithType: MaterialDetailModel
+  fullName: Recycle.Api.Models.Materials.MaterialDetailModel
+- uid: Recycle.Api.Models.Materials.CategoryDetailModelExtentions
+  commentId: T:Recycle.Api.Models.Materials.CategoryDetailModelExtentions
+  href: Recycle.Api.Models.Materials.CategoryDetailModelExtentions.html
+  name: CategoryDetailModelExtentions
+  nameWithType: CategoryDetailModelExtentions
+  fullName: Recycle.Api.Models.Materials.CategoryDetailModelExtentions
+- uid: Recycle.Api.Models.Materials
+  commentId: N:Recycle.Api.Models.Materials
+  href: Recycle.html
+  name: Recycle.Api.Models.Materials
+  nameWithType: Recycle.Api.Models.Materials
+  fullName: Recycle.Api.Models.Materials
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Materials
+    name: Materials
+    href: Recycle.Api.Models.Materials.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Materials
+    name: Materials
+    href: Recycle.Api.Models.Materials.html

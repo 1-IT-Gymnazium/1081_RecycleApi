@@ -1,0 +1,978 @@
+{
+  "source_base_path": "C:/Elareinstaluje/repos/RecycleApi/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.BackgroundServices.EmailSenderBackgroundService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.BackgroundServices.EmailSenderBackgroundService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.BackgroundServices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.BackgroundServices.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Controllers.ArticleController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Controllers.ArticleController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Controllers.AuthController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Controllers.AuthController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Controllers.LocationController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Controllers.LocationController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Controllers.MaterialController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Controllers.MaterialController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Controllers.PartController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Controllers.PartController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Controllers.ProductController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Controllers.ProductController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Controllers.TrashCanController.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Controllers.TrashCanController.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Controllers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Controllers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Articles.ArticleCreateModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Articles.ArticleCreateModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Articles.ArticleCreateModelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Articles.ArticleCreateModelExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Articles.ArticleDetailModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Articles.ArticleDetailModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Articles.ArticleDetailModelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Articles.ArticleDetailModelExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Articles.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Articles.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Authorization.LogInModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Authorization.LogInModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Authorization.RegisterModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Authorization.RegisterModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Authorization.TokenModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Authorization.TokenModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Authorization.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Authorization.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Locations.LocationCreateModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Locations.LocationCreateModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Locations.LocationCreateModelExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Locations.LocationCreateModelExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Locations.LocationDetailModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Locations.LocationDetailModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Locations.LocationDetailModelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Locations.LocationDetailModelExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Locations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Locations.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Materials.CategoryDetailModelExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Materials.CategoryDetailModelExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Materials.MaterialCreateModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Materials.MaterialCreateModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Materials.MaterialCreateModelExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Materials.MaterialDetailModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Materials.MaterialDetailModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Materials.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Materials.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Parts.PartCreateModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Parts.PartCreateModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Parts.PartDetailModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Parts.PartDetailModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Parts.ParttDetailModelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Parts.ParttDetailModelExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Parts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Parts.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Products.ProductCreateModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Products.ProductCreateModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Products.ProductDetailModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Products.ProductDetailModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Products.ProductDetailModelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Products.ProductDetailModelExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.Products.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.Products.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.TrashCans.TrashCanCreateModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.TrashCans.TrashCanCreateModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.TrashCans.TrashCanCreateModelExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.TrashCans.TrashCanCreateModelExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.TrashCans.TrashCanDetailModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.TrashCans.TrashCanDetailModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Models.TrashCans.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Models.TrashCans.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Program.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Program.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Services.EmailSenderService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Services.EmailSenderService.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Services.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Services.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Settings.SmtpSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Settings.SmtpSettings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Settings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Settings.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Startup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Startup.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Utilities.ApplicationMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Utilities.ApplicationMapper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Utilities.ClaimsPrincipalExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Utilities.ClaimsPrincipalExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Utilities.IApplicationMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Utilities.IApplicationMapper.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.Utilities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.Utilities.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Api.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Api.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.AppDbContext.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.AppDbContext.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Article.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Article.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.ArticleExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.ArticleExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Email.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Email.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Identity.ApplicationUser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Identity.ApplicationUser.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Identity.Role.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Identity.Role.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Identity.UserRole.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Identity.UserRole.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Identity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Identity.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Location.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Location.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.LocationExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.LocationExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Material.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Material.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.MaterialExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.MaterialExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Part.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Part.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.PartExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.PartExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.PartMaterial.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.PartMaterial.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.PartType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.PartType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.Product.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.Product.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.ProductExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.ProductExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.ProductPart.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.ProductPart.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.TrashCan.TrashCanType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.TrashCan.TrashCanType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.TrashCan.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.TrashCan.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.TrashCanExtentions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.TrashCanExtentions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.TrashCanMaterialLocation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.TrashCanMaterialLocation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Entities.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Entities.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Interfaces.ITrackable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Interfaces.ITrackable.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Interfaces.ITrackableExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Interfaces.ITrackableExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Interfaces.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Migrations.ConecctionTables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Migrations.ConecctionTables.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Migrations.Int.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Migrations.Int.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Migrations.RegionsRemoved.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Migrations.RegionsRemoved.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Migrations.RegisterModel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Migrations.RegisterModel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Migrations.TokenGenetaring.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Migrations.TokenGenetaring.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Migrations.userChangetNotNullable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Migrations.userChangetNotNullable.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Migrations.userDeletedProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Migrations.userDeletedProperty.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.Migrations.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.Migrations.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Recycle.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Recycle.Data.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

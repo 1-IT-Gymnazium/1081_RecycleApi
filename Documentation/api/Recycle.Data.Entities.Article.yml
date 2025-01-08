@@ -1,0 +1,1667 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data.Entities.Article
+  commentId: T:Recycle.Data.Entities.Article
+  id: Article
+  parent: Recycle.Data.Entities
+  children:
+  - Recycle.Data.Entities.Article.Annotation
+  - Recycle.Data.Entities.Article.Author
+  - Recycle.Data.Entities.Article.AuthorId
+  - Recycle.Data.Entities.Article.CreatedAt
+  - Recycle.Data.Entities.Article.CreatedBy
+  - Recycle.Data.Entities.Article.DeletedAt
+  - Recycle.Data.Entities.Article.DeletedBy
+  - Recycle.Data.Entities.Article.Heading
+  - Recycle.Data.Entities.Article.Id
+  - Recycle.Data.Entities.Article.ModifiedAt
+  - Recycle.Data.Entities.Article.ModifiedBy
+  - Recycle.Data.Entities.Article.PicturePath
+  - Recycle.Data.Entities.Article.Text
+  langs:
+  - csharp
+  - vb
+  name: Article
+  nameWithType: Article
+  fullName: Recycle.Data.Entities.Article
+  type: Class
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Article
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 11
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: 'public class Article : ITrackable'
+    content.vb: Public Class Article Implements ITrackable
+  inheritance:
+  - System.Object
+  implements:
+  - Recycle.Data.Interfaces.ITrackable
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(NodaTime.Instant)
+  - Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(System.String,NodaTime.Instant)
+  - Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(NodaTime.Instant)
+  - Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(System.String,NodaTime.Instant)
+  - Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(NodaTime.Instant)
+  - Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(System.String,NodaTime.Instant)
+- uid: Recycle.Data.Entities.Article.Id
+  commentId: P:Recycle.Data.Entities.Article.Id
+  id: Id
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: Article.Id
+  fullName: Recycle.Data.Entities.Article.Id
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Id
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 13
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public Guid Id { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property Id As Guid
+  overload: Recycle.Data.Entities.Article.Id*
+- uid: Recycle.Data.Entities.Article.Heading
+  commentId: P:Recycle.Data.Entities.Article.Heading
+  id: Heading
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: Heading
+  nameWithType: Article.Heading
+  fullName: Recycle.Data.Entities.Article.Heading
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Heading
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 14
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public string Heading { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Heading As String
+  overload: Recycle.Data.Entities.Article.Heading*
+- uid: Recycle.Data.Entities.Article.Text
+  commentId: P:Recycle.Data.Entities.Article.Text
+  id: Text
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: Text
+  nameWithType: Article.Text
+  fullName: Recycle.Data.Entities.Article.Text
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Text
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 15
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public string Text { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Text As String
+  overload: Recycle.Data.Entities.Article.Text*
+- uid: Recycle.Data.Entities.Article.Annotation
+  commentId: P:Recycle.Data.Entities.Article.Annotation
+  id: Annotation
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: Annotation
+  nameWithType: Article.Annotation
+  fullName: Recycle.Data.Entities.Article.Annotation
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Annotation
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 16
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public string Annotation { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Annotation As String
+  overload: Recycle.Data.Entities.Article.Annotation*
+- uid: Recycle.Data.Entities.Article.PicturePath
+  commentId: P:Recycle.Data.Entities.Article.PicturePath
+  id: PicturePath
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: PicturePath
+  nameWithType: Article.PicturePath
+  fullName: Recycle.Data.Entities.Article.PicturePath
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: PicturePath
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 17
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public string? PicturePath { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property PicturePath As String
+  overload: Recycle.Data.Entities.Article.PicturePath*
+- uid: Recycle.Data.Entities.Article.Author
+  commentId: P:Recycle.Data.Entities.Article.Author
+  id: Author
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: Author
+  nameWithType: Article.Author
+  fullName: Recycle.Data.Entities.Article.Author
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Author
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 18
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public ApplicationUser Author { get; set; }
+    parameters: []
+    return:
+      type: Recycle.Data.Entities.Identity.ApplicationUser
+    content.vb: Public Property Author As ApplicationUser
+  overload: Recycle.Data.Entities.Article.Author*
+- uid: Recycle.Data.Entities.Article.AuthorId
+  commentId: P:Recycle.Data.Entities.Article.AuthorId
+  id: AuthorId
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: AuthorId
+  nameWithType: Article.AuthorId
+  fullName: Recycle.Data.Entities.Article.AuthorId
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: AuthorId
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 19
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public Guid AuthorId { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property AuthorId As Guid
+  overload: Recycle.Data.Entities.Article.AuthorId*
+- uid: Recycle.Data.Entities.Article.CreatedAt
+  commentId: P:Recycle.Data.Entities.Article.CreatedAt
+  id: CreatedAt
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: CreatedAt
+  nameWithType: Article.CreatedAt
+  fullName: Recycle.Data.Entities.Article.CreatedAt
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: CreatedAt
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 21
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  example: []
+  syntax:
+    content: public Instant CreatedAt { get; set; }
+    parameters: []
+    return:
+      type: NodaTime.Instant
+    content.vb: Public Property CreatedAt As Instant
+  overload: Recycle.Data.Entities.Article.CreatedAt*
+  implements:
+  - Recycle.Data.Interfaces.ITrackable.CreatedAt
+- uid: Recycle.Data.Entities.Article.CreatedBy
+  commentId: P:Recycle.Data.Entities.Article.CreatedBy
+  id: CreatedBy
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: CreatedBy
+  nameWithType: Article.CreatedBy
+  fullName: Recycle.Data.Entities.Article.CreatedBy
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: CreatedBy
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 22
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  example: []
+  syntax:
+    content: public string CreatedBy { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property CreatedBy As String
+  overload: Recycle.Data.Entities.Article.CreatedBy*
+  implements:
+  - Recycle.Data.Interfaces.ITrackable.CreatedBy
+- uid: Recycle.Data.Entities.Article.ModifiedAt
+  commentId: P:Recycle.Data.Entities.Article.ModifiedAt
+  id: ModifiedAt
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: ModifiedAt
+  nameWithType: Article.ModifiedAt
+  fullName: Recycle.Data.Entities.Article.ModifiedAt
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: ModifiedAt
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 24
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  example: []
+  syntax:
+    content: public Instant ModifiedAt { get; set; }
+    parameters: []
+    return:
+      type: NodaTime.Instant
+    content.vb: Public Property ModifiedAt As Instant
+  overload: Recycle.Data.Entities.Article.ModifiedAt*
+  implements:
+  - Recycle.Data.Interfaces.ITrackable.ModifiedAt
+- uid: Recycle.Data.Entities.Article.ModifiedBy
+  commentId: P:Recycle.Data.Entities.Article.ModifiedBy
+  id: ModifiedBy
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: ModifiedBy
+  nameWithType: Article.ModifiedBy
+  fullName: Recycle.Data.Entities.Article.ModifiedBy
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: ModifiedBy
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 25
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  example: []
+  syntax:
+    content: public string ModifiedBy { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ModifiedBy As String
+  overload: Recycle.Data.Entities.Article.ModifiedBy*
+  implements:
+  - Recycle.Data.Interfaces.ITrackable.ModifiedBy
+- uid: Recycle.Data.Entities.Article.DeletedAt
+  commentId: P:Recycle.Data.Entities.Article.DeletedAt
+  id: DeletedAt
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: DeletedAt
+  nameWithType: Article.DeletedAt
+  fullName: Recycle.Data.Entities.Article.DeletedAt
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: DeletedAt
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 27
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  example: []
+  syntax:
+    content: public Instant? DeletedAt { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{NodaTime.Instant}
+    content.vb: Public Property DeletedAt As Instant?
+  overload: Recycle.Data.Entities.Article.DeletedAt*
+  implements:
+  - Recycle.Data.Interfaces.ITrackable.DeletedAt
+- uid: Recycle.Data.Entities.Article.DeletedBy
+  commentId: P:Recycle.Data.Entities.Article.DeletedBy
+  id: DeletedBy
+  parent: Recycle.Data.Entities.Article
+  langs:
+  - csharp
+  - vb
+  name: DeletedBy
+  nameWithType: Article.DeletedBy
+  fullName: Recycle.Data.Entities.Article.DeletedBy
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Article.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: DeletedBy
+    path: ../Recycle.Data/Entities/Article.cs
+    startLine: 28
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  example: []
+  syntax:
+    content: public string? DeletedBy { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DeletedBy As String
+  overload: Recycle.Data.Entities.Article.DeletedBy*
+  implements:
+  - Recycle.Data.Interfaces.ITrackable.DeletedBy
+references:
+- uid: Recycle.Data.Entities
+  commentId: N:Recycle.Data.Entities
+  href: Recycle.html
+  name: Recycle.Data.Entities
+  nameWithType: Recycle.Data.Entities
+  fullName: Recycle.Data.Entities
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: Recycle.Data.Interfaces.ITrackable
+  commentId: T:Recycle.Data.Interfaces.ITrackable
+  parent: Recycle.Data.Interfaces
+  href: Recycle.Data.Interfaces.ITrackable.html
+  name: ITrackable
+  nameWithType: ITrackable
+  fullName: Recycle.Data.Interfaces.ITrackable
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(``0,NodaTime.Instant)
+  parent: Recycle.Data.Interfaces.ITrackableExtensions
+  definition: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(``0,NodaTime.Instant)
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBySystem__1___0_NodaTime_Instant_
+  name: SetCreateBySystem<Article>(Article, Instant)
+  nameWithType: ITrackableExtensions.SetCreateBySystem<Article>(Article, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem<Recycle.Data.Entities.Article>(Recycle.Data.Entities.Article, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetCreateBySystem(Of Article)(Article, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem(Of Recycle.Data.Entities.Article)(Recycle.Data.Entities.Article, NodaTime.Instant)
+  name.vb: SetCreateBySystem(Of Article)(Article, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(Recycle.Data.Entities.Article,NodaTime.Instant)
+    name: SetCreateBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBySystem__1___0_NodaTime_Instant_
+  - name: <
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: '>'
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(Recycle.Data.Entities.Article,NodaTime.Instant)
+    name: SetCreateBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBySystem__1___0_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: )
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(System.String,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(``0,System.String,NodaTime.Instant)
+  parent: Recycle.Data.Interfaces.ITrackableExtensions
+  definition: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(``0,System.String,NodaTime.Instant)
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBy__1___0_System_String_NodaTime_Instant_
+  name: SetCreateBy<Article>(Article, string, Instant)
+  nameWithType: ITrackableExtensions.SetCreateBy<Article>(Article, string, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy<Recycle.Data.Entities.Article>(Recycle.Data.Entities.Article, string, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetCreateBy(Of Article)(Article, String, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy(Of Recycle.Data.Entities.Article)(Recycle.Data.Entities.Article, String, NodaTime.Instant)
+  name.vb: SetCreateBy(Of Article)(Article, String, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(Recycle.Data.Entities.Article,System.String,NodaTime.Instant)
+    name: SetCreateBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBy__1___0_System_String_NodaTime_Instant_
+  - name: <
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: '>'
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(Recycle.Data.Entities.Article,System.String,NodaTime.Instant)
+    name: SetCreateBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBy__1___0_System_String_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: )
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(``0,NodaTime.Instant)
+  parent: Recycle.Data.Interfaces.ITrackableExtensions
+  definition: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(``0,NodaTime.Instant)
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBySystem__1___0_NodaTime_Instant_
+  name: SetDeleteBySystem<Article>(Article, Instant)
+  nameWithType: ITrackableExtensions.SetDeleteBySystem<Article>(Article, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem<Recycle.Data.Entities.Article>(Recycle.Data.Entities.Article, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetDeleteBySystem(Of Article)(Article, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem(Of Recycle.Data.Entities.Article)(Recycle.Data.Entities.Article, NodaTime.Instant)
+  name.vb: SetDeleteBySystem(Of Article)(Article, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(Recycle.Data.Entities.Article,NodaTime.Instant)
+    name: SetDeleteBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBySystem__1___0_NodaTime_Instant_
+  - name: <
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: '>'
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(Recycle.Data.Entities.Article,NodaTime.Instant)
+    name: SetDeleteBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBySystem__1___0_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: )
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(System.String,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(``0,System.String,NodaTime.Instant)
+  parent: Recycle.Data.Interfaces.ITrackableExtensions
+  definition: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(``0,System.String,NodaTime.Instant)
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBy__1___0_System_String_NodaTime_Instant_
+  name: SetDeleteBy<Article>(Article, string, Instant)
+  nameWithType: ITrackableExtensions.SetDeleteBy<Article>(Article, string, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy<Recycle.Data.Entities.Article>(Recycle.Data.Entities.Article, string, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetDeleteBy(Of Article)(Article, String, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy(Of Recycle.Data.Entities.Article)(Recycle.Data.Entities.Article, String, NodaTime.Instant)
+  name.vb: SetDeleteBy(Of Article)(Article, String, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(Recycle.Data.Entities.Article,System.String,NodaTime.Instant)
+    name: SetDeleteBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBy__1___0_System_String_NodaTime_Instant_
+  - name: <
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: '>'
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(Recycle.Data.Entities.Article,System.String,NodaTime.Instant)
+    name: SetDeleteBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBy__1___0_System_String_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: )
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(``0,NodaTime.Instant)
+  parent: Recycle.Data.Interfaces.ITrackableExtensions
+  definition: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(``0,NodaTime.Instant)
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBySystem__1___0_NodaTime_Instant_
+  name: SetModifyBySystem<Article>(Article, Instant)
+  nameWithType: ITrackableExtensions.SetModifyBySystem<Article>(Article, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem<Recycle.Data.Entities.Article>(Recycle.Data.Entities.Article, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetModifyBySystem(Of Article)(Article, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem(Of Recycle.Data.Entities.Article)(Recycle.Data.Entities.Article, NodaTime.Instant)
+  name.vb: SetModifyBySystem(Of Article)(Article, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(Recycle.Data.Entities.Article,NodaTime.Instant)
+    name: SetModifyBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBySystem__1___0_NodaTime_Instant_
+  - name: <
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: '>'
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(Recycle.Data.Entities.Article,NodaTime.Instant)
+    name: SetModifyBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBySystem__1___0_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: )
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Entities.Article.Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(System.String,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(``0,System.String,NodaTime.Instant)
+  parent: Recycle.Data.Interfaces.ITrackableExtensions
+  definition: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(``0,System.String,NodaTime.Instant)
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBy__1___0_System_String_NodaTime_Instant_
+  name: SetModifyBy<Article>(Article, string, Instant)
+  nameWithType: ITrackableExtensions.SetModifyBy<Article>(Article, string, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy<Recycle.Data.Entities.Article>(Recycle.Data.Entities.Article, string, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetModifyBy(Of Article)(Article, String, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy(Of Recycle.Data.Entities.Article)(Recycle.Data.Entities.Article, String, NodaTime.Instant)
+  name.vb: SetModifyBy(Of Article)(Article, String, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(Recycle.Data.Entities.Article,System.String,NodaTime.Instant)
+    name: SetModifyBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBy__1___0_System_String_NodaTime_Instant_
+  - name: <
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: '>'
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(Recycle.Data.Entities.Article,System.String,NodaTime.Instant)
+    name: SetModifyBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBy__1___0_System_String_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: )
+  - name: (
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    href: Recycle.Data.Entities.Article.html
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Recycle.Data.Interfaces
+  commentId: N:Recycle.Data.Interfaces
+  href: Recycle.html
+  name: Recycle.Data.Interfaces
+  nameWithType: Recycle.Data.Interfaces
+  fullName: Recycle.Data.Interfaces
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Interfaces
+    name: Interfaces
+    href: Recycle.Data.Interfaces.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Interfaces
+    name: Interfaces
+    href: Recycle.Data.Interfaces.html
+- uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(``0,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(``0,NodaTime.Instant)
+  isExternal: true
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBySystem__1___0_NodaTime_Instant_
+  name: SetCreateBySystem<T>(T, Instant)
+  nameWithType: ITrackableExtensions.SetCreateBySystem<T>(T, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem<T>(T, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetCreateBySystem(Of T)(T, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem(Of T)(T, NodaTime.Instant)
+  name.vb: SetCreateBySystem(Of T)(T, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(``0,NodaTime.Instant)
+    name: SetCreateBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBySystem__1___0_NodaTime_Instant_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBySystem``1(``0,NodaTime.Instant)
+    name: SetCreateBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBySystem__1___0_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Interfaces.ITrackableExtensions
+  commentId: T:Recycle.Data.Interfaces.ITrackableExtensions
+  parent: Recycle.Data.Interfaces
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html
+  name: ITrackableExtensions
+  nameWithType: ITrackableExtensions
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions
+- uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(``0,System.String,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(``0,System.String,NodaTime.Instant)
+  isExternal: true
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBy__1___0_System_String_NodaTime_Instant_
+  name: SetCreateBy<T>(T, string, Instant)
+  nameWithType: ITrackableExtensions.SetCreateBy<T>(T, string, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy<T>(T, string, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetCreateBy(Of T)(T, String, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy(Of T)(T, String, NodaTime.Instant)
+  name.vb: SetCreateBy(Of T)(T, String, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(``0,System.String,NodaTime.Instant)
+    name: SetCreateBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBy__1___0_System_String_NodaTime_Instant_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetCreateBy``1(``0,System.String,NodaTime.Instant)
+    name: SetCreateBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetCreateBy__1___0_System_String_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(``0,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(``0,NodaTime.Instant)
+  isExternal: true
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBySystem__1___0_NodaTime_Instant_
+  name: SetDeleteBySystem<T>(T, Instant)
+  nameWithType: ITrackableExtensions.SetDeleteBySystem<T>(T, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem<T>(T, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetDeleteBySystem(Of T)(T, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem(Of T)(T, NodaTime.Instant)
+  name.vb: SetDeleteBySystem(Of T)(T, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(``0,NodaTime.Instant)
+    name: SetDeleteBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBySystem__1___0_NodaTime_Instant_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBySystem``1(``0,NodaTime.Instant)
+    name: SetDeleteBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBySystem__1___0_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(``0,System.String,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(``0,System.String,NodaTime.Instant)
+  isExternal: true
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBy__1___0_System_String_NodaTime_Instant_
+  name: SetDeleteBy<T>(T, string, Instant)
+  nameWithType: ITrackableExtensions.SetDeleteBy<T>(T, string, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy<T>(T, string, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetDeleteBy(Of T)(T, String, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy(Of T)(T, String, NodaTime.Instant)
+  name.vb: SetDeleteBy(Of T)(T, String, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(``0,System.String,NodaTime.Instant)
+    name: SetDeleteBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBy__1___0_System_String_NodaTime_Instant_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetDeleteBy``1(``0,System.String,NodaTime.Instant)
+    name: SetDeleteBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetDeleteBy__1___0_System_String_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(``0,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(``0,NodaTime.Instant)
+  isExternal: true
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBySystem__1___0_NodaTime_Instant_
+  name: SetModifyBySystem<T>(T, Instant)
+  nameWithType: ITrackableExtensions.SetModifyBySystem<T>(T, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem<T>(T, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetModifyBySystem(Of T)(T, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem(Of T)(T, NodaTime.Instant)
+  name.vb: SetModifyBySystem(Of T)(T, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(``0,NodaTime.Instant)
+    name: SetModifyBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBySystem__1___0_NodaTime_Instant_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBySystem``1(``0,NodaTime.Instant)
+    name: SetModifyBySystem
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBySystem__1___0_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(``0,System.String,NodaTime.Instant)
+  commentId: M:Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(``0,System.String,NodaTime.Instant)
+  isExternal: true
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBy__1___0_System_String_NodaTime_Instant_
+  name: SetModifyBy<T>(T, string, Instant)
+  nameWithType: ITrackableExtensions.SetModifyBy<T>(T, string, Instant)
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy<T>(T, string, NodaTime.Instant)
+  nameWithType.vb: ITrackableExtensions.SetModifyBy(Of T)(T, String, Instant)
+  fullName.vb: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy(Of T)(T, String, NodaTime.Instant)
+  name.vb: SetModifyBy(Of T)(T, String, Instant)
+  spec.csharp:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(``0,System.String,NodaTime.Instant)
+    name: SetModifyBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBy__1___0_System_String_NodaTime_Instant_
+  - name: <
+  - name: T
+  - name: '>'
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+  spec.vb:
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions.SetModifyBy``1(``0,System.String,NodaTime.Instant)
+    name: SetModifyBy
+    href: Recycle.Data.Interfaces.ITrackableExtensions.html#Recycle_Data_Interfaces_ITrackableExtensions_SetModifyBy__1___0_System_String_NodaTime_Instant_
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+  - name: (
+  - name: T
+  - name: ','
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: )
+- uid: Recycle.Data.Entities.Article.Id*
+  commentId: Overload:Recycle.Data.Entities.Article.Id
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_Id
+  name: Id
+  nameWithType: Article.Id
+  fullName: Recycle.Data.Entities.Article.Id
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: Recycle.Data.Entities.Article.Heading*
+  commentId: Overload:Recycle.Data.Entities.Article.Heading
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_Heading
+  name: Heading
+  nameWithType: Article.Heading
+  fullName: Recycle.Data.Entities.Article.Heading
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Recycle.Data.Entities.Article.Text*
+  commentId: Overload:Recycle.Data.Entities.Article.Text
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_Text
+  name: Text
+  nameWithType: Article.Text
+  fullName: Recycle.Data.Entities.Article.Text
+- uid: Recycle.Data.Entities.Article.Annotation*
+  commentId: Overload:Recycle.Data.Entities.Article.Annotation
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_Annotation
+  name: Annotation
+  nameWithType: Article.Annotation
+  fullName: Recycle.Data.Entities.Article.Annotation
+- uid: Recycle.Data.Entities.Article.PicturePath*
+  commentId: Overload:Recycle.Data.Entities.Article.PicturePath
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_PicturePath
+  name: PicturePath
+  nameWithType: Article.PicturePath
+  fullName: Recycle.Data.Entities.Article.PicturePath
+- uid: Recycle.Data.Entities.Article.Author*
+  commentId: Overload:Recycle.Data.Entities.Article.Author
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_Author
+  name: Author
+  nameWithType: Article.Author
+  fullName: Recycle.Data.Entities.Article.Author
+- uid: Recycle.Data.Entities.Identity.ApplicationUser
+  commentId: T:Recycle.Data.Entities.Identity.ApplicationUser
+  parent: Recycle.Data.Entities.Identity
+  href: Recycle.Data.Entities.Identity.ApplicationUser.html
+  name: ApplicationUser
+  nameWithType: ApplicationUser
+  fullName: Recycle.Data.Entities.Identity.ApplicationUser
+- uid: Recycle.Data.Entities.Identity
+  commentId: N:Recycle.Data.Entities.Identity
+  href: Recycle.html
+  name: Recycle.Data.Entities.Identity
+  nameWithType: Recycle.Data.Entities.Identity
+  fullName: Recycle.Data.Entities.Identity
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  - name: .
+  - uid: Recycle.Data.Entities.Identity
+    name: Identity
+    href: Recycle.Data.Entities.Identity.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  - name: .
+  - uid: Recycle.Data.Entities.Identity
+    name: Identity
+    href: Recycle.Data.Entities.Identity.html
+- uid: Recycle.Data.Entities.Article.AuthorId*
+  commentId: Overload:Recycle.Data.Entities.Article.AuthorId
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_AuthorId
+  name: AuthorId
+  nameWithType: Article.AuthorId
+  fullName: Recycle.Data.Entities.Article.AuthorId
+- uid: Recycle.Data.Entities.Article.CreatedAt*
+  commentId: Overload:Recycle.Data.Entities.Article.CreatedAt
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_CreatedAt
+  name: CreatedAt
+  nameWithType: Article.CreatedAt
+  fullName: Recycle.Data.Entities.Article.CreatedAt
+- uid: Recycle.Data.Interfaces.ITrackable.CreatedAt
+  commentId: P:Recycle.Data.Interfaces.ITrackable.CreatedAt
+  parent: Recycle.Data.Interfaces.ITrackable
+  href: Recycle.Data.Interfaces.ITrackable.html#Recycle_Data_Interfaces_ITrackable_CreatedAt
+  name: CreatedAt
+  nameWithType: ITrackable.CreatedAt
+  fullName: Recycle.Data.Interfaces.ITrackable.CreatedAt
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  isExternal: true
+  href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: NodaTime
+  commentId: N:NodaTime
+  isExternal: true
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime
+- uid: Recycle.Data.Entities.Article.CreatedBy*
+  commentId: Overload:Recycle.Data.Entities.Article.CreatedBy
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_CreatedBy
+  name: CreatedBy
+  nameWithType: Article.CreatedBy
+  fullName: Recycle.Data.Entities.Article.CreatedBy
+- uid: Recycle.Data.Interfaces.ITrackable.CreatedBy
+  commentId: P:Recycle.Data.Interfaces.ITrackable.CreatedBy
+  parent: Recycle.Data.Interfaces.ITrackable
+  href: Recycle.Data.Interfaces.ITrackable.html#Recycle_Data_Interfaces_ITrackable_CreatedBy
+  name: CreatedBy
+  nameWithType: ITrackable.CreatedBy
+  fullName: Recycle.Data.Interfaces.ITrackable.CreatedBy
+- uid: Recycle.Data.Entities.Article.ModifiedAt*
+  commentId: Overload:Recycle.Data.Entities.Article.ModifiedAt
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_ModifiedAt
+  name: ModifiedAt
+  nameWithType: Article.ModifiedAt
+  fullName: Recycle.Data.Entities.Article.ModifiedAt
+- uid: Recycle.Data.Interfaces.ITrackable.ModifiedAt
+  commentId: P:Recycle.Data.Interfaces.ITrackable.ModifiedAt
+  parent: Recycle.Data.Interfaces.ITrackable
+  href: Recycle.Data.Interfaces.ITrackable.html#Recycle_Data_Interfaces_ITrackable_ModifiedAt
+  name: ModifiedAt
+  nameWithType: ITrackable.ModifiedAt
+  fullName: Recycle.Data.Interfaces.ITrackable.ModifiedAt
+- uid: Recycle.Data.Entities.Article.ModifiedBy*
+  commentId: Overload:Recycle.Data.Entities.Article.ModifiedBy
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_ModifiedBy
+  name: ModifiedBy
+  nameWithType: Article.ModifiedBy
+  fullName: Recycle.Data.Entities.Article.ModifiedBy
+- uid: Recycle.Data.Interfaces.ITrackable.ModifiedBy
+  commentId: P:Recycle.Data.Interfaces.ITrackable.ModifiedBy
+  parent: Recycle.Data.Interfaces.ITrackable
+  href: Recycle.Data.Interfaces.ITrackable.html#Recycle_Data_Interfaces_ITrackable_ModifiedBy
+  name: ModifiedBy
+  nameWithType: ITrackable.ModifiedBy
+  fullName: Recycle.Data.Interfaces.ITrackable.ModifiedBy
+- uid: Recycle.Data.Entities.Article.DeletedAt*
+  commentId: Overload:Recycle.Data.Entities.Article.DeletedAt
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_DeletedAt
+  name: DeletedAt
+  nameWithType: Article.DeletedAt
+  fullName: Recycle.Data.Entities.Article.DeletedAt
+- uid: Recycle.Data.Interfaces.ITrackable.DeletedAt
+  commentId: P:Recycle.Data.Interfaces.ITrackable.DeletedAt
+  parent: Recycle.Data.Interfaces.ITrackable
+  href: Recycle.Data.Interfaces.ITrackable.html#Recycle_Data_Interfaces_ITrackable_DeletedAt
+  name: DeletedAt
+  nameWithType: ITrackable.DeletedAt
+  fullName: Recycle.Data.Interfaces.ITrackable.DeletedAt
+- uid: System.Nullable{NodaTime.Instant}
+  commentId: T:System.Nullable{NodaTime.Instant}
+  parent: System
+  definition: System.Nullable`1
+  href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  name: Instant?
+  nameWithType: Instant?
+  fullName: NodaTime.Instant?
+  spec.csharp:
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: '?'
+  spec.vb:
+  - uid: NodaTime.Instant
+    name: Instant
+    isExternal: true
+    href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  - name: '?'
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.nullable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: Recycle.Data.Entities.Article.DeletedBy*
+  commentId: Overload:Recycle.Data.Entities.Article.DeletedBy
+  href: Recycle.Data.Entities.Article.html#Recycle_Data_Entities_Article_DeletedBy
+  name: DeletedBy
+  nameWithType: Article.DeletedBy
+  fullName: Recycle.Data.Entities.Article.DeletedBy
+- uid: Recycle.Data.Interfaces.ITrackable.DeletedBy
+  commentId: P:Recycle.Data.Interfaces.ITrackable.DeletedBy
+  parent: Recycle.Data.Interfaces.ITrackable
+  href: Recycle.Data.Interfaces.ITrackable.html#Recycle_Data_Interfaces_ITrackable_DeletedBy
+  name: DeletedBy
+  nameWithType: ITrackable.DeletedBy
+  fullName: Recycle.Data.Interfaces.ITrackable.DeletedBy

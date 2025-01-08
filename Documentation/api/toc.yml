@@ -1,0 +1,288 @@
+### YamlMime:TableOfContent
+items:
+- uid: Recycle.Api
+  name: Recycle.Api
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Program
+    name: Program
+    type: Class
+  - uid: Recycle.Api.Startup
+    name: Startup
+    type: Class
+- uid: Recycle.Api.BackgroundServices
+  name: Recycle.Api.BackgroundServices
+  type: Namespace
+  items:
+  - uid: Recycle.Api.BackgroundServices.EmailSenderBackgroundService
+    name: EmailSenderBackgroundService
+    type: Class
+- uid: Recycle.Api.Controllers
+  name: Recycle.Api.Controllers
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Controllers.ArticleController
+    name: ArticleController
+    type: Class
+  - uid: Recycle.Api.Controllers.AuthController
+    name: AuthController
+    type: Class
+  - uid: Recycle.Api.Controllers.LocationController
+    name: LocationController
+    type: Class
+  - uid: Recycle.Api.Controllers.MaterialController
+    name: MaterialController
+    type: Class
+  - uid: Recycle.Api.Controllers.PartController
+    name: PartController
+    type: Class
+  - uid: Recycle.Api.Controllers.ProductController
+    name: ProductController
+    type: Class
+  - uid: Recycle.Api.Controllers.TrashCanController
+    name: TrashCanController
+    type: Class
+- uid: Recycle.Api.Models.Articles
+  name: Recycle.Api.Models.Articles
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Models.Articles.ArticleCreateModel
+    name: ArticleCreateModel
+    type: Class
+  - uid: Recycle.Api.Models.Articles.ArticleCreateModelExtensions
+    name: ArticleCreateModelExtensions
+    type: Class
+  - uid: Recycle.Api.Models.Articles.ArticleDetailModel
+    name: ArticleDetailModel
+    type: Class
+  - uid: Recycle.Api.Models.Articles.ArticleDetailModelExtensions
+    name: ArticleDetailModelExtensions
+    type: Class
+- uid: Recycle.Api.Models.Authorization
+  name: Recycle.Api.Models.Authorization
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Models.Authorization.LogInModel
+    name: LogInModel
+    type: Class
+  - uid: Recycle.Api.Models.Authorization.RegisterModel
+    name: RegisterModel
+    type: Class
+  - uid: Recycle.Api.Models.Authorization.TokenModel
+    name: TokenModel
+    type: Class
+- uid: Recycle.Api.Models.Locations
+  name: Recycle.Api.Models.Locations
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Models.Locations.LocationCreateModel
+    name: LocationCreateModel
+    type: Class
+  - uid: Recycle.Api.Models.Locations.LocationCreateModelExtentions
+    name: LocationCreateModelExtentions
+    type: Class
+  - uid: Recycle.Api.Models.Locations.LocationDetailModel
+    name: LocationDetailModel
+    type: Class
+  - uid: Recycle.Api.Models.Locations.LocationDetailModelExtensions
+    name: LocationDetailModelExtensions
+    type: Class
+- uid: Recycle.Api.Models.Materials
+  name: Recycle.Api.Models.Materials
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Models.Materials.CategoryDetailModelExtentions
+    name: CategoryDetailModelExtentions
+    type: Class
+  - uid: Recycle.Api.Models.Materials.MaterialCreateModel
+    name: MaterialCreateModel
+    type: Class
+  - uid: Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+    name: MaterialCreateModelExtentions
+    type: Class
+  - uid: Recycle.Api.Models.Materials.MaterialDetailModel
+    name: MaterialDetailModel
+    type: Class
+- uid: Recycle.Api.Models.Parts
+  name: Recycle.Api.Models.Parts
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Models.Parts.PartCreateModel
+    name: PartCreateModel
+    type: Class
+  - uid: Recycle.Api.Models.Parts.PartDetailModel
+    name: PartDetailModel
+    type: Class
+  - uid: Recycle.Api.Models.Parts.ParttDetailModelExtensions
+    name: ParttDetailModelExtensions
+    type: Class
+- uid: Recycle.Api.Models.Products
+  name: Recycle.Api.Models.Products
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Models.Products.ProductCreateModel
+    name: ProductCreateModel
+    type: Class
+  - uid: Recycle.Api.Models.Products.ProductDetailModel
+    name: ProductDetailModel
+    type: Class
+  - uid: Recycle.Api.Models.Products.ProductDetailModelExtensions
+    name: ProductDetailModelExtensions
+    type: Class
+- uid: Recycle.Api.Models.TrashCans
+  name: Recycle.Api.Models.TrashCans
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Models.TrashCans.TrashCanCreateModel
+    name: TrashCanCreateModel
+    type: Class
+  - uid: Recycle.Api.Models.TrashCans.TrashCanCreateModelExtentions
+    name: TrashCanCreateModelExtentions
+    type: Class
+  - uid: Recycle.Api.Models.TrashCans.TrashCanDetailModel
+    name: TrashCanDetailModel
+    type: Class
+  - uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+    name: TrashCanDetailModelExtensions
+    type: Class
+- uid: Recycle.Api.Services
+  name: Recycle.Api.Services
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Services.EmailSenderService
+    name: EmailSenderService
+    type: Class
+- uid: Recycle.Api.Settings
+  name: Recycle.Api.Settings
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Settings.SmtpSettings
+    name: SmtpSettings
+    type: Class
+- uid: Recycle.Api.Utilities
+  name: Recycle.Api.Utilities
+  type: Namespace
+  items:
+  - uid: Recycle.Api.Utilities.ApplicationMapper
+    name: ApplicationMapper
+    type: Class
+  - uid: Recycle.Api.Utilities.ClaimsPrincipalExtensions
+    name: ClaimsPrincipalExtensions
+    type: Class
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    type: Interface
+- uid: Recycle.Data
+  name: Recycle.Data
+  type: Namespace
+  items:
+  - uid: Recycle.Data.AppDbContext
+    name: AppDbContext
+    type: Class
+- uid: Recycle.Data.Entities
+  name: Recycle.Data.Entities
+  type: Namespace
+  items:
+  - uid: Recycle.Data.Entities.Article
+    name: Article
+    type: Class
+  - uid: Recycle.Data.Entities.ArticleExtensions
+    name: ArticleExtensions
+    type: Class
+  - uid: Recycle.Data.Entities.Email
+    name: Email
+    type: Class
+  - uid: Recycle.Data.Entities.Location
+    name: Location
+    type: Class
+  - uid: Recycle.Data.Entities.LocationExtentions
+    name: LocationExtentions
+    type: Class
+  - uid: Recycle.Data.Entities.Material
+    name: Material
+    type: Class
+  - uid: Recycle.Data.Entities.MaterialExtentions
+    name: MaterialExtentions
+    type: Class
+  - uid: Recycle.Data.Entities.Part
+    name: Part
+    type: Class
+  - uid: Recycle.Data.Entities.PartExtentions
+    name: PartExtentions
+    type: Class
+  - uid: Recycle.Data.Entities.PartMaterial
+    name: PartMaterial
+    type: Class
+  - uid: Recycle.Data.Entities.PartType
+    name: PartType
+    type: Enum
+  - uid: Recycle.Data.Entities.Product
+    name: Product
+    type: Class
+  - uid: Recycle.Data.Entities.ProductExtentions
+    name: ProductExtentions
+    type: Class
+  - uid: Recycle.Data.Entities.ProductPart
+    name: ProductPart
+    type: Class
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+    type: Class
+  - uid: Recycle.Data.Entities.TrashCan.TrashCanType
+    name: TrashCan.TrashCanType
+    type: Enum
+  - uid: Recycle.Data.Entities.TrashCanExtentions
+    name: TrashCanExtentions
+    type: Class
+  - uid: Recycle.Data.Entities.TrashCanMaterialLocation
+    name: TrashCanMaterialLocation
+    type: Class
+- uid: Recycle.Data.Entities.Identity
+  name: Recycle.Data.Entities.Identity
+  type: Namespace
+  items:
+  - uid: Recycle.Data.Entities.Identity.ApplicationUser
+    name: ApplicationUser
+    type: Class
+  - uid: Recycle.Data.Entities.Identity.Role
+    name: Role
+    type: Class
+  - uid: Recycle.Data.Entities.Identity.UserRole
+    name: UserRole
+    type: Class
+- uid: Recycle.Data.Interfaces
+  name: Recycle.Data.Interfaces
+  type: Namespace
+  items:
+  - uid: Recycle.Data.Interfaces.ITrackable
+    name: ITrackable
+    type: Interface
+  - uid: Recycle.Data.Interfaces.ITrackableExtensions
+    name: ITrackableExtensions
+    type: Class
+- uid: Recycle.Data.Migrations
+  name: Recycle.Data.Migrations
+  type: Namespace
+  items:
+  - uid: Recycle.Data.Migrations.ConecctionTables
+    name: ConecctionTables
+    type: Class
+  - uid: Recycle.Data.Migrations.Int
+    name: Int
+    type: Class
+  - uid: Recycle.Data.Migrations.RegionsRemoved
+    name: RegionsRemoved
+    type: Class
+  - uid: Recycle.Data.Migrations.RegisterModel
+    name: RegisterModel
+    type: Class
+  - uid: Recycle.Data.Migrations.TokenGenetaring
+    name: TokenGenetaring
+    type: Class
+  - uid: Recycle.Data.Migrations.userChangetNotNullable
+    name: userChangetNotNullable
+    type: Class
+  - uid: Recycle.Data.Migrations.userDeletedProperty
+    name: userDeletedProperty
+    type: Class
+memberLayout: SamePage

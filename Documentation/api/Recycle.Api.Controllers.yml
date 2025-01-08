@@ -1,0 +1,65 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Controllers
+  commentId: N:Recycle.Api.Controllers
+  id: Recycle.Api.Controllers
+  children:
+  - Recycle.Api.Controllers.ArticleController
+  - Recycle.Api.Controllers.AuthController
+  - Recycle.Api.Controllers.LocationController
+  - Recycle.Api.Controllers.MaterialController
+  - Recycle.Api.Controllers.PartController
+  - Recycle.Api.Controllers.ProductController
+  - Recycle.Api.Controllers.TrashCanController
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Controllers
+  nameWithType: Recycle.Api.Controllers
+  fullName: Recycle.Api.Controllers
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Controllers.ArticleController
+  commentId: T:Recycle.Api.Controllers.ArticleController
+  href: Recycle.Api.Controllers.ArticleController.html
+  name: ArticleController
+  nameWithType: ArticleController
+  fullName: Recycle.Api.Controllers.ArticleController
+- uid: Recycle.Api.Controllers.AuthController
+  commentId: T:Recycle.Api.Controllers.AuthController
+  href: Recycle.Api.Controllers.AuthController.html
+  name: AuthController
+  nameWithType: AuthController
+  fullName: Recycle.Api.Controllers.AuthController
+- uid: Recycle.Api.Controllers.LocationController
+  commentId: T:Recycle.Api.Controllers.LocationController
+  href: Recycle.Api.Controllers.LocationController.html
+  name: LocationController
+  nameWithType: LocationController
+  fullName: Recycle.Api.Controllers.LocationController
+- uid: Recycle.Api.Controllers.MaterialController
+  commentId: T:Recycle.Api.Controllers.MaterialController
+  href: Recycle.Api.Controllers.MaterialController.html
+  name: MaterialController
+  nameWithType: MaterialController
+  fullName: Recycle.Api.Controllers.MaterialController
+- uid: Recycle.Api.Controllers.PartController
+  commentId: T:Recycle.Api.Controllers.PartController
+  href: Recycle.Api.Controllers.PartController.html
+  name: PartController
+  nameWithType: PartController
+  fullName: Recycle.Api.Controllers.PartController
+- uid: Recycle.Api.Controllers.ProductController
+  commentId: T:Recycle.Api.Controllers.ProductController
+  href: Recycle.Api.Controllers.ProductController.html
+  name: ProductController
+  nameWithType: ProductController
+  fullName: Recycle.Api.Controllers.ProductController
+- uid: Recycle.Api.Controllers.TrashCanController
+  commentId: T:Recycle.Api.Controllers.TrashCanController
+  href: Recycle.Api.Controllers.TrashCanController.html
+  name: TrashCanController
+  nameWithType: TrashCanController
+  fullName: Recycle.Api.Controllers.TrashCanController

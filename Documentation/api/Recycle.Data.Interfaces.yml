@@ -1,0 +1,62 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data.Interfaces
+  commentId: N:Recycle.Data.Interfaces
+  id: Recycle.Data.Interfaces
+  children:
+  - Recycle.Data.Interfaces.ITrackable
+  - Recycle.Data.Interfaces.ITrackableExtensions
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Data.Interfaces
+  nameWithType: Recycle.Data.Interfaces
+  fullName: Recycle.Data.Interfaces
+  type: Namespace
+  assemblies:
+  - Recycle.Data
+references:
+- uid: Recycle.Data.Interfaces.ITrackable
+  commentId: T:Recycle.Data.Interfaces.ITrackable
+  parent: Recycle.Data.Interfaces
+  href: Recycle.Data.Interfaces.ITrackable.html
+  name: ITrackable
+  nameWithType: ITrackable
+  fullName: Recycle.Data.Interfaces.ITrackable
+- uid: Recycle.Data.Interfaces.ITrackableExtensions
+  commentId: T:Recycle.Data.Interfaces.ITrackableExtensions
+  parent: Recycle.Data.Interfaces
+  href: Recycle.Data.Interfaces.ITrackableExtensions.html
+  name: ITrackableExtensions
+  nameWithType: ITrackableExtensions
+  fullName: Recycle.Data.Interfaces.ITrackableExtensions
+- uid: Recycle.Data.Interfaces
+  commentId: N:Recycle.Data.Interfaces
+  href: Recycle.html
+  name: Recycle.Data.Interfaces
+  nameWithType: Recycle.Data.Interfaces
+  fullName: Recycle.Data.Interfaces
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Interfaces
+    name: Interfaces
+    href: Recycle.Data.Interfaces.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Interfaces
+    name: Interfaces
+    href: Recycle.Data.Interfaces.html

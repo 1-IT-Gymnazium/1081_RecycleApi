@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.BackgroundServices
+  commentId: N:Recycle.Api.BackgroundServices
+  id: Recycle.Api.BackgroundServices
+  children:
+  - Recycle.Api.BackgroundServices.EmailSenderBackgroundService
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.BackgroundServices
+  nameWithType: Recycle.Api.BackgroundServices
+  fullName: Recycle.Api.BackgroundServices
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.BackgroundServices.EmailSenderBackgroundService
+  commentId: T:Recycle.Api.BackgroundServices.EmailSenderBackgroundService
+  href: Recycle.Api.BackgroundServices.EmailSenderBackgroundService.html
+  name: EmailSenderBackgroundService
+  nameWithType: EmailSenderBackgroundService
+  fullName: Recycle.Api.BackgroundServices.EmailSenderBackgroundService

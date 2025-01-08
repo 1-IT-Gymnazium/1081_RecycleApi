@@ -1,0 +1,78 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Models.Parts
+  commentId: N:Recycle.Api.Models.Parts
+  id: Recycle.Api.Models.Parts
+  children:
+  - Recycle.Api.Models.Parts.PartCreateModel
+  - Recycle.Api.Models.Parts.PartDetailModel
+  - Recycle.Api.Models.Parts.ParttDetailModelExtensions
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Models.Parts
+  nameWithType: Recycle.Api.Models.Parts
+  fullName: Recycle.Api.Models.Parts
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Models.Parts.PartCreateModel
+  commentId: T:Recycle.Api.Models.Parts.PartCreateModel
+  parent: Recycle.Api.Models.Parts
+  href: Recycle.Api.Models.Parts.PartCreateModel.html
+  name: PartCreateModel
+  nameWithType: PartCreateModel
+  fullName: Recycle.Api.Models.Parts.PartCreateModel
+- uid: Recycle.Api.Models.Parts.PartDetailModel
+  commentId: T:Recycle.Api.Models.Parts.PartDetailModel
+  parent: Recycle.Api.Models.Parts
+  href: Recycle.Api.Models.Parts.PartDetailModel.html
+  name: PartDetailModel
+  nameWithType: PartDetailModel
+  fullName: Recycle.Api.Models.Parts.PartDetailModel
+- uid: Recycle.Api.Models.Parts.ParttDetailModelExtensions
+  commentId: T:Recycle.Api.Models.Parts.ParttDetailModelExtensions
+  parent: Recycle.Api.Models.Parts
+  href: Recycle.Api.Models.Parts.ParttDetailModelExtensions.html
+  name: ParttDetailModelExtensions
+  nameWithType: ParttDetailModelExtensions
+  fullName: Recycle.Api.Models.Parts.ParttDetailModelExtensions
+- uid: Recycle.Api.Models.Parts
+  commentId: N:Recycle.Api.Models.Parts
+  href: Recycle.html
+  name: Recycle.Api.Models.Parts
+  nameWithType: Recycle.Api.Models.Parts
+  fullName: Recycle.Api.Models.Parts
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Parts
+    name: Parts
+    href: Recycle.Api.Models.Parts.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Parts
+    name: Parts
+    href: Recycle.Api.Models.Parts.html

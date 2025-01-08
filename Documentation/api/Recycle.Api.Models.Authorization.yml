@@ -1,0 +1,78 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Models.Authorization
+  commentId: N:Recycle.Api.Models.Authorization
+  id: Recycle.Api.Models.Authorization
+  children:
+  - Recycle.Api.Models.Authorization.LogInModel
+  - Recycle.Api.Models.Authorization.RegisterModel
+  - Recycle.Api.Models.Authorization.TokenModel
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Models.Authorization
+  nameWithType: Recycle.Api.Models.Authorization
+  fullName: Recycle.Api.Models.Authorization
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Models.Authorization.LogInModel
+  commentId: T:Recycle.Api.Models.Authorization.LogInModel
+  parent: Recycle.Api.Models.Authorization
+  href: Recycle.Api.Models.Authorization.LogInModel.html
+  name: LogInModel
+  nameWithType: LogInModel
+  fullName: Recycle.Api.Models.Authorization.LogInModel
+- uid: Recycle.Api.Models.Authorization.RegisterModel
+  commentId: T:Recycle.Api.Models.Authorization.RegisterModel
+  parent: Recycle.Api.Models.Authorization
+  href: Recycle.Api.Models.Authorization.RegisterModel.html
+  name: RegisterModel
+  nameWithType: RegisterModel
+  fullName: Recycle.Api.Models.Authorization.RegisterModel
+- uid: Recycle.Api.Models.Authorization.TokenModel
+  commentId: T:Recycle.Api.Models.Authorization.TokenModel
+  parent: Recycle.Api.Models.Authorization
+  href: Recycle.Api.Models.Authorization.TokenModel.html
+  name: TokenModel
+  nameWithType: TokenModel
+  fullName: Recycle.Api.Models.Authorization.TokenModel
+- uid: Recycle.Api.Models.Authorization
+  commentId: N:Recycle.Api.Models.Authorization
+  href: Recycle.html
+  name: Recycle.Api.Models.Authorization
+  nameWithType: Recycle.Api.Models.Authorization
+  fullName: Recycle.Api.Models.Authorization
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Authorization
+    name: Authorization
+    href: Recycle.Api.Models.Authorization.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Authorization
+    name: Authorization
+    href: Recycle.Api.Models.Authorization.html

@@ -1,0 +1,196 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data.Entities
+  commentId: N:Recycle.Data.Entities
+  id: Recycle.Data.Entities
+  children:
+  - Recycle.Data.Entities.Article
+  - Recycle.Data.Entities.ArticleExtensions
+  - Recycle.Data.Entities.Email
+  - Recycle.Data.Entities.Location
+  - Recycle.Data.Entities.LocationExtentions
+  - Recycle.Data.Entities.Material
+  - Recycle.Data.Entities.MaterialExtentions
+  - Recycle.Data.Entities.Part
+  - Recycle.Data.Entities.PartExtentions
+  - Recycle.Data.Entities.PartMaterial
+  - Recycle.Data.Entities.PartType
+  - Recycle.Data.Entities.Product
+  - Recycle.Data.Entities.ProductExtentions
+  - Recycle.Data.Entities.ProductPart
+  - Recycle.Data.Entities.TrashCan
+  - Recycle.Data.Entities.TrashCan.TrashCanType
+  - Recycle.Data.Entities.TrashCanExtentions
+  - Recycle.Data.Entities.TrashCanMaterialLocation
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Data.Entities
+  nameWithType: Recycle.Data.Entities
+  fullName: Recycle.Data.Entities
+  type: Namespace
+  assemblies:
+  - Recycle.Data
+references:
+- uid: Recycle.Data.Entities.Article
+  commentId: T:Recycle.Data.Entities.Article
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.Article.html
+  name: Article
+  nameWithType: Article
+  fullName: Recycle.Data.Entities.Article
+- uid: Recycle.Data.Entities.ArticleExtensions
+  commentId: T:Recycle.Data.Entities.ArticleExtensions
+  href: Recycle.Data.Entities.ArticleExtensions.html
+  name: ArticleExtensions
+  nameWithType: ArticleExtensions
+  fullName: Recycle.Data.Entities.ArticleExtensions
+- uid: Recycle.Data.Entities.Email
+  commentId: T:Recycle.Data.Entities.Email
+  href: Recycle.Data.Entities.Email.html
+  name: Email
+  nameWithType: Email
+  fullName: Recycle.Data.Entities.Email
+- uid: Recycle.Data.Entities.Location
+  commentId: T:Recycle.Data.Entities.Location
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.Location.html
+  name: Location
+  nameWithType: Location
+  fullName: Recycle.Data.Entities.Location
+- uid: Recycle.Data.Entities.LocationExtentions
+  commentId: T:Recycle.Data.Entities.LocationExtentions
+  href: Recycle.Data.Entities.LocationExtentions.html
+  name: LocationExtentions
+  nameWithType: LocationExtentions
+  fullName: Recycle.Data.Entities.LocationExtentions
+- uid: Recycle.Data.Entities.Material
+  commentId: T:Recycle.Data.Entities.Material
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.Material.html
+  name: Material
+  nameWithType: Material
+  fullName: Recycle.Data.Entities.Material
+- uid: Recycle.Data.Entities.MaterialExtentions
+  commentId: T:Recycle.Data.Entities.MaterialExtentions
+  href: Recycle.Data.Entities.MaterialExtentions.html
+  name: MaterialExtentions
+  nameWithType: MaterialExtentions
+  fullName: Recycle.Data.Entities.MaterialExtentions
+- uid: Recycle.Data.Entities.Part
+  commentId: T:Recycle.Data.Entities.Part
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.Part.html
+  name: Part
+  nameWithType: Part
+  fullName: Recycle.Data.Entities.Part
+- uid: Recycle.Data.Entities.PartType
+  commentId: T:Recycle.Data.Entities.PartType
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.PartType.html
+  name: PartType
+  nameWithType: PartType
+  fullName: Recycle.Data.Entities.PartType
+- uid: Recycle.Data.Entities.PartExtentions
+  commentId: T:Recycle.Data.Entities.PartExtentions
+  href: Recycle.Data.Entities.PartExtentions.html
+  name: PartExtentions
+  nameWithType: PartExtentions
+  fullName: Recycle.Data.Entities.PartExtentions
+- uid: Recycle.Data.Entities.PartMaterial
+  commentId: T:Recycle.Data.Entities.PartMaterial
+  href: Recycle.Data.Entities.PartMaterial.html
+  name: PartMaterial
+  nameWithType: PartMaterial
+  fullName: Recycle.Data.Entities.PartMaterial
+- uid: Recycle.Data.Entities.Product
+  commentId: T:Recycle.Data.Entities.Product
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.Product.html
+  name: Product
+  nameWithType: Product
+  fullName: Recycle.Data.Entities.Product
+- uid: Recycle.Data.Entities.ProductExtentions
+  commentId: T:Recycle.Data.Entities.ProductExtentions
+  href: Recycle.Data.Entities.ProductExtentions.html
+  name: ProductExtentions
+  nameWithType: ProductExtentions
+  fullName: Recycle.Data.Entities.ProductExtentions
+- uid: Recycle.Data.Entities.ProductPart
+  commentId: T:Recycle.Data.Entities.ProductPart
+  href: Recycle.Data.Entities.ProductPart.html
+  name: ProductPart
+  nameWithType: ProductPart
+  fullName: Recycle.Data.Entities.ProductPart
+- uid: Recycle.Data.Entities.TrashCan
+  commentId: T:Recycle.Data.Entities.TrashCan
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.TrashCan.html
+  name: TrashCan
+  nameWithType: TrashCan
+  fullName: Recycle.Data.Entities.TrashCan
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType
+  commentId: T:Recycle.Data.Entities.TrashCan.TrashCanType
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.TrashCan.html
+  name: TrashCan.TrashCanType
+  nameWithType: TrashCan.TrashCanType
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType
+  spec.csharp:
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+    href: Recycle.Data.Entities.TrashCan.html
+  - name: .
+  - uid: Recycle.Data.Entities.TrashCan.TrashCanType
+    name: TrashCanType
+    href: Recycle.Data.Entities.TrashCan.TrashCanType.html
+  spec.vb:
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+    href: Recycle.Data.Entities.TrashCan.html
+  - name: .
+  - uid: Recycle.Data.Entities.TrashCan.TrashCanType
+    name: TrashCanType
+    href: Recycle.Data.Entities.TrashCan.TrashCanType.html
+- uid: Recycle.Data.Entities.TrashCanExtentions
+  commentId: T:Recycle.Data.Entities.TrashCanExtentions
+  href: Recycle.Data.Entities.TrashCanExtentions.html
+  name: TrashCanExtentions
+  nameWithType: TrashCanExtentions
+  fullName: Recycle.Data.Entities.TrashCanExtentions
+- uid: Recycle.Data.Entities.TrashCanMaterialLocation
+  commentId: T:Recycle.Data.Entities.TrashCanMaterialLocation
+  href: Recycle.Data.Entities.TrashCanMaterialLocation.html
+  name: TrashCanMaterialLocation
+  nameWithType: TrashCanMaterialLocation
+  fullName: Recycle.Data.Entities.TrashCanMaterialLocation
+- uid: Recycle.Data.Entities
+  commentId: N:Recycle.Data.Entities
+  href: Recycle.html
+  name: Recycle.Data.Entities
+  nameWithType: Recycle.Data.Entities
+  fullName: Recycle.Data.Entities
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html

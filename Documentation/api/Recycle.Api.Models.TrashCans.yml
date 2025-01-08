@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Models.TrashCans
+  commentId: N:Recycle.Api.Models.TrashCans
+  id: Recycle.Api.Models.TrashCans
+  children:
+  - Recycle.Api.Models.TrashCans.TrashCanCreateModel
+  - Recycle.Api.Models.TrashCans.TrashCanCreateModelExtentions
+  - Recycle.Api.Models.TrashCans.TrashCanDetailModel
+  - Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Models.TrashCans
+  nameWithType: Recycle.Api.Models.TrashCans
+  fullName: Recycle.Api.Models.TrashCans
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Models.TrashCans.TrashCanCreateModel
+  commentId: T:Recycle.Api.Models.TrashCans.TrashCanCreateModel
+  parent: Recycle.Api.Models.TrashCans
+  href: Recycle.Api.Models.TrashCans.TrashCanCreateModel.html
+  name: TrashCanCreateModel
+  nameWithType: TrashCanCreateModel
+  fullName: Recycle.Api.Models.TrashCans.TrashCanCreateModel
+- uid: Recycle.Api.Models.TrashCans.TrashCanCreateModelExtentions
+  commentId: T:Recycle.Api.Models.TrashCans.TrashCanCreateModelExtentions
+  href: Recycle.Api.Models.TrashCans.TrashCanCreateModelExtentions.html
+  name: TrashCanCreateModelExtentions
+  nameWithType: TrashCanCreateModelExtentions
+  fullName: Recycle.Api.Models.TrashCans.TrashCanCreateModelExtentions
+- uid: Recycle.Api.Models.TrashCans.TrashCanDetailModel
+  commentId: T:Recycle.Api.Models.TrashCans.TrashCanDetailModel
+  parent: Recycle.Api.Models.TrashCans
+  href: Recycle.Api.Models.TrashCans.TrashCanDetailModel.html
+  name: TrashCanDetailModel
+  nameWithType: TrashCanDetailModel
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModel
+- uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  commentId: T:Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  parent: Recycle.Api.Models.TrashCans
+  href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html
+  name: TrashCanDetailModelExtensions
+  nameWithType: TrashCanDetailModelExtensions
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+- uid: Recycle.Api.Models.TrashCans
+  commentId: N:Recycle.Api.Models.TrashCans
+  href: Recycle.html
+  name: Recycle.Api.Models.TrashCans
+  nameWithType: Recycle.Api.Models.TrashCans
+  fullName: Recycle.Api.Models.TrashCans
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.TrashCans
+    name: TrashCans
+    href: Recycle.Api.Models.TrashCans.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.TrashCans
+    name: TrashCans
+    href: Recycle.Api.Models.TrashCans.html

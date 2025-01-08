@@ -1,0 +1,436 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  commentId: T:Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  id: TrashCanDetailModelExtensions
+  parent: Recycle.Api.Models.TrashCans
+  children:
+  - Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+  langs:
+  - csharp
+  - vb
+  name: TrashCanDetailModelExtensions
+  nameWithType: TrashCanDetailModelExtensions
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  type: Class
+  source:
+    remote:
+      path: Recycle/Models/TrashCans/TrashCanDetailModel.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: TrashCanDetailModelExtensions
+    path: ../Recycle/Models/TrashCans/TrashCanDetailModel.cs
+    startLine: 14
+  assemblies:
+  - Recycle.Api
+  namespace: Recycle.Api.Models.TrashCans
+  syntax:
+    content: public static class TrashCanDetailModelExtensions
+    content.vb: Public Module TrashCanDetailModelExtensions
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+  commentId: M:Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+  id: ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+  isExtensionMethod: true
+  parent: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  langs:
+  - csharp
+  - vb
+  name: ToDetail(IApplicationMapper, TrashCan)
+  nameWithType: TrashCanDetailModelExtensions.ToDetail(IApplicationMapper, TrashCan)
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.TrashCan)
+  type: Method
+  source:
+    remote:
+      path: Recycle/Models/TrashCans/TrashCanDetailModel.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: ToDetail
+    path: ../Recycle/Models/TrashCans/TrashCanDetailModel.cs
+    startLine: 16
+  assemblies:
+  - Recycle.Api
+  namespace: Recycle.Api.Models.TrashCans
+  syntax:
+    content: public static TrashCanDetailModel ToDetail(this IApplicationMapper mapper, TrashCan source)
+    parameters:
+    - id: mapper
+      type: Recycle.Api.Utilities.IApplicationMapper
+    - id: source
+      type: Recycle.Data.Entities.TrashCan
+    return:
+      type: Recycle.Api.Models.TrashCans.TrashCanDetailModel
+    content.vb: Public Shared Function ToDetail(mapper As IApplicationMapper, source As TrashCan) As TrashCanDetailModel
+  overload: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail*
+references:
+- uid: Recycle.Api.Models.TrashCans
+  commentId: N:Recycle.Api.Models.TrashCans
+  href: Recycle.html
+  name: Recycle.Api.Models.TrashCans
+  nameWithType: Recycle.Api.Models.TrashCans
+  fullName: Recycle.Api.Models.TrashCans
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.TrashCans
+    name: TrashCans
+    href: Recycle.Api.Models.TrashCans.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.TrashCans
+    name: TrashCans
+    href: Recycle.Api.Models.TrashCans.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail*
+  commentId: Overload:Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail
+  href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html#Recycle_Api_Models_TrashCans_TrashCanDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_TrashCan_
+  name: ToDetail
+  nameWithType: TrashCanDetailModelExtensions.ToDetail
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail
+- uid: Recycle.Api.Utilities.IApplicationMapper
+  commentId: T:Recycle.Api.Utilities.IApplicationMapper
+  parent: Recycle.Api.Utilities
+  href: Recycle.Api.Utilities.IApplicationMapper.html
+  name: IApplicationMapper
+  nameWithType: IApplicationMapper
+  fullName: Recycle.Api.Utilities.IApplicationMapper
+- uid: Recycle.Data.Entities.TrashCan
+  commentId: T:Recycle.Data.Entities.TrashCan
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.TrashCan.html
+  name: TrashCan
+  nameWithType: TrashCan
+  fullName: Recycle.Data.Entities.TrashCan
+- uid: Recycle.Api.Models.TrashCans.TrashCanDetailModel
+  commentId: T:Recycle.Api.Models.TrashCans.TrashCanDetailModel
+  parent: Recycle.Api.Models.TrashCans
+  href: Recycle.Api.Models.TrashCans.TrashCanDetailModel.html
+  name: TrashCanDetailModel
+  nameWithType: TrashCanDetailModel
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModel
+- uid: Recycle.Api.Utilities
+  commentId: N:Recycle.Api.Utilities
+  href: Recycle.html
+  name: Recycle.Api.Utilities
+  nameWithType: Recycle.Api.Utilities
+  fullName: Recycle.Api.Utilities
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Utilities
+    name: Utilities
+    href: Recycle.Api.Utilities.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Utilities
+    name: Utilities
+    href: Recycle.Api.Utilities.html
+- uid: Recycle.Data.Entities
+  commentId: N:Recycle.Data.Entities
+  href: Recycle.html
+  name: Recycle.Data.Entities
+  nameWithType: Recycle.Data.Entities
+  fullName: Recycle.Data.Entities
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html

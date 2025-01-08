@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Settings
+  commentId: N:Recycle.Api.Settings
+  id: Recycle.Api.Settings
+  children:
+  - Recycle.Api.Settings.SmtpSettings
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Settings
+  nameWithType: Recycle.Api.Settings
+  fullName: Recycle.Api.Settings
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Settings.SmtpSettings
+  commentId: T:Recycle.Api.Settings.SmtpSettings
+  href: Recycle.Api.Settings.SmtpSettings.html
+  name: SmtpSettings
+  nameWithType: SmtpSettings
+  fullName: Recycle.Api.Settings.SmtpSettings

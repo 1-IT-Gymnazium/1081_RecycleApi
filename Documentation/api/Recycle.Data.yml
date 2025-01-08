@@ -1,0 +1,46 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data
+  commentId: N:Recycle.Data
+  id: Recycle.Data
+  children:
+  - Recycle.Data.AppDbContext
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Data
+  nameWithType: Recycle.Data
+  fullName: Recycle.Data
+  type: Namespace
+  assemblies:
+  - Recycle.Data
+references:
+- uid: Recycle.Data.AppDbContext
+  commentId: T:Recycle.Data.AppDbContext
+  parent: Recycle.Data
+  href: Recycle.Data.AppDbContext.html
+  name: AppDbContext
+  nameWithType: AppDbContext
+  fullName: Recycle.Data.AppDbContext
+- uid: Recycle.Data
+  commentId: N:Recycle.Data
+  href: Recycle.html
+  name: Recycle.Data
+  nameWithType: Recycle.Data
+  fullName: Recycle.Data
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html

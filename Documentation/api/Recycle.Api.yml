@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api
+  commentId: N:Recycle.Api
+  id: Recycle.Api
+  children:
+  - Recycle.Api.Program
+  - Recycle.Api.Startup
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api
+  nameWithType: Recycle.Api
+  fullName: Recycle.Api
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Program
+  commentId: T:Recycle.Api.Program
+  href: Recycle.Api.Program.html
+  name: Program
+  nameWithType: Program
+  fullName: Recycle.Api.Program
+- uid: Recycle.Api.Startup
+  commentId: T:Recycle.Api.Startup
+  href: Recycle.Api.Startup.html
+  name: Startup
+  nameWithType: Startup
+  fullName: Recycle.Api.Startup

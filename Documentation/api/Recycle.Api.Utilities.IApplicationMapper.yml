@@ -1,0 +1,670 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Utilities.IApplicationMapper
+  commentId: T:Recycle.Api.Utilities.IApplicationMapper
+  id: IApplicationMapper
+  parent: Recycle.Api.Utilities
+  children:
+  - Recycle.Api.Utilities.IApplicationMapper.Now
+  langs:
+  - csharp
+  - vb
+  name: IApplicationMapper
+  nameWithType: IApplicationMapper
+  fullName: Recycle.Api.Utilities.IApplicationMapper
+  type: Interface
+  source:
+    remote:
+      path: Recycle/Utilities/IApplicationMapper.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: IApplicationMapper
+    path: ../Recycle/Utilities/IApplicationMapper.cs
+    startLine: 4
+  assemblies:
+  - Recycle.Api
+  namespace: Recycle.Api.Utilities
+  syntax:
+    content: public interface IApplicationMapper
+    content.vb: Public Interface IApplicationMapper
+  extensionMethods:
+  - Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Data.Entities.Location)
+  - Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Data.Entities.Material)
+  - Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Data.Entities.Part)
+  - Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Data.Entities.Product)
+  - Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Data.Entities.TrashCan)
+- uid: Recycle.Api.Utilities.IApplicationMapper.Now
+  commentId: P:Recycle.Api.Utilities.IApplicationMapper.Now
+  id: Now
+  parent: Recycle.Api.Utilities.IApplicationMapper
+  langs:
+  - csharp
+  - vb
+  name: Now
+  nameWithType: IApplicationMapper.Now
+  fullName: Recycle.Api.Utilities.IApplicationMapper.Now
+  type: Property
+  source:
+    remote:
+      path: Recycle/Utilities/IApplicationMapper.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Now
+    path: ../Recycle/Utilities/IApplicationMapper.cs
+    startLine: 6
+  assemblies:
+  - Recycle.Api
+  namespace: Recycle.Api.Utilities
+  syntax:
+    content: Instant Now { get; }
+    parameters: []
+    return:
+      type: NodaTime.Instant
+    content.vb: ReadOnly Property Now As Instant
+  overload: Recycle.Api.Utilities.IApplicationMapper.Now*
+references:
+- uid: Recycle.Api.Utilities
+  commentId: N:Recycle.Api.Utilities
+  href: Recycle.html
+  name: Recycle.Api.Utilities
+  nameWithType: Recycle.Api.Utilities
+  fullName: Recycle.Api.Utilities
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Utilities
+    name: Utilities
+    href: Recycle.Api.Utilities.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Utilities
+    name: Utilities
+    href: Recycle.Api.Utilities.html
+- uid: Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Data.Entities.Location)
+  commentId: M:Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Location)
+  parent: Recycle.Api.Models.Locations.LocationDetailModelExtensions
+  definition: Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Location)
+  href: Recycle.Api.Models.Locations.LocationDetailModelExtensions.html#Recycle_Api_Models_Locations_LocationDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Location_
+  name: ToDetail(IApplicationMapper, Location)
+  nameWithType: LocationDetailModelExtensions.ToDetail(IApplicationMapper, Location)
+  fullName: Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.Location)
+  spec.csharp:
+  - uid: Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Location)
+    name: ToDetail
+    href: Recycle.Api.Models.Locations.LocationDetailModelExtensions.html#Recycle_Api_Models_Locations_LocationDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Location_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Location
+    name: Location
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Location)
+    name: ToDetail
+    href: Recycle.Api.Models.Locations.LocationDetailModelExtensions.html#Recycle_Api_Models_Locations_LocationDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Location_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Location
+    name: Location
+  - name: )
+- uid: Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Data.Entities.Material)
+  commentId: M:Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Material)
+  parent: Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+  definition: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Material)
+  href: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html#Recycle_Api_Models_Materials_MaterialCreateModelExtentions_ToUpdate_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Material_
+  name: ToUpdate(IApplicationMapper, Material)
+  nameWithType: MaterialCreateModelExtentions.ToUpdate(IApplicationMapper, Material)
+  fullName: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.Material)
+  spec.csharp:
+  - uid: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Material)
+    name: ToUpdate
+    href: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html#Recycle_Api_Models_Materials_MaterialCreateModelExtentions_ToUpdate_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Material_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Material
+    name: Material
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Material)
+    name: ToUpdate
+    href: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html#Recycle_Api_Models_Materials_MaterialCreateModelExtentions_ToUpdate_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Material_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Material
+    name: Material
+  - name: )
+- uid: Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Data.Entities.Part)
+  commentId: M:Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Part)
+  parent: Recycle.Api.Models.Parts.ParttDetailModelExtensions
+  definition: Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Part)
+  href: Recycle.Api.Models.Parts.ParttDetailModelExtensions.html#Recycle_Api_Models_Parts_ParttDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Part_
+  name: ToDetail(IApplicationMapper, Part)
+  nameWithType: ParttDetailModelExtensions.ToDetail(IApplicationMapper, Part)
+  fullName: Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.Part)
+  spec.csharp:
+  - uid: Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Part)
+    name: ToDetail
+    href: Recycle.Api.Models.Parts.ParttDetailModelExtensions.html#Recycle_Api_Models_Parts_ParttDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Part_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Part
+    name: Part
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Part)
+    name: ToDetail
+    href: Recycle.Api.Models.Parts.ParttDetailModelExtensions.html#Recycle_Api_Models_Parts_ParttDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Part_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Part
+    name: Part
+  - name: )
+- uid: Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Data.Entities.Product)
+  commentId: M:Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Product)
+  parent: Recycle.Api.Models.Products.ProductDetailModelExtensions
+  definition: Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Product)
+  href: Recycle.Api.Models.Products.ProductDetailModelExtensions.html#Recycle_Api_Models_Products_ProductDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Product_
+  name: ToDetail(IApplicationMapper, Product)
+  nameWithType: ProductDetailModelExtensions.ToDetail(IApplicationMapper, Product)
+  fullName: Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.Product)
+  spec.csharp:
+  - uid: Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Product)
+    name: ToDetail
+    href: Recycle.Api.Models.Products.ProductDetailModelExtensions.html#Recycle_Api_Models_Products_ProductDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Product_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Product
+    name: Product
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Product)
+    name: ToDetail
+    href: Recycle.Api.Models.Products.ProductDetailModelExtensions.html#Recycle_Api_Models_Products_ProductDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Product_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Product
+    name: Product
+  - name: )
+- uid: Recycle.Api.Utilities.IApplicationMapper.Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Data.Entities.TrashCan)
+  commentId: M:Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+  parent: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  definition: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+  href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html#Recycle_Api_Models_TrashCans_TrashCanDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_TrashCan_
+  name: ToDetail(IApplicationMapper, TrashCan)
+  nameWithType: TrashCanDetailModelExtensions.ToDetail(IApplicationMapper, TrashCan)
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.TrashCan)
+  spec.csharp:
+  - uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+    name: ToDetail
+    href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html#Recycle_Api_Models_TrashCans_TrashCanDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_TrashCan_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+    name: ToDetail
+    href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html#Recycle_Api_Models_TrashCans_TrashCanDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_TrashCan_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+  - name: )
+- uid: Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Location)
+  commentId: M:Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Location)
+  href: Recycle.Api.Models.Locations.LocationDetailModelExtensions.html#Recycle_Api_Models_Locations_LocationDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Location_
+  name: ToDetail(IApplicationMapper, Location)
+  nameWithType: LocationDetailModelExtensions.ToDetail(IApplicationMapper, Location)
+  fullName: Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.Location)
+  spec.csharp:
+  - uid: Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Location)
+    name: ToDetail
+    href: Recycle.Api.Models.Locations.LocationDetailModelExtensions.html#Recycle_Api_Models_Locations_LocationDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Location_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Location
+    name: Location
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.Locations.LocationDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Location)
+    name: ToDetail
+    href: Recycle.Api.Models.Locations.LocationDetailModelExtensions.html#Recycle_Api_Models_Locations_LocationDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Location_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Location
+    name: Location
+  - name: )
+- uid: Recycle.Api.Models.Locations.LocationDetailModelExtensions
+  commentId: T:Recycle.Api.Models.Locations.LocationDetailModelExtensions
+  parent: Recycle.Api.Models.Locations
+  href: Recycle.Api.Models.Locations.LocationDetailModelExtensions.html
+  name: LocationDetailModelExtensions
+  nameWithType: LocationDetailModelExtensions
+  fullName: Recycle.Api.Models.Locations.LocationDetailModelExtensions
+- uid: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Material)
+  commentId: M:Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Material)
+  href: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html#Recycle_Api_Models_Materials_MaterialCreateModelExtentions_ToUpdate_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Material_
+  name: ToUpdate(IApplicationMapper, Material)
+  nameWithType: MaterialCreateModelExtentions.ToUpdate(IApplicationMapper, Material)
+  fullName: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.Material)
+  spec.csharp:
+  - uid: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Material)
+    name: ToUpdate
+    href: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html#Recycle_Api_Models_Materials_MaterialCreateModelExtentions_ToUpdate_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Material_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Material
+    name: Material
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.ToUpdate(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Material)
+    name: ToUpdate
+    href: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html#Recycle_Api_Models_Materials_MaterialCreateModelExtentions_ToUpdate_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Material_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Material
+    name: Material
+  - name: )
+- uid: Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+  commentId: T:Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+  parent: Recycle.Api.Models.Materials
+  href: Recycle.Api.Models.Materials.MaterialCreateModelExtentions.html
+  name: MaterialCreateModelExtentions
+  nameWithType: MaterialCreateModelExtentions
+  fullName: Recycle.Api.Models.Materials.MaterialCreateModelExtentions
+- uid: Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Part)
+  commentId: M:Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Part)
+  href: Recycle.Api.Models.Parts.ParttDetailModelExtensions.html#Recycle_Api_Models_Parts_ParttDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Part_
+  name: ToDetail(IApplicationMapper, Part)
+  nameWithType: ParttDetailModelExtensions.ToDetail(IApplicationMapper, Part)
+  fullName: Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.Part)
+  spec.csharp:
+  - uid: Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Part)
+    name: ToDetail
+    href: Recycle.Api.Models.Parts.ParttDetailModelExtensions.html#Recycle_Api_Models_Parts_ParttDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Part_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Part
+    name: Part
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.Parts.ParttDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Part)
+    name: ToDetail
+    href: Recycle.Api.Models.Parts.ParttDetailModelExtensions.html#Recycle_Api_Models_Parts_ParttDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Part_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Part
+    name: Part
+  - name: )
+- uid: Recycle.Api.Models.Parts.ParttDetailModelExtensions
+  commentId: T:Recycle.Api.Models.Parts.ParttDetailModelExtensions
+  parent: Recycle.Api.Models.Parts
+  href: Recycle.Api.Models.Parts.ParttDetailModelExtensions.html
+  name: ParttDetailModelExtensions
+  nameWithType: ParttDetailModelExtensions
+  fullName: Recycle.Api.Models.Parts.ParttDetailModelExtensions
+- uid: Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Product)
+  commentId: M:Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Product)
+  href: Recycle.Api.Models.Products.ProductDetailModelExtensions.html#Recycle_Api_Models_Products_ProductDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Product_
+  name: ToDetail(IApplicationMapper, Product)
+  nameWithType: ProductDetailModelExtensions.ToDetail(IApplicationMapper, Product)
+  fullName: Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.Product)
+  spec.csharp:
+  - uid: Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Product)
+    name: ToDetail
+    href: Recycle.Api.Models.Products.ProductDetailModelExtensions.html#Recycle_Api_Models_Products_ProductDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Product_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Product
+    name: Product
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.Products.ProductDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.Product)
+    name: ToDetail
+    href: Recycle.Api.Models.Products.ProductDetailModelExtensions.html#Recycle_Api_Models_Products_ProductDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_Product_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.Product
+    name: Product
+  - name: )
+- uid: Recycle.Api.Models.Products.ProductDetailModelExtensions
+  commentId: T:Recycle.Api.Models.Products.ProductDetailModelExtensions
+  parent: Recycle.Api.Models.Products
+  href: Recycle.Api.Models.Products.ProductDetailModelExtensions.html
+  name: ProductDetailModelExtensions
+  nameWithType: ProductDetailModelExtensions
+  fullName: Recycle.Api.Models.Products.ProductDetailModelExtensions
+- uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+  commentId: M:Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+  href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html#Recycle_Api_Models_TrashCans_TrashCanDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_TrashCan_
+  name: ToDetail(IApplicationMapper, TrashCan)
+  nameWithType: TrashCanDetailModelExtensions.ToDetail(IApplicationMapper, TrashCan)
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper, Recycle.Data.Entities.TrashCan)
+  spec.csharp:
+  - uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+    name: ToDetail
+    href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html#Recycle_Api_Models_TrashCans_TrashCanDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_TrashCan_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+  - name: )
+  spec.vb:
+  - uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.ToDetail(Recycle.Api.Utilities.IApplicationMapper,Recycle.Data.Entities.TrashCan)
+    name: ToDetail
+    href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html#Recycle_Api_Models_TrashCans_TrashCanDetailModelExtensions_ToDetail_Recycle_Api_Utilities_IApplicationMapper_Recycle_Data_Entities_TrashCan_
+  - name: (
+  - uid: Recycle.Api.Utilities.IApplicationMapper
+    name: IApplicationMapper
+    href: Recycle.Api.Utilities.IApplicationMapper.html
+  - name: ','
+  - name: " "
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+  - name: )
+- uid: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  commentId: T:Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+  parent: Recycle.Api.Models.TrashCans
+  href: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions.html
+  name: TrashCanDetailModelExtensions
+  nameWithType: TrashCanDetailModelExtensions
+  fullName: Recycle.Api.Models.TrashCans.TrashCanDetailModelExtensions
+- uid: Recycle.Api.Models.Locations
+  commentId: N:Recycle.Api.Models.Locations
+  href: Recycle.html
+  name: Recycle.Api.Models.Locations
+  nameWithType: Recycle.Api.Models.Locations
+  fullName: Recycle.Api.Models.Locations
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Locations
+    name: Locations
+    href: Recycle.Api.Models.Locations.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Locations
+    name: Locations
+    href: Recycle.Api.Models.Locations.html
+- uid: Recycle.Api.Models.Materials
+  commentId: N:Recycle.Api.Models.Materials
+  href: Recycle.html
+  name: Recycle.Api.Models.Materials
+  nameWithType: Recycle.Api.Models.Materials
+  fullName: Recycle.Api.Models.Materials
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Materials
+    name: Materials
+    href: Recycle.Api.Models.Materials.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Materials
+    name: Materials
+    href: Recycle.Api.Models.Materials.html
+- uid: Recycle.Api.Models.Parts
+  commentId: N:Recycle.Api.Models.Parts
+  href: Recycle.html
+  name: Recycle.Api.Models.Parts
+  nameWithType: Recycle.Api.Models.Parts
+  fullName: Recycle.Api.Models.Parts
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Parts
+    name: Parts
+    href: Recycle.Api.Models.Parts.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Parts
+    name: Parts
+    href: Recycle.Api.Models.Parts.html
+- uid: Recycle.Api.Models.Products
+  commentId: N:Recycle.Api.Models.Products
+  href: Recycle.html
+  name: Recycle.Api.Models.Products
+  nameWithType: Recycle.Api.Models.Products
+  fullName: Recycle.Api.Models.Products
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Products
+    name: Products
+    href: Recycle.Api.Models.Products.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Products
+    name: Products
+    href: Recycle.Api.Models.Products.html
+- uid: Recycle.Api.Models.TrashCans
+  commentId: N:Recycle.Api.Models.TrashCans
+  href: Recycle.html
+  name: Recycle.Api.Models.TrashCans
+  nameWithType: Recycle.Api.Models.TrashCans
+  fullName: Recycle.Api.Models.TrashCans
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.TrashCans
+    name: TrashCans
+    href: Recycle.Api.Models.TrashCans.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.TrashCans
+    name: TrashCans
+    href: Recycle.Api.Models.TrashCans.html
+- uid: Recycle.Api.Utilities.IApplicationMapper.Now*
+  commentId: Overload:Recycle.Api.Utilities.IApplicationMapper.Now
+  href: Recycle.Api.Utilities.IApplicationMapper.html#Recycle_Api_Utilities_IApplicationMapper_Now
+  name: Now
+  nameWithType: IApplicationMapper.Now
+  fullName: Recycle.Api.Utilities.IApplicationMapper.Now
+- uid: NodaTime.Instant
+  commentId: T:NodaTime.Instant
+  parent: NodaTime
+  isExternal: true
+  href: https://github.com/jskeet/nodatime/blob/4d0e4c04dd5f09304a7e53a0675dce1597ea0143/src/NodaTime/Instant.cs
+  name: Instant
+  nameWithType: Instant
+  fullName: NodaTime.Instant
+- uid: NodaTime
+  commentId: N:NodaTime
+  isExternal: true
+  name: NodaTime
+  nameWithType: NodaTime
+  fullName: NodaTime

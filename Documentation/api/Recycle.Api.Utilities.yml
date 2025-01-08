@@ -1,0 +1,68 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Utilities
+  commentId: N:Recycle.Api.Utilities
+  id: Recycle.Api.Utilities
+  children:
+  - Recycle.Api.Utilities.ApplicationMapper
+  - Recycle.Api.Utilities.ClaimsPrincipalExtensions
+  - Recycle.Api.Utilities.IApplicationMapper
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Utilities
+  nameWithType: Recycle.Api.Utilities
+  fullName: Recycle.Api.Utilities
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Utilities.ClaimsPrincipalExtensions
+  commentId: T:Recycle.Api.Utilities.ClaimsPrincipalExtensions
+  href: Recycle.Api.Utilities.ClaimsPrincipalExtensions.html
+  name: ClaimsPrincipalExtensions
+  nameWithType: ClaimsPrincipalExtensions
+  fullName: Recycle.Api.Utilities.ClaimsPrincipalExtensions
+- uid: Recycle.Api.Utilities.IApplicationMapper
+  commentId: T:Recycle.Api.Utilities.IApplicationMapper
+  parent: Recycle.Api.Utilities
+  href: Recycle.Api.Utilities.IApplicationMapper.html
+  name: IApplicationMapper
+  nameWithType: IApplicationMapper
+  fullName: Recycle.Api.Utilities.IApplicationMapper
+- uid: Recycle.Api.Utilities.ApplicationMapper
+  commentId: T:Recycle.Api.Utilities.ApplicationMapper
+  href: Recycle.Api.Utilities.ApplicationMapper.html
+  name: ApplicationMapper
+  nameWithType: ApplicationMapper
+  fullName: Recycle.Api.Utilities.ApplicationMapper
+- uid: Recycle.Api.Utilities
+  commentId: N:Recycle.Api.Utilities
+  href: Recycle.html
+  name: Recycle.Api.Utilities
+  nameWithType: Recycle.Api.Utilities
+  fullName: Recycle.Api.Utilities
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Utilities
+    name: Utilities
+    href: Recycle.Api.Utilities.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Utilities
+    name: Utilities
+    href: Recycle.Api.Utilities.html

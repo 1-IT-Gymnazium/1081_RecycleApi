@@ -1,0 +1,85 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Models.Locations
+  commentId: N:Recycle.Api.Models.Locations
+  id: Recycle.Api.Models.Locations
+  children:
+  - Recycle.Api.Models.Locations.LocationCreateModel
+  - Recycle.Api.Models.Locations.LocationCreateModelExtentions
+  - Recycle.Api.Models.Locations.LocationDetailModel
+  - Recycle.Api.Models.Locations.LocationDetailModelExtensions
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Models.Locations
+  nameWithType: Recycle.Api.Models.Locations
+  fullName: Recycle.Api.Models.Locations
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Models.Locations.LocationCreateModel
+  commentId: T:Recycle.Api.Models.Locations.LocationCreateModel
+  parent: Recycle.Api.Models.Locations
+  href: Recycle.Api.Models.Locations.LocationCreateModel.html
+  name: LocationCreateModel
+  nameWithType: LocationCreateModel
+  fullName: Recycle.Api.Models.Locations.LocationCreateModel
+- uid: Recycle.Api.Models.Locations.LocationCreateModelExtentions
+  commentId: T:Recycle.Api.Models.Locations.LocationCreateModelExtentions
+  href: Recycle.Api.Models.Locations.LocationCreateModelExtentions.html
+  name: LocationCreateModelExtentions
+  nameWithType: LocationCreateModelExtentions
+  fullName: Recycle.Api.Models.Locations.LocationCreateModelExtentions
+- uid: Recycle.Api.Models.Locations.LocationDetailModel
+  commentId: T:Recycle.Api.Models.Locations.LocationDetailModel
+  parent: Recycle.Api.Models.Locations
+  href: Recycle.Api.Models.Locations.LocationDetailModel.html
+  name: LocationDetailModel
+  nameWithType: LocationDetailModel
+  fullName: Recycle.Api.Models.Locations.LocationDetailModel
+- uid: Recycle.Api.Models.Locations.LocationDetailModelExtensions
+  commentId: T:Recycle.Api.Models.Locations.LocationDetailModelExtensions
+  parent: Recycle.Api.Models.Locations
+  href: Recycle.Api.Models.Locations.LocationDetailModelExtensions.html
+  name: LocationDetailModelExtensions
+  nameWithType: LocationDetailModelExtensions
+  fullName: Recycle.Api.Models.Locations.LocationDetailModelExtensions
+- uid: Recycle.Api.Models.Locations
+  commentId: N:Recycle.Api.Models.Locations
+  href: Recycle.html
+  name: Recycle.Api.Models.Locations
+  nameWithType: Recycle.Api.Models.Locations
+  fullName: Recycle.Api.Models.Locations
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Locations
+    name: Locations
+    href: Recycle.Api.Models.Locations.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Locations
+    name: Locations
+    href: Recycle.Api.Models.Locations.html

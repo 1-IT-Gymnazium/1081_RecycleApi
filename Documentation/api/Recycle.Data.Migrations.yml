@@ -1,0 +1,65 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data.Migrations
+  commentId: N:Recycle.Data.Migrations
+  id: Recycle.Data.Migrations
+  children:
+  - Recycle.Data.Migrations.ConecctionTables
+  - Recycle.Data.Migrations.Int
+  - Recycle.Data.Migrations.RegionsRemoved
+  - Recycle.Data.Migrations.RegisterModel
+  - Recycle.Data.Migrations.TokenGenetaring
+  - Recycle.Data.Migrations.userChangetNotNullable
+  - Recycle.Data.Migrations.userDeletedProperty
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Data.Migrations
+  nameWithType: Recycle.Data.Migrations
+  fullName: Recycle.Data.Migrations
+  type: Namespace
+  assemblies:
+  - Recycle.Data
+references:
+- uid: Recycle.Data.Migrations.Int
+  commentId: T:Recycle.Data.Migrations.Int
+  href: Recycle.Data.Migrations.Int.html
+  name: Int
+  nameWithType: Int
+  fullName: Recycle.Data.Migrations.Int
+- uid: Recycle.Data.Migrations.userDeletedProperty
+  commentId: T:Recycle.Data.Migrations.userDeletedProperty
+  href: Recycle.Data.Migrations.userDeletedProperty.html
+  name: userDeletedProperty
+  nameWithType: userDeletedProperty
+  fullName: Recycle.Data.Migrations.userDeletedProperty
+- uid: Recycle.Data.Migrations.userChangetNotNullable
+  commentId: T:Recycle.Data.Migrations.userChangetNotNullable
+  href: Recycle.Data.Migrations.userChangetNotNullable.html
+  name: userChangetNotNullable
+  nameWithType: userChangetNotNullable
+  fullName: Recycle.Data.Migrations.userChangetNotNullable
+- uid: Recycle.Data.Migrations.RegisterModel
+  commentId: T:Recycle.Data.Migrations.RegisterModel
+  href: Recycle.Data.Migrations.RegisterModel.html
+  name: RegisterModel
+  nameWithType: RegisterModel
+  fullName: Recycle.Data.Migrations.RegisterModel
+- uid: Recycle.Data.Migrations.TokenGenetaring
+  commentId: T:Recycle.Data.Migrations.TokenGenetaring
+  href: Recycle.Data.Migrations.TokenGenetaring.html
+  name: TokenGenetaring
+  nameWithType: TokenGenetaring
+  fullName: Recycle.Data.Migrations.TokenGenetaring
+- uid: Recycle.Data.Migrations.ConecctionTables
+  commentId: T:Recycle.Data.Migrations.ConecctionTables
+  href: Recycle.Data.Migrations.ConecctionTables.html
+  name: ConecctionTables
+  nameWithType: ConecctionTables
+  fullName: Recycle.Data.Migrations.ConecctionTables
+- uid: Recycle.Data.Migrations.RegionsRemoved
+  commentId: T:Recycle.Data.Migrations.RegionsRemoved
+  href: Recycle.Data.Migrations.RegionsRemoved.html
+  name: RegionsRemoved
+  nameWithType: RegionsRemoved
+  fullName: Recycle.Data.Migrations.RegionsRemoved

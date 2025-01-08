@@ -1,0 +1,325 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType
+  commentId: T:Recycle.Data.Entities.TrashCan.TrashCanType
+  id: TrashCan.TrashCanType
+  parent: Recycle.Data.Entities
+  children:
+  - Recycle.Data.Entities.TrashCan.TrashCanType.Bio
+  - Recycle.Data.Entities.TrashCan.TrashCanType.Cartons
+  - Recycle.Data.Entities.TrashCan.TrashCanType.CommunalTrash
+  - Recycle.Data.Entities.TrashCan.TrashCanType.Electronics
+  - Recycle.Data.Entities.TrashCan.TrashCanType.Glass
+  - Recycle.Data.Entities.TrashCan.TrashCanType.Metal
+  - Recycle.Data.Entities.TrashCan.TrashCanType.Paper
+  - Recycle.Data.Entities.TrashCan.TrashCanType.Plastic
+  - Recycle.Data.Entities.TrashCan.TrashCanType.Textile
+  langs:
+  - csharp
+  - vb
+  name: TrashCan.TrashCanType
+  nameWithType: TrashCan.TrashCanType
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType
+  type: Enum
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: TrashCanType
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 18
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public enum TrashCan.TrashCanType
+    content.vb: Public Enum TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.Plastic
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.Plastic
+  id: Plastic
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: Plastic
+  nameWithType: TrashCan.TrashCanType.Plastic
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.Plastic
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Plastic
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 20
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Plastic = 1
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.Paper
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.Paper
+  id: Paper
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: Paper
+  nameWithType: TrashCan.TrashCanType.Paper
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.Paper
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Paper
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 21
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Paper = 2
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.Glass
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.Glass
+  id: Glass
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: Glass
+  nameWithType: TrashCan.TrashCanType.Glass
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.Glass
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Glass
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 22
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Glass = 3
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.Cartons
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.Cartons
+  id: Cartons
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: Cartons
+  nameWithType: TrashCan.TrashCanType.Cartons
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.Cartons
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Cartons
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 23
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Cartons = 4
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.Electronics
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.Electronics
+  id: Electronics
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: Electronics
+  nameWithType: TrashCan.TrashCanType.Electronics
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.Electronics
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Electronics
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 24
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Electronics = 5
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.Bio
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.Bio
+  id: Bio
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: Bio
+  nameWithType: TrashCan.TrashCanType.Bio
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.Bio
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Bio
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 25
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Bio = 6
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.CommunalTrash
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.CommunalTrash
+  id: CommunalTrash
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: CommunalTrash
+  nameWithType: TrashCan.TrashCanType.CommunalTrash
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.CommunalTrash
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: CommunalTrash
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 26
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: CommunalTrash = 7
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.Metal
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.Metal
+  id: Metal
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: Metal
+  nameWithType: TrashCan.TrashCanType.Metal
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.Metal
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Metal
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 27
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Metal = 8
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType.Textile
+  commentId: F:Recycle.Data.Entities.TrashCan.TrashCanType.Textile
+  id: Textile
+  parent: Recycle.Data.Entities.TrashCan.TrashCanType
+  langs:
+  - csharp
+  - vb
+  name: Textile
+  nameWithType: TrashCan.TrashCanType.Textile
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType.Textile
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/TrashCan.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Textile
+    path: ../Recycle.Data/Entities/TrashCan.cs
+    startLine: 28
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Textile = 9
+    return:
+      type: Recycle.Data.Entities.TrashCan.TrashCanType
+references:
+- uid: Recycle.Data.Entities
+  commentId: N:Recycle.Data.Entities
+  href: Recycle.html
+  name: Recycle.Data.Entities
+  nameWithType: Recycle.Data.Entities
+  fullName: Recycle.Data.Entities
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+- uid: Recycle.Data.Entities.TrashCan.TrashCanType
+  commentId: T:Recycle.Data.Entities.TrashCan.TrashCanType
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.TrashCan.html
+  name: TrashCan.TrashCanType
+  nameWithType: TrashCan.TrashCanType
+  fullName: Recycle.Data.Entities.TrashCan.TrashCanType
+  spec.csharp:
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+    href: Recycle.Data.Entities.TrashCan.html
+  - name: .
+  - uid: Recycle.Data.Entities.TrashCan.TrashCanType
+    name: TrashCanType
+    href: Recycle.Data.Entities.TrashCan.TrashCanType.html
+  spec.vb:
+  - uid: Recycle.Data.Entities.TrashCan
+    name: TrashCan
+    href: Recycle.Data.Entities.TrashCan.html
+  - name: .
+  - uid: Recycle.Data.Entities.TrashCan.TrashCanType
+    name: TrashCanType
+    href: Recycle.Data.Entities.TrashCan.TrashCanType.html

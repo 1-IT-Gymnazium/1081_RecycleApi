@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Services
+  commentId: N:Recycle.Api.Services
+  id: Recycle.Api.Services
+  children:
+  - Recycle.Api.Services.EmailSenderService
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Services
+  nameWithType: Recycle.Api.Services
+  fullName: Recycle.Api.Services
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Services.EmailSenderService
+  commentId: T:Recycle.Api.Services.EmailSenderService
+  parent: Recycle.Api.Services
+  href: Recycle.Api.Services.EmailSenderService.html
+  name: EmailSenderService
+  nameWithType: EmailSenderService
+  fullName: Recycle.Api.Services.EmailSenderService
+- uid: Recycle.Api.Services
+  commentId: N:Recycle.Api.Services
+  href: Recycle.html
+  name: Recycle.Api.Services
+  nameWithType: Recycle.Api.Services
+  fullName: Recycle.Api.Services
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Services
+    name: Services
+    href: Recycle.Api.Services.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Services
+    name: Services
+    href: Recycle.Api.Services.html

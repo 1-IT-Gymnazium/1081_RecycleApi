@@ -1,0 +1,84 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Api.Models.Articles
+  commentId: N:Recycle.Api.Models.Articles
+  id: Recycle.Api.Models.Articles
+  children:
+  - Recycle.Api.Models.Articles.ArticleCreateModel
+  - Recycle.Api.Models.Articles.ArticleCreateModelExtensions
+  - Recycle.Api.Models.Articles.ArticleDetailModel
+  - Recycle.Api.Models.Articles.ArticleDetailModelExtensions
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Api.Models.Articles
+  nameWithType: Recycle.Api.Models.Articles
+  fullName: Recycle.Api.Models.Articles
+  type: Namespace
+  assemblies:
+  - Recycle.Api
+references:
+- uid: Recycle.Api.Models.Articles.ArticleCreateModel
+  commentId: T:Recycle.Api.Models.Articles.ArticleCreateModel
+  parent: Recycle.Api.Models.Articles
+  href: Recycle.Api.Models.Articles.ArticleCreateModel.html
+  name: ArticleCreateModel
+  nameWithType: ArticleCreateModel
+  fullName: Recycle.Api.Models.Articles.ArticleCreateModel
+- uid: Recycle.Api.Models.Articles.ArticleCreateModelExtensions
+  commentId: T:Recycle.Api.Models.Articles.ArticleCreateModelExtensions
+  href: Recycle.Api.Models.Articles.ArticleCreateModelExtensions.html
+  name: ArticleCreateModelExtensions
+  nameWithType: ArticleCreateModelExtensions
+  fullName: Recycle.Api.Models.Articles.ArticleCreateModelExtensions
+- uid: Recycle.Api.Models.Articles.ArticleDetailModel
+  commentId: T:Recycle.Api.Models.Articles.ArticleDetailModel
+  parent: Recycle.Api.Models.Articles
+  href: Recycle.Api.Models.Articles.ArticleDetailModel.html
+  name: ArticleDetailModel
+  nameWithType: ArticleDetailModel
+  fullName: Recycle.Api.Models.Articles.ArticleDetailModel
+- uid: Recycle.Api.Models.Articles.ArticleDetailModelExtensions
+  commentId: T:Recycle.Api.Models.Articles.ArticleDetailModelExtensions
+  href: Recycle.Api.Models.Articles.ArticleDetailModelExtensions.html
+  name: ArticleDetailModelExtensions
+  nameWithType: ArticleDetailModelExtensions
+  fullName: Recycle.Api.Models.Articles.ArticleDetailModelExtensions
+- uid: Recycle.Api.Models.Articles
+  commentId: N:Recycle.Api.Models.Articles
+  href: Recycle.html
+  name: Recycle.Api.Models.Articles
+  nameWithType: Recycle.Api.Models.Articles
+  fullName: Recycle.Api.Models.Articles
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Articles
+    name: Articles
+    href: Recycle.Api.Models.Articles.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Api
+    name: Api
+    href: Recycle.Api.html
+  - name: .
+  - uid: Recycle.Api.Models
+    name: Models
+    href: Recycle.Api.Models.html
+  - name: .
+  - uid: Recycle.Api.Models.Articles
+    name: Articles
+    href: Recycle.Api.Models.Articles.html

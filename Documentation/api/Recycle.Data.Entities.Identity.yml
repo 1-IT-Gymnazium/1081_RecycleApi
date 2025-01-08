@@ -1,0 +1,77 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data.Entities.Identity
+  commentId: N:Recycle.Data.Entities.Identity
+  id: Recycle.Data.Entities.Identity
+  children:
+  - Recycle.Data.Entities.Identity.ApplicationUser
+  - Recycle.Data.Entities.Identity.Role
+  - Recycle.Data.Entities.Identity.UserRole
+  langs:
+  - csharp
+  - vb
+  name: Recycle.Data.Entities.Identity
+  nameWithType: Recycle.Data.Entities.Identity
+  fullName: Recycle.Data.Entities.Identity
+  type: Namespace
+  assemblies:
+  - Recycle.Data
+references:
+- uid: Recycle.Data.Entities.Identity.ApplicationUser
+  commentId: T:Recycle.Data.Entities.Identity.ApplicationUser
+  parent: Recycle.Data.Entities.Identity
+  href: Recycle.Data.Entities.Identity.ApplicationUser.html
+  name: ApplicationUser
+  nameWithType: ApplicationUser
+  fullName: Recycle.Data.Entities.Identity.ApplicationUser
+- uid: Recycle.Data.Entities.Identity.Role
+  commentId: T:Recycle.Data.Entities.Identity.Role
+  parent: Recycle.Data.Entities.Identity
+  href: Recycle.Data.Entities.Identity.Role.html
+  name: Role
+  nameWithType: Role
+  fullName: Recycle.Data.Entities.Identity.Role
+- uid: Recycle.Data.Entities.Identity.UserRole
+  commentId: T:Recycle.Data.Entities.Identity.UserRole
+  href: Recycle.Data.Entities.Identity.UserRole.html
+  name: UserRole
+  nameWithType: UserRole
+  fullName: Recycle.Data.Entities.Identity.UserRole
+- uid: Recycle.Data.Entities.Identity
+  commentId: N:Recycle.Data.Entities.Identity
+  href: Recycle.html
+  name: Recycle.Data.Entities.Identity
+  nameWithType: Recycle.Data.Entities.Identity
+  fullName: Recycle.Data.Entities.Identity
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  - name: .
+  - uid: Recycle.Data.Entities.Identity
+    name: Identity
+    href: Recycle.Data.Entities.Identity.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  - name: .
+  - uid: Recycle.Data.Entities.Identity
+    name: Identity
+    href: Recycle.Data.Entities.Identity.html

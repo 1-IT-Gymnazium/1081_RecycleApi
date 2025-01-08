@@ -1,0 +1,120 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data.Entities.PartType
+  commentId: T:Recycle.Data.Entities.PartType
+  id: PartType
+  parent: Recycle.Data.Entities
+  children:
+  - Recycle.Data.Entities.PartType.Part
+  - Recycle.Data.Entities.PartType.Wrapping
+  langs:
+  - csharp
+  - vb
+  name: PartType
+  nameWithType: PartType
+  fullName: Recycle.Data.Entities.PartType
+  type: Enum
+  source:
+    remote:
+      path: Recycle.Data/Entities/Part.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: PartType
+    path: ../Recycle.Data/Entities/Part.cs
+    startLine: 34
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: public enum PartType
+    content.vb: Public Enum PartType
+- uid: Recycle.Data.Entities.PartType.Wrapping
+  commentId: F:Recycle.Data.Entities.PartType.Wrapping
+  id: Wrapping
+  parent: Recycle.Data.Entities.PartType
+  langs:
+  - csharp
+  - vb
+  name: Wrapping
+  nameWithType: PartType.Wrapping
+  fullName: Recycle.Data.Entities.PartType.Wrapping
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/Part.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Wrapping
+    path: ../Recycle.Data/Entities/Part.cs
+    startLine: 36
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Wrapping = 1
+    return:
+      type: Recycle.Data.Entities.PartType
+- uid: Recycle.Data.Entities.PartType.Part
+  commentId: F:Recycle.Data.Entities.PartType.Part
+  id: Part
+  parent: Recycle.Data.Entities.PartType
+  langs:
+  - csharp
+  - vb
+  name: Part
+  nameWithType: PartType.Part
+  fullName: Recycle.Data.Entities.PartType.Part
+  type: Field
+  source:
+    remote:
+      path: Recycle.Data/Entities/Part.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Part
+    path: ../Recycle.Data/Entities/Part.cs
+    startLine: 37
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities
+  syntax:
+    content: Part = 2
+    return:
+      type: Recycle.Data.Entities.PartType
+references:
+- uid: Recycle.Data.Entities
+  commentId: N:Recycle.Data.Entities
+  href: Recycle.html
+  name: Recycle.Data.Entities
+  nameWithType: Recycle.Data.Entities
+  fullName: Recycle.Data.Entities
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+- uid: Recycle.Data.Entities.PartType
+  commentId: T:Recycle.Data.Entities.PartType
+  parent: Recycle.Data.Entities
+  href: Recycle.Data.Entities.PartType.html
+  name: PartType
+  nameWithType: PartType
+  fullName: Recycle.Data.Entities.PartType

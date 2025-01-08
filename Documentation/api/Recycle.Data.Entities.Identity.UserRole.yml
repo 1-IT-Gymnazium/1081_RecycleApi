@@ -1,0 +1,516 @@
+### YamlMime:ManagedReference
+items:
+- uid: Recycle.Data.Entities.Identity.UserRole
+  commentId: T:Recycle.Data.Entities.Identity.UserRole
+  id: UserRole
+  parent: Recycle.Data.Entities.Identity
+  children:
+  - Recycle.Data.Entities.Identity.UserRole.Id
+  - Recycle.Data.Entities.Identity.UserRole.Role
+  - Recycle.Data.Entities.Identity.UserRole.RoleId
+  - Recycle.Data.Entities.Identity.UserRole.User
+  - Recycle.Data.Entities.Identity.UserRole.UserId
+  langs:
+  - csharp
+  - vb
+  name: UserRole
+  nameWithType: UserRole
+  fullName: Recycle.Data.Entities.Identity.UserRole
+  type: Class
+  source:
+    remote:
+      path: Recycle.Data/Entities/Identity/UserRole.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: UserRole
+    path: ../Recycle.Data/Entities/Identity/UserRole.cs
+    startLine: 7
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities.Identity
+  syntax:
+    content: public class UserRole
+    content.vb: Public Class UserRole
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Recycle.Data.Entities.Identity.UserRole.Id
+  commentId: P:Recycle.Data.Entities.Identity.UserRole.Id
+  id: Id
+  parent: Recycle.Data.Entities.Identity.UserRole
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: UserRole.Id
+  fullName: Recycle.Data.Entities.Identity.UserRole.Id
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Identity/UserRole.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Id
+    path: ../Recycle.Data/Entities/Identity/UserRole.cs
+    startLine: 9
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities.Identity
+  syntax:
+    content: public Guid Id { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property Id As Guid
+  overload: Recycle.Data.Entities.Identity.UserRole.Id*
+- uid: Recycle.Data.Entities.Identity.UserRole.UserId
+  commentId: P:Recycle.Data.Entities.Identity.UserRole.UserId
+  id: UserId
+  parent: Recycle.Data.Entities.Identity.UserRole
+  langs:
+  - csharp
+  - vb
+  name: UserId
+  nameWithType: UserRole.UserId
+  fullName: Recycle.Data.Entities.Identity.UserRole.UserId
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Identity/UserRole.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: UserId
+    path: ../Recycle.Data/Entities/Identity/UserRole.cs
+    startLine: 11
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities.Identity
+  syntax:
+    content: public Guid UserId { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property UserId As Guid
+  overload: Recycle.Data.Entities.Identity.UserRole.UserId*
+- uid: Recycle.Data.Entities.Identity.UserRole.User
+  commentId: P:Recycle.Data.Entities.Identity.UserRole.User
+  id: User
+  parent: Recycle.Data.Entities.Identity.UserRole
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: UserRole.User
+  fullName: Recycle.Data.Entities.Identity.UserRole.User
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Identity/UserRole.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: User
+    path: ../Recycle.Data/Entities/Identity/UserRole.cs
+    startLine: 12
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities.Identity
+  syntax:
+    content: public ApplicationUser User { get; set; }
+    parameters: []
+    return:
+      type: Recycle.Data.Entities.Identity.ApplicationUser
+    content.vb: Public Property User As ApplicationUser
+  overload: Recycle.Data.Entities.Identity.UserRole.User*
+- uid: Recycle.Data.Entities.Identity.UserRole.RoleId
+  commentId: P:Recycle.Data.Entities.Identity.UserRole.RoleId
+  id: RoleId
+  parent: Recycle.Data.Entities.Identity.UserRole
+  langs:
+  - csharp
+  - vb
+  name: RoleId
+  nameWithType: UserRole.RoleId
+  fullName: Recycle.Data.Entities.Identity.UserRole.RoleId
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Identity/UserRole.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: RoleId
+    path: ../Recycle.Data/Entities/Identity/UserRole.cs
+    startLine: 13
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities.Identity
+  syntax:
+    content: public Guid RoleId { get; set; }
+    parameters: []
+    return:
+      type: System.Guid
+    content.vb: Public Property RoleId As Guid
+  overload: Recycle.Data.Entities.Identity.UserRole.RoleId*
+- uid: Recycle.Data.Entities.Identity.UserRole.Role
+  commentId: P:Recycle.Data.Entities.Identity.UserRole.Role
+  id: Role
+  parent: Recycle.Data.Entities.Identity.UserRole
+  langs:
+  - csharp
+  - vb
+  name: Role
+  nameWithType: UserRole.Role
+  fullName: Recycle.Data.Entities.Identity.UserRole.Role
+  type: Property
+  source:
+    remote:
+      path: Recycle.Data/Entities/Identity/UserRole.cs
+      branch: dev
+      repo: https://github.com/ElaDusova/RecycleApp.git
+    id: Role
+    path: ../Recycle.Data/Entities/Identity/UserRole.cs
+    startLine: 14
+  assemblies:
+  - Recycle.Data
+  namespace: Recycle.Data.Entities.Identity
+  syntax:
+    content: public Role Role { get; set; }
+    parameters: []
+    return:
+      type: Recycle.Data.Entities.Identity.Role
+    content.vb: Public Property Role As Role
+  overload: Recycle.Data.Entities.Identity.UserRole.Role*
+references:
+- uid: Recycle.Data.Entities.Identity
+  commentId: N:Recycle.Data.Entities.Identity
+  href: Recycle.html
+  name: Recycle.Data.Entities.Identity
+  nameWithType: Recycle.Data.Entities.Identity
+  fullName: Recycle.Data.Entities.Identity
+  spec.csharp:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  - name: .
+  - uid: Recycle.Data.Entities.Identity
+    name: Identity
+    href: Recycle.Data.Entities.Identity.html
+  spec.vb:
+  - uid: Recycle
+    name: Recycle
+    href: Recycle.html
+  - name: .
+  - uid: Recycle.Data
+    name: Data
+    href: Recycle.Data.html
+  - name: .
+  - uid: Recycle.Data.Entities
+    name: Entities
+    href: Recycle.Data.Entities.html
+  - name: .
+  - uid: Recycle.Data.Entities.Identity
+    name: Identity
+    href: Recycle.Data.Entities.Identity.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Recycle.Data.Entities.Identity.UserRole.Id*
+  commentId: Overload:Recycle.Data.Entities.Identity.UserRole.Id
+  href: Recycle.Data.Entities.Identity.UserRole.html#Recycle_Data_Entities_Identity_UserRole_Id
+  name: Id
+  nameWithType: UserRole.Id
+  fullName: Recycle.Data.Entities.Identity.UserRole.Id
+- uid: System.Guid
+  commentId: T:System.Guid
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.guid
+  name: Guid
+  nameWithType: Guid
+  fullName: System.Guid
+- uid: Recycle.Data.Entities.Identity.UserRole.UserId*
+  commentId: Overload:Recycle.Data.Entities.Identity.UserRole.UserId
+  href: Recycle.Data.Entities.Identity.UserRole.html#Recycle_Data_Entities_Identity_UserRole_UserId
+  name: UserId
+  nameWithType: UserRole.UserId
+  fullName: Recycle.Data.Entities.Identity.UserRole.UserId
+- uid: Recycle.Data.Entities.Identity.UserRole.User*
+  commentId: Overload:Recycle.Data.Entities.Identity.UserRole.User
+  href: Recycle.Data.Entities.Identity.UserRole.html#Recycle_Data_Entities_Identity_UserRole_User
+  name: User
+  nameWithType: UserRole.User
+  fullName: Recycle.Data.Entities.Identity.UserRole.User
+- uid: Recycle.Data.Entities.Identity.ApplicationUser
+  commentId: T:Recycle.Data.Entities.Identity.ApplicationUser
+  parent: Recycle.Data.Entities.Identity
+  href: Recycle.Data.Entities.Identity.ApplicationUser.html
+  name: ApplicationUser
+  nameWithType: ApplicationUser
+  fullName: Recycle.Data.Entities.Identity.ApplicationUser
+- uid: Recycle.Data.Entities.Identity.UserRole.RoleId*
+  commentId: Overload:Recycle.Data.Entities.Identity.UserRole.RoleId
+  href: Recycle.Data.Entities.Identity.UserRole.html#Recycle_Data_Entities_Identity_UserRole_RoleId
+  name: RoleId
+  nameWithType: UserRole.RoleId
+  fullName: Recycle.Data.Entities.Identity.UserRole.RoleId
+- uid: Recycle.Data.Entities.Identity.UserRole.Role*
+  commentId: Overload:Recycle.Data.Entities.Identity.UserRole.Role
+  href: Recycle.Data.Entities.Identity.UserRole.html#Recycle_Data_Entities_Identity_UserRole_Role
+  name: Role
+  nameWithType: UserRole.Role
+  fullName: Recycle.Data.Entities.Identity.UserRole.Role
+- uid: Recycle.Data.Entities.Identity.Role
+  commentId: T:Recycle.Data.Entities.Identity.Role
+  parent: Recycle.Data.Entities.Identity
+  href: Recycle.Data.Entities.Identity.Role.html
+  name: Role
+  nameWithType: Role
+  fullName: Recycle.Data.Entities.Identity.Role
