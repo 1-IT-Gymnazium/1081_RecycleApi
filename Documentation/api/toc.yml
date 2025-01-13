@@ -244,12 +244,6 @@ items:
   - uid: Recycle.Data.Entities.Identity.ApplicationUser
     name: ApplicationUser
     type: Class
-  - uid: Recycle.Data.Entities.Identity.Role
-    name: Role
-    type: Class
-  - uid: Recycle.Data.Entities.Identity.UserRole
-    name: UserRole
-    type: Class
 - uid: Recycle.Data.Interfaces
   name: Recycle.Data.Interfaces
   type: Namespace

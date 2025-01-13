@@ -32,6 +32,16 @@ public class AuthController : ControllerBase
         _userManager = userManager;
     }
 
+    /// <summary>
+    /// Handles user registration by creating a new user, validating the password, 
+    /// and sending an email confirmation link.
+    /// </summary>
+    /// <param name="model">The user's registration details like name, email, and password.</param>
+    /// <returns>
+    /// Returns 200 (OK) with the confirmation token if successful, 
+    /// or 400 (Bad Request) with errors if the registration fails.
+    /// </returns>
+
     // We will also add verion of endpoint into post controller
     [HttpPost("api/v1/Auth/Register")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -79,6 +89,14 @@ public class AuthController : ControllerBase
         return Ok(token);
     }
 
+    /// <summary>
+    /// This method lets a user log in by checking their email and password. 
+    /// It also makes sure the email is confirmed before logging in.
+    /// </summary>
+    /// <param name="model">The user's email and password.</param>
+    /// <returns>
+    /// If the login works, it returns 204 (No Content). If it fails, it shows an error message.
+    /// </returns>
     [HttpPost("api/v1/Auth/Login")]
     public async Task<ActionResult> Login([FromBody] LogInModel model)
     {
@@ -135,6 +153,12 @@ public class AuthController : ControllerBase
         return NoContent();
     }
 
+    /// <summary>
+    /// Logs the user out by ending their session.
+    /// </summary>
+    /// <returns>
+    /// Returns 204 (No Content) when the logout is successful.
+    /// </returns>
     [Authorize]
     [HttpPost("api/v1/Auth/Logout")]
     public async Task<ActionResult> Logout()
@@ -142,6 +166,13 @@ public class AuthController : ControllerBase
         await HttpContext.SignOutAsync();
         return NoContent();
     }
+
+    /// <summary>
+    /// A test endpoint to check access before and after logging in.
+    /// </summary>
+    /// <returns>
+    /// Returns 200 (OK) with a success message if the endpoint is reached.
+    /// </returns>
 
     [Authorize]
     [HttpGet("api/v1/Auth/TestMeBeforeLoginAndAfter")]

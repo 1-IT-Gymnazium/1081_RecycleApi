@@ -70,8 +70,8 @@ public class ProductController : ControllerBase
                 ModelState
                     .AddModelError(nameof(model.PartIds), $"Part with id {id} not found");
             }
-            //newProduct.ProductParts.Add(new() { PartId = id });
-            newProduct.ProductParts = newProduct.ProductParts ?? new List<ProductPart>();
+            newProduct.ProductParts.Add(new() { PartId = id, ProductId=newProduct.Id });
+            //newProduct.ProductParts = newProduct.ProductParts ?? new List<ProductPart>();
 
         }
         await _dbContext.AddAsync(newProduct);
@@ -80,6 +80,20 @@ public class ProductController : ControllerBase
         newProduct = await _dbContext
             .Products
             .FirstAsync(x => x.Id == newProduct.Id);
+
+        //create ProductParts
+        foreach (var id in model.PartIds)
+        {
+            var newProductPart = new ProductPart
+            {
+                Id = Guid.NewGuid(),
+                ProductId = newProduct.Id,
+                PartId = id
+            };
+            await _dbContext.AddAsync(newProductPart);
+            await _dbContext.SaveChangesAsync();
+
+        }
 
         var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
             ?? throw new Exception("failed to generate url");
@@ -117,6 +131,37 @@ public class ProductController : ControllerBase
         };
         return Ok(product);
     }
+    [HttpGet("api/v1/Product/search")]
+    public async Task<ActionResult<IEnumerable<ProductDetailModel>>> SearchProductsByEAN(
+        [FromQuery] string ean
+    )
+    {
+        if (string.IsNullOrEmpty(ean))
+        {
+            return BadRequest("EAN cannot be null or empty.");
+        }
+
+        var dbEntities = await _dbContext
+            .Set<Product>()
+            .FilterDeleted() 
+            .Where(x => x.EAN == ean)
+            .ToListAsync();
+
+        if (dbEntities == null || !dbEntities.Any())
+        {
+            return NotFound();
+        }
+
+        var products = dbEntities.Select(dbEntity => new ProductDetailModel
+        {
+            Id = dbEntity.Id,
+            EAN = dbEntity.EAN,
+            Name = dbEntity.Name,
+        }).ToList();
+
+        return Ok(products);
+    }
+
     [HttpPatch("api/v1/Product/{id:guid}")]
     public async Task<ActionResult<ProductDetailModel>> UpdateProduct(
         [FromRoute] Guid id,

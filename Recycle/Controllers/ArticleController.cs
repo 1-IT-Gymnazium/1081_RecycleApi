@@ -29,6 +29,16 @@ public class ArticleController : ControllerBase
         _clock = clock;
         _dbContext = dbContext;
     }
+    /// <summary>
+    /// Creates a new article by checking if the article heading already exists, 
+    /// and then saving the new article to the database.
+    /// </summary>
+    /// <param name="model">The details of the article to be created, including heading, annotation, and picture path.</param>
+    /// <returns>
+    /// Returns 201 (Created) with the URL to the new article if successful, 
+    /// or 400 (Bad Request) with an error if the article with the same heading already exists.
+    /// </returns>
+
     //[Authorize]
     [HttpPost("api/v1/Article/")]
     public async Task<ActionResult> Create(
@@ -69,6 +79,14 @@ public class ArticleController : ControllerBase
         return Created(url, newArticle.ToDetail());
     }
 
+    /// <summary>
+    /// Retrieves a list of all articles, including their author information, 
+    /// and filters out deleted articles.
+    /// </summary>
+    /// <returns>
+    /// Returns 200 (OK) with a list of article details.
+    /// </returns>
+
     [HttpGet("api/v1/Article/")]
     public async Task<ActionResult<List<ArticleDetailModel>>> GetList()
     {
@@ -80,6 +98,16 @@ public class ArticleController : ControllerBase
 
         return Ok(dbEntities.Select(x => x.ToDetail()));
     }
+
+    /// <summary>
+    /// Retrieves the details of a specific article by its ID, including author information, 
+    /// and ensures that the article is not deleted.
+    /// </summary>
+    /// <param name="id">The ID of the article to retrieve.</param>
+    /// <returns>
+    /// Returns 200 (OK) with the article details if found, 
+    /// or 404 (Not Found) if the article does not exist.
+    /// </returns>
     [HttpGet("api/v1/Article/{id:guid}")]
     public async Task<ActionResult<ArticleDetailModel>> Get(
         [FromRoute] Guid id
@@ -103,8 +131,20 @@ public class ArticleController : ControllerBase
         };
         return Ok(result);
     }
-    // more oprtions to build update 
-    // [HttpPut]
+
+    /// <summary>
+    /// Updates an existing article's details (heading, annotation, picture path) by applying a patch.
+    /// It also checks if the updated heading is unique before saving the changes.
+    /// </summary>
+    /// <param name="id">The ID of the article to update.</param>
+    /// <param name="patch">The patch document containing the fields to update.</param>
+    /// <returns>
+    /// Returns 200 (OK) with the updated article details if successful, 
+    /// or 404 (Not Found) if the article doesn't exist, 
+    /// or 400 (Bad Request) if there are validation errors.
+    /// </returns>
+
+    // more oprtions to build update for example [HttpPut]
     //[Authorize]
     [HttpPatch("api/v1/Article/{id:guid}")]
     public async Task<ActionResult<ArticleDetailModel>> Update(
@@ -148,6 +188,16 @@ public class ArticleController : ControllerBase
             .FirstAsync(x => x.Id == id);
         return Ok(dbEntity.ToDetail());
     }
+
+    /// <summary>
+    /// Deletes an article by setting it as deleted in the database (soft delete).
+    /// </summary>
+    /// <param name="id">The ID of the article to delete.</param>
+    /// <returns>
+    /// Returns 204 (No Content) if the article is successfully deleted, 
+    /// or 404 (Not Found) if the article does not exist.
+    /// </returns>
+
     [HttpDelete("api/v1/Article/{id:guid}")]
     // For empty result always use Interface.(IActionResult)
     public async Task<IActionResult> DeleteArticle(

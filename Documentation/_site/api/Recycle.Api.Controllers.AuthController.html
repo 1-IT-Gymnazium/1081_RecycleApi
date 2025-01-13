@@ -718,10 +718,12 @@ public class AuthController : ControllerBase</code></pre>
 
   <h3 id="Recycle_Api_Controllers_AuthController_Login_Recycle_Api_Models_Authorization_LogInModel_" data-uid="Recycle.Api.Controllers.AuthController.Login(Recycle.Api.Models.Authorization.LogInModel)">
   Login(LogInModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L100"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>This method lets a user log in by checking their email and password.
+It also makes sure the email is confirmed before logging in.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -732,13 +734,15 @@ public Task&lt;ActionResult&gt; Login(LogInModel model)</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>model</code> <a class="xref" href="Recycle.Api.Models.Authorization.LogInModel.html">LogInModel</a></dt>
-    <dd></dd>
+    <dd><p>The user's email and password.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.actionresult">ActionResult</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>If the login works, it returns 204 (No Content). If it fails, it shows an error message.</p>
+</dd>
   </dl>
 
 
@@ -755,10 +759,11 @@ public Task&lt;ActionResult&gt; Login(LogInModel model)</code></pre>
 
   <h3 id="Recycle_Api_Controllers_AuthController_Logout" data-uid="Recycle.Api.Controllers.AuthController.Logout">
   Logout()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L138"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L162"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Logs the user out by ending their session.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -771,7 +776,8 @@ public Task&lt;ActionResult&gt; Logout()</code></pre>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.actionresult">ActionResult</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>Returns 204 (No Content) when the logout is successful.</p>
+</dd>
   </dl>
 
 
@@ -788,10 +794,12 @@ public Task&lt;ActionResult&gt; Logout()</code></pre>
 
   <h3 id="Recycle_Api_Controllers_AuthController_Register_Recycle_Api_Models_Authorization_RegisterModel_" data-uid="Recycle.Api.Controllers.AuthController.Register(Recycle.Api.Models.Authorization.RegisterModel)">
   Register(RegisterModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Handles user registration by creating a new user, validating the password,
+and sending an email confirmation link.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -804,13 +812,16 @@ public Task&lt;ActionResult&gt; Register(RegisterModel model)</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>model</code> <a class="xref" href="Recycle.Api.Models.Authorization.RegisterModel.html">RegisterModel</a></dt>
-    <dd></dd>
+    <dd><p>The user's registration details like name, email, and password.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.actionresult">ActionResult</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>Returns 200 (OK) with the confirmation token if successful,
+or 400 (Bad Request) with errors if the registration fails.</p>
+</dd>
   </dl>
 
 
@@ -827,10 +838,11 @@ public Task&lt;ActionResult&gt; Register(RegisterModel model)</code></pre>
 
   <h3 id="Recycle_Api_Controllers_AuthController_TestMeBeforeLoginAndAfter" data-uid="Recycle.Api.Controllers.AuthController.TestMeBeforeLoginAndAfter">
   TestMeBeforeLoginAndAfter()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L177"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>A test endpoint to check access before and after logging in.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -843,7 +855,8 @@ public ActionResult TestMeBeforeLoginAndAfter()</code></pre>
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.actionresult">ActionResult</a></dt>
-    <dd></dd>
+    <dd><p>Returns 200 (OK) with a success message if the endpoint is reached.</p>
+</dd>
   </dl>
 
 
@@ -860,7 +873,7 @@ public ActionResult TestMeBeforeLoginAndAfter()</code></pre>
 
   <h3 id="Recycle_Api_Controllers_AuthController_ValidateToken_Recycle_Api_Models_Authorization_TokenModel_" data-uid="Recycle.Api.Controllers.AuthController.ValidateToken(Recycle.Api.Models.Authorization.TokenModel)">
   ValidateToken(TokenModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/AuthController.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>unescape token before sending</p>

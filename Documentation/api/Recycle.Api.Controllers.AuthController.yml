@@ -282,10 +282,15 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: Register
     path: ../Recycle/Controllers/AuthController.cs
-    startLine: 35
+    startLine: 45
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: >-
+    Handles user registration by creating a new user, validating the password, 
+
+    and sending an email confirmation link.
+  example: []
   syntax:
     content: >-
       [HttpPost("api/v1/Auth/Register")]
@@ -298,12 +303,17 @@ items:
     parameters:
     - id: model
       type: Recycle.Api.Models.Authorization.RegisterModel
+      description: The user's registration details like name, email, and password.
       attributes:
       - type: Microsoft.AspNetCore.Mvc.FromBodyAttribute
         ctor: Microsoft.AspNetCore.Mvc.FromBodyAttribute.#ctor
         arguments: []
     return:
       type: System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.ActionResult}
+      description: >-
+        Returns 200 (OK) with the confirmation token if successful, 
+
+        or 400 (Bad Request) with errors if the registration fails.
     content.vb: >-
       <HttpPost("api/v1/Auth/Register")>
 
@@ -347,10 +357,15 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: Login
     path: ../Recycle/Controllers/AuthController.cs
-    startLine: 81
+    startLine: 99
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: >-
+    This method lets a user log in by checking their email and password. 
+
+    It also makes sure the email is confirmed before logging in.
+  example: []
   syntax:
     content: >-
       [HttpPost("api/v1/Auth/Login")]
@@ -359,12 +374,14 @@ items:
     parameters:
     - id: model
       type: Recycle.Api.Models.Authorization.LogInModel
+      description: The user's email and password.
       attributes:
       - type: Microsoft.AspNetCore.Mvc.FromBodyAttribute
         ctor: Microsoft.AspNetCore.Mvc.FromBodyAttribute.#ctor
         arguments: []
     return:
       type: System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.ActionResult}
+      description: If the login works, it returns 204 (No Content). If it fails, it shows an error message.
     content.vb: >-
       <HttpPost("api/v1/Auth/Login")>
 
@@ -394,7 +411,7 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: ValidateToken
     path: ../Recycle/Controllers/AuthController.cs
-    startLine: 114
+    startLine: 132
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
@@ -445,10 +462,12 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: Logout
     path: ../Recycle/Controllers/AuthController.cs
-    startLine: 137
+    startLine: 161
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: Logs the user out by ending their session.
+  example: []
   syntax:
     content: >-
       [Authorize]
@@ -458,6 +477,7 @@ items:
       public Task<ActionResult> Logout()
     return:
       type: System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.ActionResult}
+      description: Returns 204 (No Content) when the logout is successful.
     content.vb: >-
       <Authorize>
 
@@ -492,10 +512,12 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: TestMeBeforeLoginAndAfter
     path: ../Recycle/Controllers/AuthController.cs
-    startLine: 145
+    startLine: 176
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: A test endpoint to check access before and after logging in.
+  example: []
   syntax:
     content: >-
       [Authorize]
@@ -505,6 +527,7 @@ items:
       public ActionResult TestMeBeforeLoginAndAfter()
     return:
       type: Microsoft.AspNetCore.Mvc.ActionResult
+      description: Returns 200 (OK) with a success message if the endpoint is reached.
     content.vb: >-
       <Authorize>
 

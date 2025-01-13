@@ -5,8 +5,6 @@ items:
   id: Recycle.Data.Entities.Identity
   children:
   - Recycle.Data.Entities.Identity.ApplicationUser
-  - Recycle.Data.Entities.Identity.Role
-  - Recycle.Data.Entities.Identity.UserRole
   langs:
   - csharp
   - vb
@@ -24,19 +22,6 @@ references:
   name: ApplicationUser
   nameWithType: ApplicationUser
   fullName: Recycle.Data.Entities.Identity.ApplicationUser
-- uid: Recycle.Data.Entities.Identity.Role
-  commentId: T:Recycle.Data.Entities.Identity.Role
-  parent: Recycle.Data.Entities.Identity
-  href: Recycle.Data.Entities.Identity.Role.html
-  name: Role
-  nameWithType: Role
-  fullName: Recycle.Data.Entities.Identity.Role
-- uid: Recycle.Data.Entities.Identity.UserRole
-  commentId: T:Recycle.Data.Entities.Identity.UserRole
-  href: Recycle.Data.Entities.Identity.UserRole.html
-  name: UserRole
-  nameWithType: UserRole
-  fullName: Recycle.Data.Entities.Identity.UserRole
 - uid: Recycle.Data.Entities.Identity
   commentId: N:Recycle.Data.Entities.Identity
   href: Recycle.html

@@ -41,10 +41,12 @@ public class Program
 
         builder.Services.AddControllers().AddNewtonsoftJson();
 
-        builder.Services.AddIdentity<ApplicationUser, Role>(options =>
-            options.SignIn.RequireConfirmedAccount = true
-            )
-            .AddEntityFrameworkStores<AppDbContext>()
+        builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
+        {
+            // Disable email confirmation requirement for sign-in
+            options.SignIn.RequireConfirmedAccount = false;
+        })
+            .AddEntityFrameworkStores<AppDbContext>() // No role needed
             .AddSignInManager()
             .AddDefaultTokenProviders();
 

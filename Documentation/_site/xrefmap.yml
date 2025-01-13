@@ -2312,19 +2312,6 @@ references:
   isSpec: "True"
   fullName: Recycle.Data.AppDbContext.TrashCansMaterialLocations
   nameWithType: AppDbContext.TrashCansMaterialLocations
-- uid: Recycle.Data.AppDbContext.UserRoles
-  name: UserRoles
-  href: api/Recycle.Data.AppDbContext.html#Recycle_Data_AppDbContext_UserRoles
-  commentId: P:Recycle.Data.AppDbContext.UserRoles
-  fullName: Recycle.Data.AppDbContext.UserRoles
-  nameWithType: AppDbContext.UserRoles
-- uid: Recycle.Data.AppDbContext.UserRoles*
-  name: UserRoles
-  href: api/Recycle.Data.AppDbContext.html#Recycle_Data_AppDbContext_UserRoles_
-  commentId: Overload:Recycle.Data.AppDbContext.UserRoles
-  isSpec: "True"
-  fullName: Recycle.Data.AppDbContext.UserRoles
-  nameWithType: AppDbContext.UserRoles
 - uid: Recycle.Data.AppDbContext.Users
   name: Users
   href: api/Recycle.Data.AppDbContext.html#Recycle_Data_AppDbContext_Users
@@ -2884,19 +2871,6 @@ references:
   isSpec: "True"
   fullName: Recycle.Data.Entities.Identity.ApplicationUser.PhoneNumber
   nameWithType: ApplicationUser.PhoneNumber
-- uid: Recycle.Data.Entities.Identity.ApplicationUser.Roles
-  name: Roles
-  href: api/Recycle.Data.Entities.Identity.ApplicationUser.html#Recycle_Data_Entities_Identity_ApplicationUser_Roles
-  commentId: P:Recycle.Data.Entities.Identity.ApplicationUser.Roles
-  fullName: Recycle.Data.Entities.Identity.ApplicationUser.Roles
-  nameWithType: ApplicationUser.Roles
-- uid: Recycle.Data.Entities.Identity.ApplicationUser.Roles*
-  name: Roles
-  href: api/Recycle.Data.Entities.Identity.ApplicationUser.html#Recycle_Data_Entities_Identity_ApplicationUser_Roles_
-  commentId: Overload:Recycle.Data.Entities.Identity.ApplicationUser.Roles
-  isSpec: "True"
-  fullName: Recycle.Data.Entities.Identity.ApplicationUser.Roles
-  nameWithType: ApplicationUser.Roles
 - uid: Recycle.Data.Entities.Identity.Role
   name: Role
   href: api/Recycle.Data.Entities.Identity.Role.html

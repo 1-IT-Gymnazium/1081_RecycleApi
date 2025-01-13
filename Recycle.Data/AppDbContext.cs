@@ -22,7 +22,6 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid
     public DbSet<Email> Emails { get; set; } = null!;
 
     public DbSet<TrashCanMaterialLocation> TrashCansMaterialLocations { get; set; }
-    public new DbSet<UserRole> UserRoles { get; set; }
     public DbSet<ProductPart> ProductParts { get; set; }
     public DbSet<PartMaterial> PartMaterials { get; set; }
 

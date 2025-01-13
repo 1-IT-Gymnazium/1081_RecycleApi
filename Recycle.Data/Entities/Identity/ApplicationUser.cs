@@ -17,7 +17,6 @@ public class ApplicationUser : IdentityUser<Guid>, ITrackable
     public string? LastName { get; set; }
     public string DateOfBirth { get; set; }
     public new string? PhoneNumber { get; set; }
-    public ICollection<UserRole> Roles { get; set; }
 
     public Instant CreatedAt { get; set; }
     public string CreatedBy { get; set; } = null!;

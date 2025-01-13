@@ -716,10 +716,12 @@ public class ArticleController : ControllerBase</code></pre>
 
   <h3 id="Recycle_Api_Controllers_ArticleController_Create_Recycle_Api_Models_Articles_ArticleCreateModel_" data-uid="Recycle.Api.Controllers.ArticleController.Create(Recycle.Api.Models.Articles.ArticleCreateModel)">
   Create(ArticleCreateModel)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Creates a new article by checking if the article heading already exists,
+and then saving the new article to the database.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -730,13 +732,16 @@ public Task&lt;ActionResult&gt; Create(ArticleCreateModel model)</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>model</code> <a class="xref" href="Recycle.Api.Models.Articles.ArticleCreateModel.html">ArticleCreateModel</a></dt>
-    <dd></dd>
+    <dd><p>The details of the article to be created, including heading, annotation, and picture path.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.actionresult">ActionResult</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>Returns 201 (Created) with the URL to the new article if successful,
+or 400 (Bad Request) with an error if the article with the same heading already exists.</p>
+</dd>
   </dl>
 
 
@@ -753,10 +758,11 @@ public Task&lt;ActionResult&gt; Create(ArticleCreateModel model)</code></pre>
 
   <h3 id="Recycle_Api_Controllers_ArticleController_DeleteArticle_System_Guid_" data-uid="Recycle.Api.Controllers.ArticleController.DeleteArticle(System.Guid)">
   DeleteArticle(Guid)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L201"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Deletes an article by setting it as deleted in the database (soft delete).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -767,13 +773,16 @@ public Task&lt;IActionResult&gt; DeleteArticle(Guid id)</code></pre>
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the article to delete.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.iactionresult">IActionResult</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>Returns 204 (No Content) if the article is successfully deleted,
+or 404 (Not Found) if the article does not exist.</p>
+</dd>
   </dl>
 
 
@@ -790,10 +799,12 @@ public Task&lt;IActionResult&gt; DeleteArticle(Guid id)</code></pre>
 
   <h3 id="Recycle_Api_Controllers_ArticleController_Get_System_Guid_" data-uid="Recycle.Api.Controllers.ArticleController.Get(System.Guid)">
   Get(Guid)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L111"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Retrieves the details of a specific article by its ID, including author information,
+and ensures that the article is not deleted.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -804,13 +815,16 @@ public Task&lt;ActionResult&lt;ArticleDetailModel&gt;&gt; Get(Guid id)</code></p
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the article to retrieve.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1">ActionResult</a>&lt;<a class="xref" href="Recycle.Api.Models.Articles.ArticleDetailModel.html">ArticleDetailModel</a>&gt;&gt;</dt>
-    <dd></dd>
+    <dd><p>Returns 200 (OK) with the article details if found,
+or 404 (Not Found) if the article does not exist.</p>
+</dd>
   </dl>
 
 
@@ -827,10 +841,12 @@ public Task&lt;ActionResult&lt;ArticleDetailModel&gt;&gt; Get(Guid id)</code></p
 
   <h3 id="Recycle_Api_Controllers_ArticleController_GetList" data-uid="Recycle.Api.Controllers.ArticleController.GetList">
   GetList()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Retrieves a list of all articles, including their author information,
+and filters out deleted articles.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -842,7 +858,8 @@ public Task&lt;ActionResult&lt;List&lt;ArticleDetailModel&gt;&gt;&gt; GetList()<
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1">ActionResult</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Recycle.Api.Models.Articles.ArticleDetailModel.html">ArticleDetailModel</a>&gt;&gt;&gt;</dt>
-    <dd></dd>
+    <dd><p>Returns 200 (OK) with a list of article details.</p>
+</dd>
   </dl>
 
 
@@ -859,10 +876,12 @@ public Task&lt;ActionResult&lt;List&lt;ArticleDetailModel&gt;&gt;&gt; GetList()<
 
   <h3 id="Recycle_Api_Controllers_ArticleController_Update_System_Guid_Microsoft_AspNetCore_JsonPatch_JsonPatchDocument_Recycle_Api_Models_Articles_ArticleDetailModel__" data-uid="Recycle.Api.Controllers.ArticleController.Update(System.Guid,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Recycle.Api.Models.Articles.ArticleDetailModel})">
   Update(Guid, JsonPatchDocument&lt;ArticleDetailModel&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L109"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/ElaDusova/RecycleApp/blob/dev/Recycle/Controllers/ArticleController.cs/#L149"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Updates an existing article's details (heading, annotation, picture path) by applying a patch.
+It also checks if the updated heading is unique before saving the changes.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
@@ -873,15 +892,20 @@ public Task&lt;ActionResult&lt;ArticleDetailModel&gt;&gt; Update(Guid id, JsonPa
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
-    <dd></dd>
+    <dd><p>The ID of the article to update.</p>
+</dd>
     <dt><code>patch</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.jsonpatch.jsonpatchdocument-1">JsonPatchDocument</a>&lt;<a class="xref" href="Recycle.Api.Models.Articles.ArticleDetailModel.html">ArticleDetailModel</a>&gt;</dt>
-    <dd></dd>
+    <dd><p>The patch document containing the fields to update.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.mvc.actionresult-1">ActionResult</a>&lt;<a class="xref" href="Recycle.Api.Models.Articles.ArticleDetailModel.html">ArticleDetailModel</a>&gt;&gt;</dt>
-    <dd></dd>
+    <dd><p>Returns 200 (OK) with the updated article details if successful,
+or 404 (Not Found) if the article doesn't exist,
+or 400 (Bad Request) if there are validation errors.</p>
+</dd>
   </dl>
 
 

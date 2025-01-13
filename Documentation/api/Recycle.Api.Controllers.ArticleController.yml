@@ -280,10 +280,15 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: Create
     path: ../Recycle/Controllers/ArticleController.cs
-    startLine: 32
+    startLine: 42
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: >-
+    Creates a new article by checking if the article heading already exists, 
+
+    and then saving the new article to the database.
+  example: []
   syntax:
     content: >-
       [HttpPost("api/v1/Article/")]
@@ -292,12 +297,17 @@ items:
     parameters:
     - id: model
       type: Recycle.Api.Models.Articles.ArticleCreateModel
+      description: The details of the article to be created, including heading, annotation, and picture path.
       attributes:
       - type: Microsoft.AspNetCore.Mvc.FromBodyAttribute
         ctor: Microsoft.AspNetCore.Mvc.FromBodyAttribute.#ctor
         arguments: []
     return:
       type: System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.ActionResult}
+      description: >-
+        Returns 201 (Created) with the URL to the new article if successful, 
+
+        or 400 (Bad Request) with an error if the article with the same heading already exists.
     content.vb: >-
       <HttpPost("api/v1/Article/")>
 
@@ -327,10 +337,15 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: GetList
     path: ../Recycle/Controllers/ArticleController.cs
-    startLine: 71
+    startLine: 89
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: >-
+    Retrieves a list of all articles, including their author information, 
+
+    and filters out deleted articles.
+  example: []
   syntax:
     content: >-
       [HttpGet("api/v1/Article/")]
@@ -338,6 +353,7 @@ items:
       public Task<ActionResult<List<ArticleDetailModel>>> GetList()
     return:
       type: System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.ActionResult{System.Collections.Generic.List{Recycle.Api.Models.Articles.ArticleDetailModel}}}
+      description: Returns 200 (OK) with a list of article details.
     content.vb: >-
       <HttpGet("api/v1/Article/")>
 
@@ -367,10 +383,15 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: Get
     path: ../Recycle/Controllers/ArticleController.cs
-    startLine: 82
+    startLine: 110
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: >-
+    Retrieves the details of a specific article by its ID, including author information, 
+
+    and ensures that the article is not deleted.
+  example: []
   syntax:
     content: >-
       [HttpGet("api/v1/Article/{id:guid}")]
@@ -379,12 +400,17 @@ items:
     parameters:
     - id: id
       type: System.Guid
+      description: The ID of the article to retrieve.
       attributes:
       - type: Microsoft.AspNetCore.Mvc.FromRouteAttribute
         ctor: Microsoft.AspNetCore.Mvc.FromRouteAttribute.#ctor
         arguments: []
     return:
       type: System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.ActionResult{Recycle.Api.Models.Articles.ArticleDetailModel}}
+      description: >-
+        Returns 200 (OK) with the article details if found, 
+
+        or 404 (Not Found) if the article does not exist.
     content.vb: >-
       <HttpGet("api/v1/Article/{id:guid}")>
 
@@ -414,10 +440,15 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: Update
     path: ../Recycle/Controllers/ArticleController.cs
-    startLine: 108
+    startLine: 148
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: >-
+    Updates an existing article's details (heading, annotation, picture path) by applying a patch.
+
+    It also checks if the updated heading is unique before saving the changes.
+  example: []
   syntax:
     content: >-
       [HttpPatch("api/v1/Article/{id:guid}")]
@@ -426,18 +457,26 @@ items:
     parameters:
     - id: id
       type: System.Guid
+      description: The ID of the article to update.
       attributes:
       - type: Microsoft.AspNetCore.Mvc.FromRouteAttribute
         ctor: Microsoft.AspNetCore.Mvc.FromRouteAttribute.#ctor
         arguments: []
     - id: patch
       type: Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Recycle.Api.Models.Articles.ArticleDetailModel}
+      description: The patch document containing the fields to update.
       attributes:
       - type: Microsoft.AspNetCore.Mvc.FromBodyAttribute
         ctor: Microsoft.AspNetCore.Mvc.FromBodyAttribute.#ctor
         arguments: []
     return:
       type: System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.ActionResult{Recycle.Api.Models.Articles.ArticleDetailModel}}
+      description: >-
+        Returns 200 (OK) with the updated article details if successful, 
+
+        or 404 (Not Found) if the article doesn't exist, 
+
+        or 400 (Bad Request) if there are validation errors.
     content.vb: >-
       <HttpPatch("api/v1/Article/{id:guid}")>
 
@@ -470,10 +509,12 @@ items:
       repo: https://github.com/ElaDusova/RecycleApp.git
     id: DeleteArticle
     path: ../Recycle/Controllers/ArticleController.cs
-    startLine: 150
+    startLine: 200
   assemblies:
   - Recycle.Api
   namespace: Recycle.Api.Controllers
+  summary: Deletes an article by setting it as deleted in the database (soft delete).
+  example: []
   syntax:
     content: >-
       [HttpDelete("api/v1/Article/{id:guid}")]
@@ -482,12 +523,17 @@ items:
     parameters:
     - id: id
       type: System.Guid
+      description: The ID of the article to delete.
       attributes:
       - type: Microsoft.AspNetCore.Mvc.FromRouteAttribute
         ctor: Microsoft.AspNetCore.Mvc.FromRouteAttribute.#ctor
         arguments: []
     return:
       type: System.Threading.Tasks.Task{Microsoft.AspNetCore.Mvc.IActionResult}
+      description: >-
+        Returns 204 (No Content) if the article is successfully deleted, 
+
+        or 404 (Not Found) if the article does not exist.
     content.vb: >-
       <HttpDelete("api/v1/Article/{id:guid}")>
 
