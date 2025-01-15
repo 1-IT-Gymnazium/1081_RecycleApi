@@ -62,6 +62,7 @@ public class ArticleController : ControllerBase
             Id = Guid.NewGuid(),
             Heading = model.Heading,
             Annotation = model.Annotation,
+            Text = model.Text,
             AuthorId = User.GetUserId(),
             PicturePath = model.PicturePath,
         }
@@ -128,6 +129,7 @@ public class ArticleController : ControllerBase
             Id = dbEntity.Id,
             Heading = dbEntity.Heading,
             Annotation = dbEntity.Annotation,
+            Text = dbEntity.Text,
         };
         return Ok(result);
     }
@@ -178,6 +180,7 @@ public class ArticleController : ControllerBase
 
         dbEntity.Heading = toUpdate.Heading;
         dbEntity.Annotation = toUpdate.Annotation;
+        dbEntity.Text = toUpdate.Text;
         dbEntity.PicturePath = toUpdate.PicturePath;
         dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
 

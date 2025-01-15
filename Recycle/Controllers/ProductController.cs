@@ -71,8 +71,6 @@ public class ProductController : ControllerBase
                     .AddModelError(nameof(model.PartIds), $"Part with id {id} not found");
             }
             newProduct.ProductParts.Add(new() { PartId = id, ProductId=newProduct.Id });
-            //newProduct.ProductParts = newProduct.ProductParts ?? new List<ProductPart>();
-
         }
         await _dbContext.AddAsync(newProduct);
         await _dbContext.SaveChangesAsync();
@@ -81,14 +79,14 @@ public class ProductController : ControllerBase
             .Products
             .FirstAsync(x => x.Id == newProduct.Id);
 
-        //create ProductParts
-        foreach (var id in model.PartIds)
+        //create ProductParts in DB
+        foreach (var productPart in newProduct.ProductParts)
         {
             var newProductPart = new ProductPart
             {
                 Id = Guid.NewGuid(),
-                ProductId = newProduct.Id,
-                PartId = id
+                ProductId = productPart.ProductId,
+                PartId = productPart.PartId
             };
             await _dbContext.AddAsync(newProductPart);
             await _dbContext.SaveChangesAsync();

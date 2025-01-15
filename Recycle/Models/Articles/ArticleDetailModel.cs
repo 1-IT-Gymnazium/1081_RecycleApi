@@ -9,7 +9,8 @@ public class ArticleDetailModel
     public string Heading { get; set; } = null!;
     public string Annotation { get; set; } = null!;
     public string AuthorsName { get; set; } = null!;
-    public string PicturePath { get; set; }
+    public string? Text { get; set;}
+    public string? PicturePath { get; set; }
     public string CreatedAt { get; set; } = null!;
 }
 public static class ArticleDetailModelExtensions
@@ -21,6 +22,7 @@ public static class ArticleDetailModelExtensions
             Heading = source.Heading,
             Annotation = source.Annotation,
             AuthorsName = source.Author.UserName,
+            Text = source.Text,
             PicturePath = source.PicturePath,
             CreatedAt = InstantPattern.ExtendedIso.Format(source.CreatedAt),
         };
