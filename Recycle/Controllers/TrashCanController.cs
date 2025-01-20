@@ -79,6 +79,8 @@ public class TrashCanController : ControllerBase
         {
             Id = dbEntity.Id,
             Name = dbEntity.Name,
+            Type = dbEntity.Type,
+            Description = dbEntity.Description,
             PicturePath = dbEntity.PicturePath,
         };
         return Ok(trashCan);

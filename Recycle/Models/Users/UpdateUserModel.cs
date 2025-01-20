@@ -2,10 +2,12 @@ namespace Recycle.Api.Models.Users;
 
 public class UpdateUserModel
 {
-    public string UserName { get; set; }
-    public string Email { get; set; }
-    public string PhoneNumber { get; set; }
-    public string ProfilePictureUrl { get; set; }
-    public string OldPassword { get; set; }
-    public string NewPassword { get; set; }
+    public string FirstName { get; set; } = null!;  
+    public string LastName { get; set; } = null!;
+    public string UserName { get; set; } = null!;
+    public string Email { get; set; } = null!;
+
+    public string ProfilePictureUrl { get; set; } = null!;
+    public string OldPassword { get; set; } = null!;
+    public string NewPassword { get; set; } = null!;
 }
