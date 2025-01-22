@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -28,6 +29,7 @@ public class MaterialController : ControllerBase
         _dbContext = dbContext;
         _mapper = mapper;
     }
+    [Authorize]
     [HttpPost("api/v1/Material/")]
     public async Task<ActionResult> Create([FromBody] MaterialCreateModel model)
     {
@@ -80,9 +82,8 @@ public class MaterialController : ControllerBase
         };
         return Ok(material);
     }
-
+    [Authorize]
         [HttpPatch("api/v1/Material/{id:guid}")]
-
         public async Task<ActionResult<MaterialDetailModel>> UpdateMaterial(
             [FromRoute] Guid id,
             [FromBody] JsonPatchDocument<MaterialDetailModel> patch)
@@ -119,6 +120,7 @@ public class MaterialController : ControllerBase
 
             return Ok(dbEntity.ToDetail());
         }
+    [Authorize]
         [HttpDelete("api/v1/Material/{id:guid}")]
         public async Task<IActionResult> DeleteMaterial(
         [FromRoute] Guid id)

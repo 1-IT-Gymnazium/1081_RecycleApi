@@ -25,6 +25,7 @@ public class PartController : ControllerBase
         _dbContext = dbContext;
         _mapper = mapper;
     }
+    [Authorize]
     [HttpPost("api/v1/Part/")]
     public async Task<ActionResult> CreatePart([FromBody] PartCreateModel model)
     {
@@ -82,6 +83,8 @@ public class PartController : ControllerBase
         };
         return Ok(part);
     }
+
+    [Authorize]
     [HttpPatch("api/v1/Part/{id:guid}")]
     public async Task<ActionResult<PartDetailModel>> UpdatePart(
         [FromRoute] Guid id,
@@ -113,6 +116,8 @@ public class PartController : ControllerBase
 
         return Ok(_mapper.ToDetail(dbEntity));
     }
+
+    [Authorize]
     [HttpDelete("api/v1/Part/{id:guid}")]
     public async Task<IActionResult> DeletePart(
         [FromRoute] Guid id)

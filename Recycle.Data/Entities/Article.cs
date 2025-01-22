@@ -35,3 +35,9 @@ public static class ArticleExtensions
         .Where(x => x.DeletedAt == null)
         ;
 }
+public static class Metadata
+{
+    public const int ContentLength = DatabaseConstants.ContentLength;
+    public const int TrackableByLength = DatabaseConstants.TrackableByLength;
+}
+

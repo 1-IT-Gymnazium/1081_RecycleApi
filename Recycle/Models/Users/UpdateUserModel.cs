@@ -6,7 +6,6 @@ public class UpdateUserModel
     public string LastName { get; set; } = null!;
     public string UserName { get; set; } = null!;
     public string Email { get; set; } = null!;
-
     public string ProfilePictureUrl { get; set; } = null!;
     public string OldPassword { get; set; } = null!;
     public string NewPassword { get; set; } = null!;

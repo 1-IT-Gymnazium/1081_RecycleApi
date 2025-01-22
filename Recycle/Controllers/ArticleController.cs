@@ -39,7 +39,7 @@ public class ArticleController : ControllerBase
     /// or 400 (Bad Request) with an error if the article with the same heading already exists.
     /// </returns>
 
-    //[Authorize]
+    [Authorize]
     [HttpPost("api/v1/Article/")]
     public async Task<ActionResult> Create(
         [FromBody] ArticleCreateModel model
@@ -148,7 +148,7 @@ public class ArticleController : ControllerBase
     /// </returns>
 
     // more oprtions to build update for example [HttpPut]
-    //[Authorize]
+    [Authorize]
     [HttpPatch("api/v1/Article/{id:guid}")]
     public async Task<ActionResult<ArticleDetailModel>> Update(
         [FromRoute] Guid id,
@@ -201,7 +201,7 @@ public class ArticleController : ControllerBase
     /// Returns 204 (No Content) if the article is successfully deleted, 
     /// or 404 (Not Found) if the article does not exist.
     /// </returns>
-
+    [Authorize]
     [HttpDelete("api/v1/Article/{id:guid}")]
     // For empty result always use Interface.(IActionResult)
     public async Task<IActionResult> DeleteArticle(

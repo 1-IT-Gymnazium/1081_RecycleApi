@@ -5,11 +5,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using NodaTime;
 using Recycle.Api.Models.Authorization;
 using Recycle.Api.Services;
+using Recycle.Api.Settings;
+using Recycle.Api.Utilities;
 using Recycle.Data.Entities.Identity;
 using Recycle.Data.Interfaces;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Recycle.Api.Controllers;
 [ApiController]
@@ -19,17 +26,20 @@ public class AuthController : ControllerBase
     private readonly IClock _clock;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly JwtSettings _jwtSettings;
 
     public AuthController(
         EmailSenderService emailSenderService,
         IClock clock,
         UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager)
+        SignInManager<ApplicationUser> signInManager,
+        IOptions<JwtSettings> options)
     {
         _emailService = emailSenderService;
         _clock = clock;
         _signInManager = signInManager;
         _userManager = userManager;
+        _jwtSettings = options.Value;
     }
 
     /// <summary>
@@ -80,12 +90,6 @@ public class AuthController : ControllerBase
         var token = string.Empty;
         token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
 
-        await _emailService.AddEmailToSendAsync(
-        model.Email,
-        "Potvrzení registrace",
-        $"<a href=\"http://localhost:5100/api/v1/Auth/ValidateToken?token={token}&email={model.Email}\">{token}</a>"
-        );
-
         return Ok(token);
     }
 
@@ -97,6 +101,7 @@ public class AuthController : ControllerBase
     /// <returns>
     /// If the login works, it returns 204 (No Content). If it fails, it shows an error message.
     /// </returns>
+
     [HttpPost("api/v1/Auth/Login")]
     public async Task<ActionResult> Login([FromBody] LogInModel model)
     {
@@ -119,12 +124,9 @@ public class AuthController : ControllerBase
             return ValidationProblem(ModelState);
         }
 
-        var userPrincipal = await _signInManager.CreateUserPrincipalAsync(user);
-        await HttpContext.SignInAsync(userPrincipal);
-
-        return NoContent();
+        var token = GenerateJwtToken(model.Email, user.Id.ToString().ToLowerInvariant());
+        return Ok(new { Token = token });
     }
-
     /// <summary>
     /// unescape token before sending
     /// </summary>
@@ -151,6 +153,37 @@ public class AuthController : ControllerBase
         }
 
         return NoContent();
+    }
+    [AllowAnonymous]
+    [HttpGet("api/v1/Account/UserInfo")]
+    public async Task<ActionResult<LoggedUserModel>> GetUserInfo()
+    {
+        if (!User.Identities.Any(x => x.IsAuthenticated))
+        {
+            return new LoggedUserModel
+            {
+                id = default,
+                name = null,
+                isAuthenticated = false,
+                isAdmin = false,
+            };
+        }
+
+        var id = User.GetUserId();
+        var user = await _userManager.Users
+            .Where(x => x.Id == id)
+            .AsNoTracking()
+            .SingleAsync();
+
+        var loggedModel = new LoggedUserModel
+        {
+            id = user.Id,
+            name = user.DisplayName,
+            isAuthenticated = true,
+            isAdmin = false,
+        };
+
+        return loggedModel;
     }
 
     /// <summary>
@@ -179,5 +212,19 @@ public class AuthController : ControllerBase
     public ActionResult TestMeBeforeLoginAndAfter()
     {
         return Ok("Succesfully reached endpoint!");
+    }
+    private string GenerateJwtToken(string username, string id)
+    {
+        var claims = new List<Claim> { new(ClaimTypes.Name, username), new(ClaimTypes.NameIdentifier, id) };
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        var token = new JwtSecurityToken(
+            issuer: _jwtSettings.Issuer,
+            audience: _jwtSettings.Audience,
+            claims: claims,
+            expires: DateTime.Now.AddMinutes(30),
+            signingCredentials: creds);
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

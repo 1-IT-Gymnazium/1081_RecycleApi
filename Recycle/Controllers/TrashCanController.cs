@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -26,6 +27,7 @@ public class TrashCanController : ControllerBase
         _dbContext = dbContext;
         _mapper = mapper;
     }
+    [Authorize]
     [HttpPost("api/v1/TrashCan/")]
     public async Task<ActionResult> CreateTrashCan(
         [FromBody] TrashCanCreateModel model)
@@ -80,11 +82,12 @@ public class TrashCanController : ControllerBase
             Id = dbEntity.Id,
             Name = dbEntity.Name,
             Type = dbEntity.Type,
-            Description = dbEntity.Description,
+            Description = dbEntity.Description, 
             PicturePath = dbEntity.PicturePath,
         };
         return Ok(trashCan);
     }
+    [Authorize]
     [HttpPatch("api/v1/TrashCan/{id:guid}")]
     public async Task<ActionResult<TrashCanDetailModel>> UpdateTrashCan(
         [FromRoute] Guid id,
@@ -125,6 +128,7 @@ public class TrashCanController : ControllerBase
             .FirstOrDefaultAsync ( x => x.Id == id);
         return Ok(_mapper.ToDetail(dbEntity));
     }
+    [Authorize]
     [HttpDelete("api/v1/TrashCan/{id:guid}")]
     public async Task<IActionResult> DeleteTrashCan(
         [FromRoute] Guid id)

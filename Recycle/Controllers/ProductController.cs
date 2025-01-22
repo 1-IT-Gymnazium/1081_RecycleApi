@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -37,6 +38,7 @@ public class ProductController : ControllerBase
     /// <returns>
     /// ActionResult is idicating 
     /// </returns>
+    [Authorize]
     [HttpPost("api/v1/Product/")]
     public async Task<ActionResult> CreateProduct([FromBody] ProductCreateModel model)
     {
@@ -80,18 +82,15 @@ public class ProductController : ControllerBase
             .FirstAsync(x => x.Id == newProduct.Id);
 
         //create ProductParts in DB
-        foreach (var productPart in newProduct.ProductParts)
+        var newProductParts = newProduct.ProductParts.Select(productPart => new ProductPart
         {
-            var newProductPart = new ProductPart
-            {
-                Id = Guid.NewGuid(),
-                ProductId = productPart.ProductId,
-                PartId = productPart.PartId
-            };
-            await _dbContext.AddAsync(newProductPart);
-            await _dbContext.SaveChangesAsync();
+            Id = Guid.NewGuid(),
+            ProductId = productPart.ProductId,
+            PartId = productPart.PartId
+        }).ToList();
 
-        }
+        await _dbContext.AddRangeAsync(newProductParts);
+        await _dbContext.SaveChangesAsync();
 
         var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
             ?? throw new Exception("failed to generate url");
@@ -159,7 +158,7 @@ public class ProductController : ControllerBase
 
         return Ok(products);
     }
-
+    [Authorize]
     [HttpPatch("api/v1/Product/{id:guid}")]
     public async Task<ActionResult<ProductDetailModel>> UpdateProduct(
         [FromRoute] Guid id,
@@ -206,6 +205,7 @@ public class ProductController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [Authorize]
     [HttpDelete("api/v1/Product/{id:guid}")]
     public async Task<IActionResult> DeleteProduct(
         [FromRoute] Guid id)
