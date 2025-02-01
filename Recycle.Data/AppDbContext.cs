@@ -20,7 +20,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid
     public DbSet<Material> Materials { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<EmailMessage> Emails { get; set; }
-
+    public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<TrashCanMaterialLocation> TrashCansMaterialLocations { get; set; }
     public DbSet<ProductPart> ProductParts { get; set; }
     public DbSet<PartMaterial> PartMaterials { get; set; }

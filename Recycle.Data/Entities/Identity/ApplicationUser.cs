@@ -18,7 +18,6 @@ public class ApplicationUser : IdentityUser<Guid>, ITrackable
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public string DateOfBirth { get; set; }
-    public new string? PhoneNumber { get; set; }
     public string? ProfilePictureUrl { get; set; }
 
     public Instant CreatedAt { get; set; }
@@ -27,4 +26,11 @@ public class ApplicationUser : IdentityUser<Guid>, ITrackable
     public string ModifiedBy { get; set; } = null!;
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
+}
+public static class UserExtentions
+{
+    public static IQueryable<ApplicationUser> FilterDeleted(this IQueryable<ApplicationUser> query)
+        => query
+        .Where(x => x.DeletedAt == null)
+        ;
 }

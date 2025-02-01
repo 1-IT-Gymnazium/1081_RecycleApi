@@ -12,10 +12,12 @@ using Recycle.Api.Models.Authorization;
 using Recycle.Api.Services;
 using Recycle.Api.Settings;
 using Recycle.Api.Utilities;
+using Recycle.Data;
 using Recycle.Data.Entities.Identity;
 using Recycle.Data.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Recycle.Api.Controllers;
@@ -27,19 +29,23 @@ public class AuthController : ControllerBase
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly JwtSettings _jwtSettings;
+    private readonly AppDbContext _dbContext;
 
     public AuthController(
         EmailSenderService emailSenderService,
         IClock clock,
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
-        IOptions<JwtSettings> options)
+        IOptions<JwtSettings> options,
+        AppDbContext dbContext)
     {
         _emailService = emailSenderService;
         _clock = clock;
         _signInManager = signInManager;
         _userManager = userManager;
         _jwtSettings = options.Value;
+        _dbContext = dbContext;
+
     }
 
     /// <summary>
@@ -124,9 +130,18 @@ public class AuthController : ControllerBase
             return ValidationProblem(ModelState);
         }
 
-        var token = GenerateJwtToken(model.Email, user.Id.ToString().ToLowerInvariant());
-        return Ok(new { Token = token });
+        var accessToken = GenerateAccessToken(user.Id, model.Email, user.UserName!, _jwtSettings.AccessTokenExpirationInMinutes);
+        var refreshToken = await GenerateRefreshTokenAsync(user.Id, _jwtSettings.RefreshTokenExpirationInDays);
+        Response.Cookies.Append("RefreshToken", refreshToken, new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = false, // For HTTPS
+            SameSite = SameSiteMode.Strict,
+            Expires = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays)
+        });
+        return Ok(new { Token = accessToken });
     }
+
     /// <summary>
     /// unescape token before sending
     /// </summary>
@@ -137,7 +152,10 @@ public class AuthController : ControllerBase
         [FromBody] TokenModel model
         )
     {
-        var user = await _userManager.FindByEmailAsync(model.Email);
+        var normalizedMail = model.Email.ToUpperInvariant();
+        var user = await _userManager
+            .Users
+            .SingleOrDefaultAsync(x => !x.EmailConfirmed && x.NormalizedEmail == normalizedMail);
 
         if (user == null)
         {
@@ -154,8 +172,9 @@ public class AuthController : ControllerBase
 
         return NoContent();
     }
+
     [AllowAnonymous]
-    [HttpGet("api/v1/Account/UserInfo")]
+    [HttpGet("api/v1/Auth/UserInfo")]
     public async Task<ActionResult<LoggedUserModel>> GetUserInfo()
     {
         if (!User.Identities.Any(x => x.IsAuthenticated))
@@ -186,13 +205,58 @@ public class AuthController : ControllerBase
         return loggedModel;
     }
 
-    /// <summary>
-    /// Logs the user out by ending their session.
-    /// </summary>
-    /// <returns>
-    /// Returns 204 (No Content) when the logout is successful.
-    /// </returns>
-    [Authorize]
+    [HttpPost("api/v1/Auth/Refresh")]
+    public async Task<IActionResult> RefreshToken()
+    {
+        if (!Request.Cookies.TryGetValue("RefreshToken", out var incomingToken))
+        {
+            return Unauthorized(new { Message = "Refresh token not found" });
+        }
+
+        var hashedToken = Hash(incomingToken);
+
+        var storedToken = await _dbContext.RefreshTokens
+            .FirstOrDefaultAsync(t => t.Token == hashedToken);
+
+        if (storedToken == null || storedToken.ExpiresAt < _clock.GetCurrentInstant() || storedToken.RevokedAt != null)
+        {
+            return Unauthorized(new { Message = "Invalid or expired refresh token" });
+        }
+
+        // Generate new access and refresh tokens
+        var user = await _dbContext.Users.FindAsync(storedToken.UserId);
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+
+        // Generate new tokens
+        var newAccessToken = GenerateAccessToken(user.Id, user.Email!, user.UserName!, _jwtSettings.AccessTokenExpirationInMinutes);
+        var newRefreshToken = await GenerateRefreshTokenAsync(user.Id, _jwtSettings.RefreshTokenExpirationInDays);
+
+        storedToken.RevokedAt = _clock.GetCurrentInstant();
+        await _dbContext.SaveChangesAsync();
+
+        Response.Cookies.Append("RefreshToken", newRefreshToken, new CookieOptions
+        {
+            HttpOnly = true,
+            Secure = false, // For HTTPS
+            SameSite = SameSiteMode.Strict,
+            Expires = DateTime.UtcNow.AddDays(_jwtSettings.RefreshTokenExpirationInDays)
+        });
+        return Ok(new
+        {
+            Token = newAccessToken,
+        });
+    }
+
+        /// <summary>
+        /// Logs the user out by ending their session.
+        /// </summary>
+        /// <returns>
+        /// Returns 204 (No Content) when the logout is successful.
+        /// </returns>
+        [Authorize]
     [HttpPost("api/v1/Auth/Logout")]
     public async Task<ActionResult> Logout()
     {
@@ -213,18 +277,50 @@ public class AuthController : ControllerBase
     {
         return Ok("Succesfully reached endpoint!");
     }
-    private string GenerateJwtToken(string username, string id)
+
+    private async Task<string> GenerateRefreshTokenAsync(Guid userId, int expirationInDays)
     {
-        var claims = new List<Claim> { new(ClaimTypes.Name, username), new(ClaimTypes.NameIdentifier, id) };
+        var refreshToken = Guid.NewGuid().ToString();
+        var data = Request.Headers.UserAgent.ToString();
+
+        var now = _clock.GetCurrentInstant();
+        _dbContext.Add(new RefreshToken
+        {
+            UserId = userId,
+            Token = Hash(refreshToken),
+            CreatedAt = now,
+            ExpiresAt = now.Plus(Duration.FromDays(expirationInDays)),
+            RequestInfo = data,
+        });
+        await _dbContext.SaveChangesAsync();
+        return refreshToken;
+    }
+    private string GenerateAccessToken(Guid userId, string email, string username, int expirationInMinutes)
+    {
+        var claims = new List<Claim>
+        {
+            new(JwtRegisteredClaimNames.Sub, userId.ToString().ToLowerInvariant()),
+            new(JwtRegisteredClaimNames.Email, email),
+            new(JwtRegisteredClaimNames.Name, username)
+        };
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         var token = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
             audience: _jwtSettings.Audience,
             claims: claims,
-            expires: DateTime.Now.AddMinutes(30),
+            expires: DateTime.Now.AddMinutes(expirationInMinutes),
             signingCredentials: creds);
 
         return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+    public static string Hash(string token)
+    {
+        var bytes = Encoding.UTF8.GetBytes(token);
+        var hash = SHA256.HashData(bytes);
+        return Convert.ToBase64String(hash);
+
     }
 }
