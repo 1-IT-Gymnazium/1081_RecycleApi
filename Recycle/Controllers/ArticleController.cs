@@ -128,7 +128,7 @@ public class ArticleController : ControllerBase
         {
             Id = dbEntity.Id,
             Heading = dbEntity.Heading,
-            AuthorsName = dbEntity.Author.UserName,
+            AuthorsName = dbEntity.Author.DisplayName,
             Annotation = dbEntity.Annotation,
             Text = dbEntity.Text,
         };

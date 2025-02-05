@@ -75,8 +75,9 @@ public class AuthController : ControllerBase
             FirstName = model.FirstName,
             LastName = model.LastName,
             DateOfBirth = model.DateOfBirth,
-            UserName = model.UserName,
-            Email = model.Email,
+            UserName = model.Email,
+            DisplayName = model.DisplayName,
+            Email = model.Email
         }.SetCreateBySystem(now);
 
         var checkPassword = await validator.ValidateAsync(_userManager, newUser, model.Password);
@@ -89,9 +90,9 @@ public class AuthController : ControllerBase
         }
 
         // Method with SaveChanges()!
-        var result = await _userManager.CreateAsync(newUser);
+        await _userManager.CreateAsync(newUser);
         // Method with SaveChanges()!
-        var pswRslt = await _userManager.AddPasswordAsync(newUser, model.Password);
+        await _userManager.AddPasswordAsync(newUser, model.Password);
 
         var token = string.Empty;
         token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
@@ -197,7 +198,7 @@ public class AuthController : ControllerBase
         var loggedModel = new LoggedUserModel
         {
             id = user.Id,
-            name = user.DisplayName,
+            name = user.UserName,
             isAuthenticated = true,
             isAdmin = false,
         };
@@ -212,31 +213,24 @@ public class AuthController : ControllerBase
         {
             return Unauthorized(new { Message = "Refresh token not found" });
         }
-
         var hashedToken = Hash(incomingToken);
-
         var storedToken = await _dbContext.RefreshTokens
             .FirstOrDefaultAsync(t => t.Token == hashedToken);
-
         if (storedToken == null || storedToken.ExpiresAt < _clock.GetCurrentInstant() || storedToken.RevokedAt != null)
         {
             return Unauthorized(new { Message = "Invalid or expired refresh token" });
         }
-
         // Generate new access and refresh tokens
         var user = await _dbContext.Users.FindAsync(storedToken.UserId);
         if (user == null)
         {
             return Unauthorized();
         }
-
         // Generate new tokens
         var newAccessToken = GenerateAccessToken(user.Id, user.Email!, user.UserName!, _jwtSettings.AccessTokenExpirationInMinutes);
         var newRefreshToken = await GenerateRefreshTokenAsync(user.Id, _jwtSettings.RefreshTokenExpirationInDays);
-
         storedToken.RevokedAt = _clock.GetCurrentInstant();
         await _dbContext.SaveChangesAsync();
-
         Response.Cookies.Append("RefreshToken", newRefreshToken, new CookieOptions
         {
             HttpOnly = true,
@@ -250,13 +244,13 @@ public class AuthController : ControllerBase
         });
     }
 
-        /// <summary>
-        /// Logs the user out by ending their session.
-        /// </summary>
-        /// <returns>
-        /// Returns 204 (No Content) when the logout is successful.
-        /// </returns>
-        [Authorize]
+    /// <summary>
+    /// Logs the user out by ending their session.
+    /// </summary>
+    /// <returns>
+    /// Returns 204 (No Content) when the logout is successful.
+    /// </returns>
+    [Authorize]
     [HttpPost("api/v1/Auth/Logout")]
     public async Task<ActionResult> Logout()
     {

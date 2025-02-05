@@ -158,7 +158,7 @@ public class ProductController : ControllerBase
 
         return Ok(products);
     }
-    [Authorize]
+    //[Authorize]
     [HttpPatch("api/v1/Product/{id:guid}")]
     public async Task<ActionResult<ProductDetailModel>> UpdateProduct(
         [FromRoute] Guid id,
@@ -185,6 +185,7 @@ public class ProductController : ControllerBase
         {
             return ValidationProblem(ModelState);
         }
+        dbEntity.IsVerified = productToUpdate.IsVerified;
         dbEntity.EAN = productToUpdate.EAN;
         dbEntity.Name = productToUpdate.Name;
         dbEntity.Description = productToUpdate.Description;
@@ -205,7 +206,7 @@ public class ProductController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [Authorize]
+    //[Authorize]
     [HttpDelete("api/v1/Product/{id:guid}")]
     public async Task<IActionResult> DeleteProduct(
         [FromRoute] Guid id)
