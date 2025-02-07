@@ -81,17 +81,6 @@ public class ProductController : ControllerBase
             .Products
             .FirstAsync(x => x.Id == newProduct.Id);
 
-        //create ProductParts in DB
-        var newProductParts = newProduct.ProductParts.Select(productPart => new ProductPart
-        {
-            Id = Guid.NewGuid(),
-            ProductId = productPart.ProductId,
-            PartId = productPart.PartId
-        }).ToList();
-
-        await _dbContext.AddRangeAsync(newProductParts);
-        await _dbContext.SaveChangesAsync();
-
         var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
             ?? throw new Exception("failed to generate url");
         return Created(url, _mapper.ToDetail(newProduct));
@@ -122,9 +111,10 @@ public class ProductController : ControllerBase
         };
         var product = new ProductDetailModel
         {
-           Id = dbEntity.Id,
-           EAN = dbEntity.EAN,
-           Name = dbEntity.Name,
+            Id = dbEntity.Id,
+            EAN = dbEntity.EAN,
+            Name = dbEntity.Name,
+            PartIds = dbEntity.ProductParts.Select(pp => pp.PartId).ToList()
         };
         return Ok(product);
     }
@@ -154,11 +144,12 @@ public class ProductController : ControllerBase
             Id = dbEntity.Id,
             EAN = dbEntity.EAN,
             Name = dbEntity.Name,
+            PartIds = dbEntity.ProductParts.Select(pp => pp.PartId).ToList()
         }).ToList();
 
         return Ok(products);
     }
-    //[Authorize]
+    [Authorize]
     [HttpPatch("api/v1/Product/{id:guid}")]
     public async Task<ActionResult<ProductDetailModel>> UpdateProduct(
         [FromRoute] Guid id,
@@ -166,6 +157,8 @@ public class ProductController : ControllerBase
     {
         var dbEntity = await _dbContext
             .Set<Product>()
+            .Include(x => x.ProductParts)
+            .ThenInclude(x => x.Part)
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
         {
@@ -190,13 +183,29 @@ public class ProductController : ControllerBase
         dbEntity.Name = productToUpdate.Name;
         dbEntity.Description = productToUpdate.Description;
         dbEntity.PicturePath = productToUpdate.PicturePath;
+
+        var currentParts = dbEntity.ProductParts;
+        var updatedParts = productToUpdate.PartIds;
+        var removedParts = currentParts.Where(x => !updatedParts.Any(y => y == x.PartId));
+        var newParts = updatedParts.Where(x => !currentParts.Any(y => y.PartId == x));
+
+        foreach (var part in removedParts) {
+            dbEntity.ProductParts.Remove(part);
+        }
+        foreach (var part in newParts)
+        {
+            dbEntity.ProductParts.Add(new() { PartId = part });
+        }
+
         dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
 
         await _dbContext.SaveChangesAsync();
 
         dbEntity = await _dbContext
             .Set<Product>()
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Include(x => x.ProductParts)
+            .ThenInclude(x => x.Part)
+            .FirstAsync(x => x.Id == id);
 
         return Ok(_mapper.ToDetail(dbEntity));
     }
@@ -206,7 +215,7 @@ public class ProductController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    //[Authorize]
+    [Authorize]
     [HttpDelete("api/v1/Product/{id:guid}")]
     public async Task<IActionResult> DeleteProduct(
         [FromRoute] Guid id)

@@ -39,7 +39,7 @@ public class TrashCan : ITrackable
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
 
-    public ICollection<TrashCanMaterialLocation> TrashCanMaterialLocations { get; set; }
+    public ICollection<TrashCanMaterial> TrashCanMaterials { get; set; }
 }
 public static class TrashCanExtentions
 {

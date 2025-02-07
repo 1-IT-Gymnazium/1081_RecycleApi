@@ -20,9 +20,7 @@ public class Location : ITrackable
 
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
-
-    public ICollection<TrashCanMaterialLocation> TrashCanMaterialLocations { get; set; }
-}
+    }
 public static class LocationExtentions
 {
     public static IQueryable<Location> FilterDeleted(this IQueryable<Location> query)

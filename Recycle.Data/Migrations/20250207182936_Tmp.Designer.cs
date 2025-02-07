@@ -13,8 +13,8 @@ using Recycle.Data;
 namespace Recycle.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250203155123_userChanged")]
-    partial class userChanged
+    [Migration("20250207182936_Tmp")]
+    partial class Tmp
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -283,7 +283,6 @@ namespace Recycle.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
@@ -588,16 +587,11 @@ namespace Recycle.Data.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ProductId1")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PartId");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ProductId1");
 
                     b.ToTable("ProductParts");
                 });
@@ -653,9 +647,6 @@ namespace Recycle.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("LocationId")
-                        .HasColumnType("uuid");
-
                     b.Property<Guid>("MaterialId")
                         .HasColumnType("uuid");
 
@@ -664,13 +655,11 @@ namespace Recycle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId");
-
                     b.HasIndex("MaterialId");
 
                     b.HasIndex("TrashCanId");
 
-                    b.ToTable("TrashCansMaterialLocations");
+                    b.ToTable("TrashCansMaterials");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -762,15 +751,9 @@ namespace Recycle.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Recycle.Data.Entities.Product", null)
+                    b.HasOne("Recycle.Data.Entities.Product", "Product")
                         .WithMany("ProductParts")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Recycle.Data.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -781,12 +764,6 @@ namespace Recycle.Data.Migrations
 
             modelBuilder.Entity("Recycle.Data.Entities.TrashCanMaterial", b =>
                 {
-                    b.HasOne("Recycle.Data.Entities.Location", "Location")
-                        .WithMany("TrashCanMaterials")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Recycle.Data.Entities.Material", "Material")
                         .WithMany("TrashCanMaterials")
                         .HasForeignKey("MaterialId")
@@ -799,8 +776,6 @@ namespace Recycle.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Location");
-
                     b.Navigation("Material");
 
                     b.Navigation("TrashCan");
@@ -809,11 +784,6 @@ namespace Recycle.Data.Migrations
             modelBuilder.Entity("Recycle.Data.Entities.Identity.ApplicationUser", b =>
                 {
                     b.Navigation("Articles");
-                });
-
-            modelBuilder.Entity("Recycle.Data.Entities.Location", b =>
-                {
-                    b.Navigation("TrashCanMaterials");
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Material", b =>

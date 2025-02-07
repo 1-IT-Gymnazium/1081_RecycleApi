@@ -624,7 +624,7 @@ namespace Recycle.Data.Migrations
                     b.ToTable("TrashCans");
                 });
 
-            modelBuilder.Entity("Recycle.Data.Entities.TrashCanMaterialLocation", b =>
+            modelBuilder.Entity("Recycle.Data.Entities.TrashCanMaterial", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -756,22 +756,22 @@ namespace Recycle.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Recycle.Data.Entities.TrashCanMaterialLocation", b =>
+            modelBuilder.Entity("Recycle.Data.Entities.TrashCanMaterial", b =>
                 {
                     b.HasOne("Recycle.Data.Entities.Location", "Location")
-                        .WithMany("TrashCanMaterialLocations")
+                        .WithMany("TrashCanMaterials")
                         .HasForeignKey("LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Recycle.Data.Entities.Material", "Material")
-                        .WithMany("TrashCanMaterialLocations")
+                        .WithMany("TrashCanMaterials")
                         .HasForeignKey("MaterialId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Recycle.Data.Entities.TrashCan", "TrashCan")
-                        .WithMany("TrashCanMaterialLocations")
+                        .WithMany("TrashCanMaterials")
                         .HasForeignKey("TrashCanId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -790,14 +790,14 @@ namespace Recycle.Data.Migrations
 
             modelBuilder.Entity("Recycle.Data.Entities.Location", b =>
                 {
-                    b.Navigation("TrashCanMaterialLocations");
+                    b.Navigation("TrashCanMaterials");
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Material", b =>
                 {
                     b.Navigation("PartMaterials");
 
-                    b.Navigation("TrashCanMaterialLocations");
+                    b.Navigation("TrashCanMaterials");
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Part", b =>
@@ -814,7 +814,7 @@ namespace Recycle.Data.Migrations
 
             modelBuilder.Entity("Recycle.Data.Entities.TrashCan", b =>
                 {
-                    b.Navigation("TrashCanMaterialLocations");
+                    b.Navigation("TrashCanMaterials");
                 });
 #pragma warning restore 612, 618
         }

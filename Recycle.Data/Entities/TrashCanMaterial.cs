@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
 
-public class TrashCanMaterialLocation
+public class TrashCanMaterial
 {
     public Guid Id { get; set; }
     public Guid MaterialId { get; set; }
@@ -14,7 +14,4 @@ public class TrashCanMaterialLocation
 
     public Guid TrashCanId { get; set; }
     public TrashCan TrashCan { get; set; }
-
-    public Guid LocationId { get; set; }
-    public Location Location { get; set; }
 }

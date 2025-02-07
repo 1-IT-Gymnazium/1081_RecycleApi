@@ -46,13 +46,42 @@ public class PartController : ControllerBase
             Name = model.Name,
             Description = model.Description,
             PicturePath = model.PicturePath,
-            Type = (PartType)model.Type 
-        }.SetCreateBySystem(now);
+            Type = (PartType)model.Type,
+            PartMaterials = new List<PartMaterial>()
 
-        _dbContext.Add(newPart);
+        }
+        .SetCreateBySystem(now);
+        foreach (var id in model.MaterialIds)
+        {
+            var material = await _dbContext.Materials.FirstOrDefaultAsync(x => x.Id == id);
+            if (material == null)
+            {
+                ModelState
+                    .AddModelError(nameof(model.MaterialIds), $"Material with id {id} not found");
+            }
+            newPart.PartMaterials.Add(new() { MaterialId = id, PartId = newPart.Id });
+        }
+        await _dbContext.AddAsync(newPart);
         await _dbContext.SaveChangesAsync();
 
-        return Ok();
+        newPart = await _dbContext
+            .Parts
+            .FirstAsync(x => x.Id == newPart.Id);
+
+        //create PartsMaterial in DB
+        var newPartMaterial = newPart.PartMaterials.Select(partMaterial => new PartMaterial
+        {
+            Id = Guid.NewGuid(),
+            PartId = partMaterial.PartId,
+            MaterialId = partMaterial.MaterialId
+        }).ToList();
+
+        await _dbContext.AddRangeAsync(newPartMaterial);
+        await _dbContext.SaveChangesAsync();
+
+        var url = Url.Action(nameof(GetPartById), new { newPart.Id })
+            ?? throw new Exception("failed to generate url");
+        return Created(url, _mapper.ToDetail(newPart));
     }
     [HttpGet("api/v1/Part/")]
     public async Task<ActionResult<List<PartDetailModel>>> GetListPart()
@@ -64,7 +93,7 @@ public class PartController : ControllerBase
         return Ok(dbEntities);
     }
     [HttpGet("api/v1/Part/{id:guid}")]
-    public async Task<ActionResult<PartDetailModel>> GetById(
+    public async Task<ActionResult<PartDetailModel>> GetPartById(
         [FromRoute] Guid id)
     {
         var dbEntity = await _dbContext

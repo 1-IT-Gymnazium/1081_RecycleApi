@@ -21,7 +21,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid
     public DbSet<Location> Locations { get; set; }
     public DbSet<EmailMessage> Emails { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
-    public DbSet<TrashCanMaterialLocation> TrashCansMaterialLocations { get; set; }
+    public DbSet<TrashCanMaterial> TrashCansMaterials { get; set; }
     public DbSet<ProductPart> ProductParts { get; set; }
     public DbSet<PartMaterial> PartMaterials { get; set; }
 
@@ -35,8 +35,14 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid
 
         modelBuilder.Entity<Product>()
     .HasMany(p => p.ProductParts)
-    .WithOne()
+    .WithOne(p => p.Product)
     .HasForeignKey(pp => pp.ProductId)
+    .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Part>()
+    .HasMany(p => p.PartMaterials)
+    .WithOne(p => p.Part)
+    .HasForeignKey(pp => pp.PartId)
     .OnDelete(DeleteBehavior.Cascade);
     }
 }

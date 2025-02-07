@@ -21,7 +21,7 @@ public class Product : ITrackable
     public bool IsVerified { get; set; }
     public string? PicturePath { get; set; }
 
-    public ICollection<ProductPart> ProductParts { get; set; }
+    public ICollection<ProductPart> ProductParts { get; set; } = new HashSet<ProductPart>();
 
     public Instant CreatedAt { get; set; }
     public string CreatedBy { get; set; } = null!;

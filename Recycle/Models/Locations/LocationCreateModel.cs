@@ -7,12 +7,12 @@ namespace Recycle.Api.Models.Locations;
 
 public class LocationCreateModel
 {
-    // [Required(AllowEmptyStrings = false, ErrorMessage = "TrashCan must contain text!")]
+    [Required(AllowEmptyStrings = false, ErrorMessage = "TrashCan must contain text!")]
     public string Name { get; set; }
 }
 public static class LocationCreateModelExtentions
 {
-    public static LocationCreateModel ToUpdate(this Location source) => new()
+    public static LocationCreateModel ToCreate(this Location source) => new()
     {
         Name = source.Name,
     };
