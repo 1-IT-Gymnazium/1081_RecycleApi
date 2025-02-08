@@ -3,9 +3,13 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using MimeKit.Tnef;
 using NodaTime;
+using Recycle.Api.Models.Locations;
 using Recycle.Api.Models.Materials;
+using Recycle.Api.Models.Parts;
 using Recycle.Api.Models.Products;
+using Recycle.Api.Models.TrashCans;
 using Recycle.Api.Utilities;
 using Recycle.Data;
 using Recycle.Data.Entities;
@@ -49,11 +53,41 @@ public class MaterialController : ControllerBase
             Id = Guid.NewGuid(),
             Name = model.Name,
             Description = model.Description,
+            TrashCanMaterials = new List<TrashCanMaterial>()
+
         }
         .SetCreateBySystem(now);
-        _dbContext.Add(newMaterial);
+        foreach (var id in model.TrashCanIds)
+        {
+            var trashCan = await _dbContext.TrashCans.FirstOrDefaultAsync(x => x.Id == id);
+            if (trashCan == null)
+            {
+                ModelState
+                    .AddModelError(nameof(model.TrashCanIds), $"Material with id {id} not found");
+            }
+            newMaterial.TrashCanMaterials.Add(new() { TrashCanId = id, MaterialId = newMaterial.Id });
+        }
+        await _dbContext.AddAsync(newMaterial);
         await _dbContext.SaveChangesAsync();
-        return Ok();
+
+        newMaterial = await _dbContext
+            .Materials
+            .FirstAsync(x => x.Id == newMaterial.Id);
+
+        //create MaterialTrashCan in DB
+        var newMaterialTrashCan = newMaterial.TrashCanMaterials.Select(materialTrashCan => new TrashCanMaterial
+        {
+            Id = Guid.NewGuid(),
+            MaterialId = materialTrashCan.MaterialId,
+            TrashCanId = materialTrashCan.TrashCanId
+        }).ToList();
+
+        await _dbContext.AddRangeAsync(newMaterialTrashCan);
+        await _dbContext.SaveChangesAsync();
+
+        var url = Url.Action(nameof(GetMaterialById), new { newMaterial.Id })
+            ?? throw new Exception("failed to generate url");
+        return Created(url, _mapper.ToDetail(newMaterial));
     }
     [HttpGet("api/v1/Material/")]
     public async Task<ActionResult<List<MaterialDetailModel>>> GetList()
@@ -63,7 +97,7 @@ public class MaterialController : ControllerBase
         return Ok(dbEntities);
     }
     [HttpGet("api/v1/Material/{id:guid}")]
-    public async Task<ActionResult<MaterialDetailModel>> GetById(
+    public async Task<ActionResult<MaterialDetailModel>> GetMaterialById(
         [FromRoute] Guid id)
     {
         var dbEntity = await _dbContext
@@ -88,38 +122,50 @@ public class MaterialController : ControllerBase
             [FromRoute] Guid id,
             [FromBody] JsonPatchDocument<MaterialDetailModel> patch)
         {
-            var dbEntity = await _dbContext
-                .Set<Material>()
-                .FirstOrDefaultAsync(x => x.Id == id);
-            if (dbEntity == null)
-            {
-                return NotFound();
-            }
-            var materialToUpdate = dbEntity.ToDetail();
-            patch.ApplyTo(materialToUpdate);
-            var uniqueCheck = await _dbContext
-                .Set<Product>()
-                .AnyAsync(x => x.Id == materialToUpdate.Id);
-            if (uniqueCheck)
-            {
-                ModelState.AddModelError<ProductDetailModel>(x => x.EAN, "Ean is not unique");
-            }
-            if (!(ModelState.IsValid && TryValidateModel(materialToUpdate)))
-            {
-                return ValidationProblem(ModelState);
-            }
-            dbEntity.Id = materialToUpdate.Id;
-            dbEntity.Name = materialToUpdate.Name;
-            dbEntity.Description = materialToUpdate.Description;
-
-            await _dbContext.SaveChangesAsync();
-
-            dbEntity = await _dbContext
-                .Set<Material>()
-                .FirstOrDefaultAsync(x => x.Id == id);
-
-            return Ok(dbEntity.ToDetail());
+        var dbEntity = await _dbContext
+            .Set<Material>()
+            .Include(x => x.TrashCanMaterials)
+            .ThenInclude(x => x.TrashCan)
+            .FirstOrDefaultAsync(x => x.Id == id);
+        if (dbEntity == null)
+        {
+            return NotFound();
         }
+        var materialToUpdate = _mapper.ToDetail(dbEntity);
+        patch.ApplyTo(materialToUpdate);
+        if (!(ModelState.IsValid && TryValidateModel(materialToUpdate)))
+        {
+            return ValidationProblem(ModelState);
+        }
+        dbEntity.Name = materialToUpdate.Name;
+        dbEntity.Description = materialToUpdate.Description;
+
+        var currentTrashCans = dbEntity.TrashCanMaterials;
+        var updatedTrashCans = materialToUpdate.TrashCanIds;
+        var removedTrashCans = currentTrashCans.Where(x => !updatedTrashCans.Any(y => y == x.MaterialId));
+        var newTrashCans = updatedTrashCans.Where(x => !currentTrashCans.Any(y => y.MaterialId == x));
+
+        foreach (var trashCan in removedTrashCans)
+        {
+            dbEntity.TrashCanMaterials.Remove(trashCan);
+        }
+        foreach (var trashCan in newTrashCans)
+        {
+            dbEntity.TrashCanMaterials.Add(new() { TrashCanId = trashCan });
+        }
+
+        dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
+        await _dbContext.SaveChangesAsync();
+
+        dbEntity = await _dbContext
+            .Set<Material>()
+            .Include(x => x.TrashCanMaterials)
+            .ThenInclude(x => x.TrashCan)
+            .FirstAsync(x => x.Id == id);
+
+        return Ok(_mapper.ToDetail(dbEntity));
+        }
+
     [Authorize]
         [HttpDelete("api/v1/Material/{id:guid}")]
         public async Task<IActionResult> DeleteMaterial(

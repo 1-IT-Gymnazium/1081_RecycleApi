@@ -151,7 +151,7 @@ public class PartController : ControllerBase
         }
         foreach (var material in newMaterials)
         {
-            dbEntity.ProductParts.Add(new() { PartId = material });
+            dbEntity.PartMaterials.Add(new() { MaterialId = material });
         }
 
         dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());

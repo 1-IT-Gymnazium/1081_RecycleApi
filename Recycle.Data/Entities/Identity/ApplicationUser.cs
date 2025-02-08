@@ -17,7 +17,7 @@ public class ApplicationUser : IdentityUser<Guid>, ITrackable
     public bool IsAdmin { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
-    public string DateOfBirth { get; set; }
+    public string? DateOfBirth { get; set; } 
     public string? ProfilePictureUrl { get; set; }
     public Instant CreatedAt { get; set; }
     public string CreatedBy { get; set; } = null!;

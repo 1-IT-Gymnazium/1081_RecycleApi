@@ -26,7 +26,7 @@ public class Material : ITrackable
     public string? DeletedBy { get; set; }
 
     public ICollection<PartMaterial> PartMaterials { get; set; }
-    public ICollection<TrashCanMaterial> TrashCanMaterials { get; set; }
+    public ICollection<TrashCanMaterial> TrashCanMaterials { get; set; } = new HashSet<TrashCanMaterial>();
 }
 
 public static class MaterialExtentions

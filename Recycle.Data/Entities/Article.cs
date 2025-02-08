@@ -15,7 +15,7 @@ public class Article : ITrackable
     public string Heading { get; set; } = null!;
     public string Text { get; set; } = null!;
     public string Annotation { get; set; } = null!;
-    public string? PicturePath { get; set; } = null;
+    public string? PicturePath { get; set; }
     public ApplicationUser Author { get; set; } = null!;
     public Guid AuthorId { get; set; }
 
