@@ -109,6 +109,7 @@ public class PartController : ControllerBase
             Id = dbEntity.Id,
             Name = dbEntity.Name,
             IsVerified = dbEntity.IsVerified,
+            MaterialIds = dbEntity.PartMaterials.Select(pp => pp.MaterialId).ToList(),
         };
         return Ok(part);
     }
@@ -121,6 +122,8 @@ public class PartController : ControllerBase
     {
         var dbEntity = await _dbContext
             .Set<Part>()
+            .Include(x => x.PartMaterials)
+            .ThenInclude(x => x.Material)
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
         {
@@ -137,11 +140,28 @@ public class PartController : ControllerBase
         dbEntity.IsVerified = partToUpdate.IsVerified;
         dbEntity.PicturePath = partToUpdate.PicturePath;
 
+        var currentMaterials = dbEntity.PartMaterials;
+        var updatedMaterials = partToUpdate.MaterialIds;
+        var removedMaterials = currentMaterials.Where(x => !updatedMaterials.Any(y => y == x.PartId));
+        var newMaterials = updatedMaterials.Where(x => !currentMaterials.Any(y => y.PartId == x));
+
+        foreach (var material in removedMaterials)
+        {
+            dbEntity.PartMaterials.Remove(material);
+        }
+        foreach (var material in newMaterials)
+        {
+            dbEntity.ProductParts.Add(new() { PartId = material });
+        }
+
+        dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
         await _dbContext.SaveChangesAsync();
 
         dbEntity = await _dbContext
             .Set<Part>()
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .Include(x => x.PartMaterials)
+            .ThenInclude(x => x.Material)
+            .FirstAsync(x => x.Id == id);
 
         return Ok(_mapper.ToDetail(dbEntity));
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -11,13 +11,13 @@ namespace Recycle.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_ProductParts_Products_ProductId1",
-                table: "ProductParts");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_ProductParts_Products_ProductId1",
+            //    table: "ProductParts");
 
-            migrationBuilder.DropIndex(
-                name: "IX_ProductParts_ProductId1",
-                table: "ProductParts");
+            //migrationBuilder.DropIndex(
+            //    name: "IX_ProductParts_ProductId1",
+            //    table: "ProductParts");
 
             migrationBuilder.DropColumn(
                 name: "ProductId1",

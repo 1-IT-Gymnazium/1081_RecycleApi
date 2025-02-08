@@ -16,12 +16,12 @@ public class Part : ITrackable
     public string Name { get; set; }
     public string Description { get; set; }
     public bool IsVerified { get; set; }  
-    public string PicturePath { get; set; }
+    public string? PicturePath { get; set; }
 
     public PartType Type { get; set; }
 
     public ICollection<ProductPart> ProductParts { get; set; }
-    public ICollection<PartMaterial> PartMaterials { get; set; }
+    public ICollection<PartMaterial> PartMaterials { get; set; } = new HashSet<PartMaterial>();
     public Instant CreatedAt { get; set; }
     public string CreatedBy { get; set; } = null!;
 

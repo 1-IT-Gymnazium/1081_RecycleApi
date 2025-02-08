@@ -58,6 +58,49 @@ namespace Recycle.Api.Controllers
             };
             return Ok(user);
         }
+        [Authorize]
+        [HttpGet("api/v1/User/current")]
+        public async Task<ActionResult<UserDetailModel>> GetCurrentUser()
+        {
+            // Get User ID from JWT token
+            var userIdString = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
+
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                return Unauthorized(); // User is not logged in
+            }
+
+            // Convert string to Guid
+            if (!Guid.TryParse(userIdString, out Guid userId))
+            {
+                return BadRequest("Invalid user ID format.");
+            }
+
+            // Fetch user from the database
+            var dbEntity = await _dbContext
+                .Set<ApplicationUser>()
+                .FilterDeleted()
+                .FirstOrDefaultAsync(x => x.Id == userId);
+
+            if (dbEntity == null)
+            {
+                return NotFound();
+            }
+
+            // Return user details
+            var user = new UserDetailModel
+            {
+                DisplayName = dbEntity.DisplayName,
+                UserName = dbEntity.Email,
+                FirstName = dbEntity.FirstName,
+                LastName = dbEntity.LastName,
+                Email = dbEntity.Email,
+                DateOfBirth = dbEntity.DateOfBirth,
+                ProfilePicture = dbEntity.ProfilePictureUrl,
+            };
+
+            return Ok(user);
+        }
 
         [Authorize]
         [HttpPatch("UserChanges/UpdateUsername")]

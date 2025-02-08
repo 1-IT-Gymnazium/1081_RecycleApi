@@ -11,6 +11,8 @@ public class PartDetailModel
     public string Description { get; set; }
     public bool IsVerified { get; set; }
     public string? PicturePath { get; set; }
+    public IEnumerable<Guid> MaterialIds { get; set; } = [];
+
 }
 public static class ParttDetailModelExtensions
 {
@@ -22,5 +24,7 @@ public static class ParttDetailModelExtensions
             Description = source.Description,
             IsVerified = source.IsVerified,
             PicturePath = source.PicturePath,
+            MaterialIds = source.PartMaterials.Select(p => p.MaterialId)
+
         };
 }
