@@ -48,7 +48,6 @@ namespace Recycle.Api.Controllers
             };
             var user = new UserDetailModel
             {
-                DisplayName = dbEntity.DisplayName,
                 UserName = dbEntity.Email,
                 FirstName = dbEntity.FirstName,
                 LastName = dbEntity.LastName,
@@ -90,7 +89,6 @@ namespace Recycle.Api.Controllers
             // Return user details
             var user = new UserDetailModel
             {
-                DisplayName = dbEntity.DisplayName,
                 UserName = dbEntity.Email,
                 FirstName = dbEntity.FirstName,
                 LastName = dbEntity.LastName,

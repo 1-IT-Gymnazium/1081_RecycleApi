@@ -33,5 +33,6 @@ public static class MaterialExtentions
 {
     public static IQueryable<Material> FilterDeleted(this IQueryable<Material> query)
         => query
+                .Where(x => x.DeletedAt == null)
         ;
 }

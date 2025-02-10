@@ -75,7 +75,7 @@ public class AuthController : ControllerBase
             FirstName = model.FirstName,
             LastName = model.LastName,
             DateOfBirth = model.DateOfBirth,
-            UserName = model.Email,
+            UserName = model.UserName,
             Email = model.Email
         }.SetCreateBySystem(now);
 

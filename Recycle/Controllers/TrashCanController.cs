@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NodaTime;
 using Recycle.Api.Models.TrashCans;
 using Recycle.Api.Utilities;
@@ -10,6 +11,7 @@ using Recycle.Data;
 using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using static Recycle.Data.Entities.TrashCan;
 
 namespace Recycle.Api.Controllers;
 [ApiController]
@@ -47,7 +49,7 @@ public class TrashCanController : ControllerBase
         {
             Id = Guid.NewGuid(),
             Name = model.Name,
-            Type = model.Type,
+            Type = (TrashCanType)model.Type,
             Description = model.Description,
             PicturePath = model.PicturePath,
         }
@@ -81,7 +83,7 @@ public class TrashCanController : ControllerBase
         {
             Id = dbEntity.Id,
             Name = dbEntity.Name,
-            Type = dbEntity.Type,
+            Type = (TrashCanType)dbEntity.Type,
             Description = dbEntity.Description, 
             PicturePath = dbEntity.PicturePath,
         };
@@ -117,7 +119,7 @@ public class TrashCanController : ControllerBase
             return ValidationProblem(ModelState);
         }
         dbEntity.Name = trashCanToUpdate.Name;
-        dbEntity.Type = trashCanToUpdate.Type;
+        dbEntity.Type = (TrashCanType)trashCanToUpdate.Type;
         dbEntity.Description = trashCanToUpdate.Description;
         dbEntity.PicturePath = trashCanToUpdate.PicturePath;
 

@@ -1,7 +1,6 @@
 using Recycle.Api.Utilities;
 using Recycle.Data.Entities;
 using static Recycle.Data.Entities.Location;
-using static Recycle.Data.Entities.TrashCan;
 
 namespace Recycle.Api.Models.Locations;
 

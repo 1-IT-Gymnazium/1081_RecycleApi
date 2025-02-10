@@ -11,7 +11,7 @@ public class MaterialDetailModel
     public IEnumerable<Guid> TrashCanIds { get; set; } = [];
 
 }
-public static class CategoryDetailModelExtentions
+public static class MaterialDetailModelExtentions
 {
     public static MaterialDetailModel ToDetail(this IApplicationMapper mapper, Material source)
         => new()

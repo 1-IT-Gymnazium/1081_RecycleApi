@@ -21,7 +21,7 @@ public static class ArticleDetailModelExtensions
             Id = source.Id,
             Heading = source.Heading,
             Annotation = source.Annotation,
-            AuthorsName = source.Author.DisplayName ?? string.Empty,
+            AuthorsName = source.Author.UserName ?? string.Empty,
             Text = source.Text,
             PicturePath = source.PicturePath,
             CreatedAt = InstantPattern.ExtendedIso.Format(source.CreatedAt),

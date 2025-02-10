@@ -13,7 +13,6 @@ namespace Recycle.Data.Entities.Identity;
 public class ApplicationUser : IdentityUser<Guid>, ITrackable
 {
     public ICollection<Article> Articles { get; set; } = [];
-    public string DisplayName { get; set; } = null!;
     public bool IsAdmin { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }

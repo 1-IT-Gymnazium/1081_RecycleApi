@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
+using Recycle.Api.Models.Parts;
 using Recycle.Api.Models.Products;
 using Recycle.Api.Utilities;
 using Recycle.Data;
@@ -103,6 +104,8 @@ public class ProductController : ControllerBase
     {
         var dbEntity = await _dbContext
             .Set<Product>()
+            .Include(x => x.ProductParts)
+            .ThenInclude(x => x.Part)
             .FilterDeleted()
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
@@ -114,7 +117,15 @@ public class ProductController : ControllerBase
             Id = dbEntity.Id,
             EAN = dbEntity.EAN,
             Name = dbEntity.Name,
-            PartIds = dbEntity.ProductParts.Select(pp => pp.PartId).ToList()
+            Description = dbEntity.Description,
+            PartIds = dbEntity.ProductParts.Select(pp => pp.PartId).ToList(),
+            PicturePath = dbEntity.PicturePath,
+            IsVerified = dbEntity.IsVerified,
+            //Parts = dbEntity.ProductParts.Select(pp => new PartDetailModel
+            //{
+            //    Id = pp.Part.Id,
+            //    Name = pp.Part.Name
+            //}).ToList()
         };
         return Ok(product);
     }
