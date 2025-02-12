@@ -30,17 +30,17 @@ public class TrashCanController : ControllerBase
         _mapper = mapper;
     }
     [Authorize]
-    [HttpPost("api/v1/TrashCan/")]
+    [HttpPost("api/v1/TrashCan")]
     public async Task<ActionResult> CreateTrashCan(
         [FromBody] TrashCanCreateModel model)
     {
-    var checkTrashCan = await _dbContext
-    .Set<TrashCan>()
-    .AnyAsync(x => x.Name == model.Name);
+        var checkTrashCan = await _dbContext
+        .Set<TrashCan>()
+        .AnyAsync(x => x.Name == model.Name);
         if (checkTrashCan)
         {
             ModelState
-                   .AddModelError(nameof(model.Name), $"Part with the name of {model.Name} already exists!");
+                   .AddModelError(nameof(model.Name), $"Trash Can with the name of {model.Name} already exists!");
             return ValidationProblem(ModelState);
         }
 
@@ -49,7 +49,7 @@ public class TrashCanController : ControllerBase
         {
             Id = Guid.NewGuid(),
             Name = model.Name,
-            Type = (TrashCanType)model.Type,
+            Type = model.Type,
             Description = model.Description,
             PicturePath = model.PicturePath,
         }
@@ -57,13 +57,14 @@ public class TrashCanController : ControllerBase
 
         _dbContext.Add(newTrashCan);
         await _dbContext.SaveChangesAsync();
-        return Ok();
+        return NoContent();
     }
     [HttpGet("api/v1/TrashCan/")]
     public async Task<ActionResult<List<TrashCanDetailModel>>> GetListTrashCan()
     {
         var dbEntities = _dbContext
             .TrashCans
+             .FilterDeleted()
             .Select(_mapper.ToDetail);
         return Ok(dbEntities);
     }
@@ -83,8 +84,8 @@ public class TrashCanController : ControllerBase
         {
             Id = dbEntity.Id,
             Name = dbEntity.Name,
-            Type = (TrashCanType)dbEntity.Type,
-            Description = dbEntity.Description, 
+            Type = dbEntity.Type,
+            Description = dbEntity.Description,
             PicturePath = dbEntity.PicturePath,
         };
         return Ok(trashCan);
@@ -98,8 +99,8 @@ public class TrashCanController : ControllerBase
     {
         var dbEntity = await _dbContext
             .Set<TrashCan>()
-            .FirstOrDefaultAsync( x => x.Id == id);
-        if(dbEntity == null)
+            .FirstOrDefaultAsync(x => x.Id == id);
+        if (dbEntity == null)
         {
             return NotFound();
         }
@@ -109,25 +110,25 @@ public class TrashCanController : ControllerBase
 
         var uniqueCheck = await _dbContext
             .Set<TrashCan>()
-            .AnyAsync( x => x.Id != id && x.Name == trashCanToUpdate.Name);
+            .AnyAsync(x => x.Id != id && x.Name == trashCanToUpdate.Name);
         if (uniqueCheck)
         {
             ModelState.AddModelError<TrashCanDetailModel>(x => x.Name, "Name already used, try different");
         }
-        if(!(ModelState.IsValid && TryValidateModel(trashCanToUpdate)))
+        if (!(ModelState.IsValid && TryValidateModel(trashCanToUpdate)))
         {
             return ValidationProblem(ModelState);
         }
         dbEntity.Name = trashCanToUpdate.Name;
-        dbEntity.Type = (TrashCanType)trashCanToUpdate.Type;
+        dbEntity.Type = trashCanToUpdate.Type;
         dbEntity.Description = trashCanToUpdate.Description;
         dbEntity.PicturePath = trashCanToUpdate.PicturePath;
 
-        await _dbContext .SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();
 
         dbEntity = await _dbContext
             .Set<TrashCan>()
-            .FirstOrDefaultAsync ( x => x.Id == id);
+            .FirstOrDefaultAsync(x => x.Id == id);
         return Ok(_mapper.ToDetail(dbEntity));
     }
     [Authorize]

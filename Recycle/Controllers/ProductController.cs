@@ -43,8 +43,7 @@ public class ProductController : ControllerBase
     [HttpPost("api/v1/Product/")]
     public async Task<ActionResult> CreateProduct([FromBody] ProductCreateModel model)
     {
-        var checkProduct =
-            await _dbContext
+        var checkProduct = await _dbContext
             .Set<Product>()
             .AnyAsync(x => x.Name == model.Name);
         if (checkProduct)
@@ -53,7 +52,7 @@ public class ProductController : ControllerBase
                    .AddModelError(nameof(model.Name), $"Product with the name of {model.Name} already exists!");
             return ValidationProblem(ModelState);
         }
-        
+
         var now = _clock.GetCurrentInstant();
         var newProduct = new Product
         {
@@ -73,13 +72,14 @@ public class ProductController : ControllerBase
                 ModelState
                     .AddModelError(nameof(model.PartIds), $"Part with id {id} not found");
             }
-            newProduct.ProductParts.Add(new() { PartId = id, ProductId=newProduct.Id });
+            newProduct.ProductParts.Add(new() { PartId = id, ProductId = newProduct.Id });
         }
         await _dbContext.AddAsync(newProduct);
         await _dbContext.SaveChangesAsync();
 
         newProduct = await _dbContext
             .Products
+            .Include(x => x.ProductParts)
             .FirstAsync(x => x.Id == newProduct.Id);
 
         var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
@@ -92,6 +92,7 @@ public class ProductController : ControllerBase
     {
         var dbEntities = _dbContext
             .Products
+            .Include(x => x.ProductParts)
             .FilterDeleted()
             .Select(_mapper.ToDetail);
 
@@ -111,23 +112,8 @@ public class ProductController : ControllerBase
         if (dbEntity == null)
         {
             return NotFound();
-        };
-        var product = new ProductDetailModel
-        {
-            Id = dbEntity.Id,
-            EAN = dbEntity.EAN,
-            Name = dbEntity.Name,
-            Description = dbEntity.Description,
-            PartIds = dbEntity.ProductParts.Select(pp => pp.PartId).ToList(),
-            PicturePath = dbEntity.PicturePath,
-            IsVerified = dbEntity.IsVerified,
-            //Parts = dbEntity.ProductParts.Select(pp => new PartDetailModel
-            //{
-            //    Id = pp.Part.Id,
-            //    Name = pp.Part.Name
-            //}).ToList()
-        };
-        return Ok(product);
+        }
+        return Ok (_mapper.ToDetail(dbEntity));
     }
     [HttpGet("api/v1/Product/search")]
     public async Task<ActionResult<IEnumerable<ProductDetailModel>>> SearchProductsByEAN(
@@ -141,6 +127,7 @@ public class ProductController : ControllerBase
 
         var dbEntities = await _dbContext
             .Set<Product>()
+            .Include (x => x.ProductParts)
             .FilterDeleted() 
             .Where(x => x.EAN == ean)
             .ToListAsync();
@@ -150,15 +137,7 @@ public class ProductController : ControllerBase
             return NotFound();
         }
 
-        var products = dbEntities.Select(dbEntity => new ProductDetailModel
-        {
-            Id = dbEntity.Id,
-            EAN = dbEntity.EAN,
-            Name = dbEntity.Name,
-            PartIds = dbEntity.ProductParts.Select(pp => pp.PartId).ToList()
-        }).ToList();
-
-        return Ok(products);
+        return Ok(dbEntities.Select(x => _mapper.ToDetail(x)));
     }
     [Authorize]
     [HttpPatch("api/v1/Product/{id:guid}")]

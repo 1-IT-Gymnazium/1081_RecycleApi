@@ -92,7 +92,11 @@ public class MaterialController : ControllerBase
     [HttpGet("api/v1/Material/")]
     public async Task<ActionResult<List<MaterialDetailModel>>> GetList()
     {
-        var dbEntities = _dbContext.Materials.ToList();
+        var dbEntities = _dbContext
+            .Materials
+            .Include(x =>  x.TrashCanMaterials)
+            .FilterDeleted()
+            .Select(_mapper.ToDetail);
 
         return Ok(dbEntities);
     }
@@ -102,19 +106,15 @@ public class MaterialController : ControllerBase
     {
         var dbEntity = await _dbContext
             .Set<Material>()
+            .Include(x => x.TrashCanMaterials)
+            .ThenInclude(x => x.TrashCanId)
             .FilterDeleted()
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
         {
             return NotFound();
-        };
-        var material = new MaterialCreateModel
-        {
-            Id = dbEntity.Id,
-            Name = dbEntity.Name,
-            Description = dbEntity.Description,
-        };
-        return Ok(material);
+        }
+        return Ok(_mapper.ToDetail(dbEntity));
     }
     [Authorize]
         [HttpPatch("api/v1/Material/{id:guid}")]

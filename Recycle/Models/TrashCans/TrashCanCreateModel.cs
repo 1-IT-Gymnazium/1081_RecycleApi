@@ -11,7 +11,7 @@ public class TrashCanCreateModel
     public Guid Id { get; set; }
     public string Name { get; set; }
     public string? Description { get; set; }
-    public TrashCanType Type { get; set; }
+    public string Type { get; set; } = null!;
     public string? PicturePath { get; set; }
 }
 public static class TrashCanCreateModelExtentions

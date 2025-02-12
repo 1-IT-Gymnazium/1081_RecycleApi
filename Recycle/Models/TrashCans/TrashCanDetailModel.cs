@@ -8,7 +8,7 @@ public class TrashCanDetailModel
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = null!;
-    public TrashCanType Type { get; set; }
+    public string Type { get; set; } = null!;
     public string Description { get; set; }
     public string? PicturePath { get; set; }
 }

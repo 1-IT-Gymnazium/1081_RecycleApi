@@ -10,7 +10,7 @@ public class PartCreateModel
     public string Name { get; set; }
     public string? Description { get; set; }
     public string? PicturePath { get; set; }
-    public int Type { get; set; }
+    public string Type { get; set; }
     public IEnumerable<Guid> MaterialIds{ get; set; } = [];
 
 }

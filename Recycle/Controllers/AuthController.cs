@@ -30,6 +30,7 @@ public class AuthController : ControllerBase
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly JwtSettings _jwtSettings;
     private readonly AppDbContext _dbContext;
+    private readonly EnviromentSettings _environmentSettings;
 
     public AuthController(
         EmailSenderService emailSenderService,
@@ -37,7 +38,9 @@ public class AuthController : ControllerBase
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
         IOptions<JwtSettings> options,
-        AppDbContext dbContext)
+        AppDbContext dbContext,
+        IOptions<EnviromentSettings> enviromentSettings
+        )
     {
         _emailService = emailSenderService;
         _clock = clock;
@@ -45,7 +48,7 @@ public class AuthController : ControllerBase
         _userManager = userManager;
         _jwtSettings = options.Value;
         _dbContext = dbContext;
-
+        _environmentSettings = enviromentSettings.Value;
     }
 
     /// <summary>
@@ -96,7 +99,61 @@ public class AuthController : ControllerBase
         var token = string.Empty;
         token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
 
-        return Ok(token);
+        //var url = _environmentSettings.FrontendHostUrl + "/" + _environmentSettings.FrontendConfirmUrl;
+        //var escapedToken = Uri.EscapeDataString(token);
+        //await _emailService.AddEmail("Registrace", $"<a href=\"{url}?token={escapedToken}&email={newUser.Email}\">Not a scam! Click me</a>", model.Email);
+        //var url = $"{_environmentSettings.FrontendHostUrl}/{_environmentSettings.FrontendConfirmUrl}";
+        //var escapedToken = Uri.EscapeDataString(token);
+
+        await _emailService.AddEmailToSendAsync(
+            model.Email,
+            "Confirmation of registration",
+            $@"
+    <html>
+    <head>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                padding: 20px;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 0 auto;
+                background: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }}
+            .button {{
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px;
+                color: #fff;
+                background-color: #28a745;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 20px;
+            }}
+            .footer {{
+                margin-top: 20px;
+                font-size: 12px;
+                color: #777;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <h2>Confirm of registration</h2>
+            <p>Click on the button to verify the email address:</p>
+<a href='http://localhost:4200/confirm?token={Uri.EscapeDataString(token)}&email={model.Email}' class='button'>Potvrdit e-mail</a>
+<p class='footer'>If you did not register on Recycle!, please ignore this email.</p>
+        </div>
+    </body>
+    </html>"
+        );
+        return Ok();
     }
 
     /// <summary>

@@ -8,48 +8,79 @@ using Recycle.Data;
 using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
 using System.Net.Mail;
+using System.Threading;
 
 namespace Recycle.Api.Services;
 
 public class EmailSenderService
 {
-    private readonly AppDbContext _dbContext;
     private readonly SmtpSettings _smtpSettings;
-    private readonly EnviromentSettings _enviromentSettings;
+    private readonly AppDbContext _dbContext;
+    private readonly IClock _clock;
+
     public EmailSenderService(
-        AppDbContext appDbContext,
-        IOptions<SmtpSettings> options,
-        IOptions<EnviromentSettings> enviromentSettings)
+        IClock clock,
+        AppDbContext dbContext,
+        IOptions<SmtpSettings> smtpSettings
+        )
     {
-        _dbContext = appDbContext;
-        _smtpSettings = options.Value;
-        _enviromentSettings = enviromentSettings.Value;
+        _clock = clock;
+        _dbContext = dbContext;
+        _smtpSettings = smtpSettings.Value;
     }
+
+    public async Task AddEmailToSendAsync(
+        string receiver,
+        string subject,
+        string body
+        )
+    {
+        var now = _clock.GetCurrentInstant();
+
+        var newMail = new EmailMessage
+        {
+            Body = body,
+            Subject = subject,
+            Receiver = receiver,
+            Sender = _smtpSettings.Sender,
+            ScheduledAt = now,
+        }.SetCreateBySystem(now);
+
+        _dbContext.Emails.Add(newMail);
+        await _dbContext.SaveChangesAsync();
+    }
+
     public async Task SendEmailsAsync()
     {
-        var unsentMails = await _dbContext.Emails.Where(x => !x.Sent).ToListAsync();
-        foreach (var unsent in unsentMails)
+        var mails = await _dbContext.Set<EmailMessage>().Where(x => x.SentAt == null).ToListAsync();
+        foreach (var mail in mails)
         {
-            using var mail = new MailMessage
+            using var notif = new MailMessage
             {
-                Subject = unsent.Subject,
-                Body = unsent.Body,
-                IsBodyHtml = false,
-                From = new MailAddress(unsent.FromEmail, unsent.FromName),
+                Subject = mail.Subject,
+                Body = mail.Body,
+                IsBodyHtml = true,
+                From = new MailAddress(mail.Sender),
             };
-            mail.To.Add(new MailAddress(unsent.RecipientEmail, unsent.RecipientName));
+            notif.To.Add(new MailAddress(mail.Receiver));
 
             try
             {
                 using var smtp = new MailKit.Net.Smtp.SmtpClient();
                 await smtp.ConnectAsync(_smtpSettings.Host, _smtpSettings.Port);
-                await smtp.AuthenticateAsync(_smtpSettings.UserName, _smtpSettings.Password);
-                await smtp.SendAsync((MimeMessage)mail);
+                await smtp.AuthenticateAsync(_smtpSettings.Username, _smtpSettings.Password);
+                await smtp.SendAsync((MimeMessage)notif);
 
-                unsent.Sent = true;
+                mail.SentAt = _clock.GetCurrentInstant();
+                await _dbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
+                // log error, notify someone
+            }
+            finally
+            {
+                // nothing to do right now
             }
         }
     }

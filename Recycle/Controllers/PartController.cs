@@ -46,7 +46,7 @@ public class PartController : ControllerBase
             Name = model.Name,
             Description = model.Description,
             PicturePath = model.PicturePath,
-            Type = (PartType)model.Type,
+            Type = model.Type,
             PartMaterials = new List<PartMaterial>()
 
         }
@@ -88,8 +88,10 @@ public class PartController : ControllerBase
     {
         var dbEntities = _dbContext
             .Parts
+            .Include(x => x.PartMaterials)
             .FilterDeleted()
-            .ToList();
+            .Select(_mapper.ToDetail);
+
         return Ok(dbEntities);
     }
     [HttpGet("api/v1/Part/{id:guid}")]
@@ -98,20 +100,15 @@ public class PartController : ControllerBase
     {
         var dbEntity = await _dbContext
             .Set<Part>()
+            .Include(x => x.PartMaterials)
+            .ThenInclude(x => x.Material)
             .FilterDeleted()
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
         {
             return NotFound();
-        };
-        var part = new PartDetailModel
-        {
-            Id = dbEntity.Id,
-            Name = dbEntity.Name,
-            IsVerified = dbEntity.IsVerified,
-            MaterialIds = dbEntity.PartMaterials.Select(pp => pp.MaterialId).ToList(),
-        };
-        return Ok(part);
+        }
+        return Ok(_mapper.ToDetail(dbEntity));
     }
 
     [Authorize]

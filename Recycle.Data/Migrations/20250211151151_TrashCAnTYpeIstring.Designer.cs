@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NodaTime;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,11 @@ using Recycle.Data;
 namespace Recycle.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250211151151_TrashCAnTYpeIstring")]
+    partial class TrashCAnTYpeIstring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,36 +220,24 @@ namespace Recycle.Data.Migrations
                     b.Property<Instant>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("FromEmail")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Instant?>("DeletedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("text");
-
-                    b.Property<Instant>("ModifiedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ModifiedBy")
+                    b.Property<string>("FromName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Receiver")
+                    b.Property<string>("RecipientEmail")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Instant>("ScheduledAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Sender")
+                    b.Property<string>("RecipientName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Instant?>("SentAt")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<bool>("Sent")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Subject")
                         .IsRequired()
@@ -501,9 +492,8 @@ namespace Recycle.Data.Migrations
                     b.Property<string>("PicturePath")
                         .HasColumnType("text");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

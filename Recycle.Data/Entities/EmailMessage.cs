@@ -1,4 +1,5 @@
 using NodaTime;
+using Recycle.Data.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,15 +10,28 @@ using System.Threading.Tasks;
 namespace Recycle.Data.Entities;
 [Table(nameof(EmailMessage))]
 
-public class EmailMessage
+public class EmailMessage: ITrackable
 {
     public Guid Id { get; set; }
-    public required string RecipientEmail { get; set; }
-    public required string RecipientName { get; set; }
-    public required string Subject { get; set; }
-    public required string Body { get; set; }
-    public bool Sent { get; set; }
+
+    public string Sender { get; set; } = null!;
+
+    public string Receiver { get; set; } = null!;
+
+    public string Subject { get; set; } = null!;
+
+    public string Body { get; set; } = null!;
+
+    public Instant ScheduledAt { get; set; }
+
+    public Instant? SentAt { get; set; }
+
     public Instant CreatedAt { get; set; }
-    public required string FromEmail { get; set; }
-    public required string FromName { get; set; }
+    public string CreatedBy { get; set; } = null!;
+
+    public Instant ModifiedAt { get; set; }
+    public string ModifiedBy { get; set; } = null!;
+
+    public Instant? DeletedAt { get; set; }
+    public string? DeletedBy { get; set; }
 }

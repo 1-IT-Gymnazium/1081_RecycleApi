@@ -18,7 +18,7 @@ public class Part : ITrackable
     public bool IsVerified { get; set; }  
     public string? PicturePath { get; set; }
 
-    public PartType Type { get; set; }
+    public string Type { get; set; }
 
     public ICollection<ProductPart> ProductParts { get; set; }
     public ICollection<PartMaterial> PartMaterials { get; set; } = new HashSet<PartMaterial>();
@@ -32,11 +32,6 @@ public class Part : ITrackable
     public string? DeletedBy { get; set; }
 }
 
-public enum PartType
-{
-    Wrapping = 1,
-    Part = 2,
-}
 public static class PartExtentions
 {
     public static IQueryable<Part> FilterDeleted(this IQueryable<Part> query)

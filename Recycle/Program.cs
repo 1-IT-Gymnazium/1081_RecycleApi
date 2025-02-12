@@ -88,7 +88,7 @@ public class Program
             };
         });
 
-        builder.Services.Configure<EnviromentSettings>(builder.Configuration.GetSection("EnviromentalSettings"));
+        builder.Services.Configure<EnviromentSettings>(builder.Configuration.GetSection("EnvironmentSettings"));
         builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
         builder.Services.AddScoped<EmailSenderService>();
         builder.Services.AddHostedService<EmailSenderBackgroundService>();
