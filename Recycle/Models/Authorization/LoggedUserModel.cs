@@ -9,4 +9,5 @@ public class LoggedUserModel
     public string? name { get; set; } = string.Empty;
 
     public bool isAuthenticated { get; set; }
+    public string FirstName { get; set; } = null!;
 }

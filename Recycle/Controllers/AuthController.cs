@@ -256,7 +256,8 @@ public class AuthController : ControllerBase
             id = user.Id,
             name = user.UserName,
             isAuthenticated = true,
-            isAdmin = false,
+            isAdmin = user.IsAdmin,
+            FirstName = user.FirstName,
         };
 
         return loggedModel;

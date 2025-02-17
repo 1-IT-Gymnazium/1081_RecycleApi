@@ -53,7 +53,7 @@ namespace Recycle.Api.Controllers
                 LastName = dbEntity.LastName,
                 Email = dbEntity.Email,
                 DateOfBirth = dbEntity.DateOfBirth,
-                ProfilePicture = dbEntity.ProfilePictureUrl,
+                ProfilePictureUrl = dbEntity.ProfilePictureUrl,
             };
             return Ok(user);
         }
@@ -94,7 +94,8 @@ namespace Recycle.Api.Controllers
                 LastName = dbEntity.LastName,
                 Email = dbEntity.Email,
                 DateOfBirth = dbEntity.DateOfBirth,
-                ProfilePicture = dbEntity.ProfilePictureUrl,
+                ProfilePictureUrl = dbEntity.ProfilePictureUrl,
+                IsAdmin = dbEntity.IsAdmin
             };
 
             return Ok(user);

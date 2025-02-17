@@ -201,7 +201,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.EmailMessage", b =>
@@ -254,7 +254,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmailMessage");
+                    b.ToTable("EmailMessage", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Identity.ApplicationUser", b =>
@@ -384,7 +384,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RefreshToken");
+                    b.ToTable("RefreshToken", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Location", b =>
@@ -419,7 +419,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Material", b =>
@@ -458,7 +458,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Materials");
+                    b.ToTable("Materials", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Part", b =>
@@ -507,7 +507,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parts");
+                    b.ToTable("Parts", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.PartMaterial", b =>
@@ -528,7 +528,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasIndex("PartId");
 
-                    b.ToTable("PartMaterials");
+                    b.ToTable("PartMaterials", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.Product", b =>
@@ -576,7 +576,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.ProductPart", b =>
@@ -597,7 +597,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductParts");
+                    b.ToTable("ProductParts", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.TrashCan", b =>
@@ -643,7 +643,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TrashCans");
+                    b.ToTable("TrashCans", (string)null);
                 });
 
             modelBuilder.Entity("Recycle.Data.Entities.TrashCanMaterial", b =>
@@ -664,7 +664,7 @@ namespace Recycle.Data.Migrations
 
                     b.HasIndex("TrashCanId");
 
-                    b.ToTable("TrashCansMaterials");
+                    b.ToTable("TrashCansMaterials", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
