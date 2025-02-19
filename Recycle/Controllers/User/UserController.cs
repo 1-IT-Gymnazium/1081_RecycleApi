@@ -1,18 +1,20 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
-using Recycle.Api.Models.Products;
 using Recycle.Api.Models.Users;
 using Recycle.Api.Services;
+using Recycle.Api.Utilities;
 using Recycle.Data;
-using Recycle.Data.Entities;
 using Recycle.Data.Entities.Identity;
+using System.Security.Claims;
 
 namespace Recycle.Api.Controllers
 {
     [ApiController]
+    [Authorize] // Ensures user is authenticated for protected routes
     [Route("api/v1/User")]
     public class UserController : ControllerBase
     {
@@ -32,170 +34,115 @@ namespace Recycle.Api.Controllers
             _userManager = userManager;
             _dbContext = dbContext;
         }
-        [Authorize]
-        [HttpGet("api/v1/User/{id:guid}")]
-        public async Task<ActionResult<UserDetailModel>> GetUserById(
-        [FromRoute] Guid id
-        )
+
+        [AllowAnonymous]
+        [HttpGet("UserInfo")]
+        public async Task<ActionResult<UserDetailModel>> GetAccountInfo()
         {
-            var dbEntity = await _dbContext
-                .Set<ApplicationUser>()
-                .FilterDeleted()
-                .FirstOrDefaultAsync(x => x.Id == id);
-            if (dbEntity == null)
+            if (!User.Identities.Any(x => x.IsAuthenticated))
             {
-                return NotFound();
-            };
-            var user = new UserDetailModel
-            {
-                UserName = dbEntity.Email,
-                FirstName = dbEntity.FirstName,
-                LastName = dbEntity.LastName,
-                Email = dbEntity.Email,
-                DateOfBirth = dbEntity.DateOfBirth,
-                ProfilePictureUrl = dbEntity.ProfilePictureUrl,
-            };
-            return Ok(user);
-        }
-        [Authorize]
-        [HttpGet("api/v1/User/current")]
-        public async Task<ActionResult<UserDetailModel>> GetCurrentUser()
-        {
-            // Get User ID from JWT token
-            var userIdString = User.Claims.FirstOrDefault(c => c.Type == "sub")?.Value;
-
-            if (string.IsNullOrEmpty(userIdString))
-            {
-                return Unauthorized(); // User is not logged in
+                return new UserDetailModel
+                {
+                    UserName = null,
+                    FirstName = null,
+                    LastName = null,
+                    Email = null,
+                    DateOfBirth = null,
+                    ProfilePictureUrl = null,
+                    IsAdmin = false,
+                };
             }
 
-            // Convert string to Guid
-            if (!Guid.TryParse(userIdString, out Guid userId))
-            {
-                return BadRequest("Invalid user ID format.");
-            }
+            var id = User.GetUserId();
+            var user = await _userManager.Users
+                .Where(x => x.Id == id)
+                .AsNoTracking()
+                .SingleAsync();
 
-            // Fetch user from the database
-            var dbEntity = await _dbContext
-                .Set<ApplicationUser>()
-                .FilterDeleted()
-                .FirstOrDefaultAsync(x => x.Id == userId);
-
-            if (dbEntity == null)
+            return new UserDetailModel
             {
-                return NotFound();
-            }
-
-            // Return user details
-            var user = new UserDetailModel
-            {
-                UserName = dbEntity.Email,
-                FirstName = dbEntity.FirstName,
-                LastName = dbEntity.LastName,
-                Email = dbEntity.Email,
-                DateOfBirth = dbEntity.DateOfBirth,
-                ProfilePictureUrl = dbEntity.ProfilePictureUrl,
-                IsAdmin = dbEntity.IsAdmin
+                UserName = user.UserName,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                ProfilePictureUrl = user.ProfilePictureUrl,
+                IsAdmin = user.IsAdmin,
             };
-
-            return Ok(user);
         }
 
-        [Authorize]
-        [HttpPatch("UserChanges/UpdateUsername")]
-        public async Task<ActionResult> UpdateUsername(string userId, [FromBody] string newUsername)
+        private async Task<ApplicationUser?> GetAuthenticatedUser()
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var userId = User?.FindFirst("sub")?.Value; // Try finding "sub" claim first
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                userId = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value; // Fallback to NameIdentifier
+            }
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return null; // If still empty, return null
+            }
+
+            return await _userManager.FindByIdAsync(userId);
+        }
+        [HttpPatch("UpdateUsername")]
+        public async Task<IActionResult> UpdateUsername([FromBody] string newUsername)
+        {
+            var user = await GetAuthenticatedUser();
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "USER_NOT_FOUND");
-                return ValidationProblem(ModelState);
+                return NotFound(new { error = "USER_NOT_FOUND", message = "User not found." });
+            }
+
+            var existingUser = await _userManager.FindByNameAsync(newUsername);
+            if (existingUser != null && existingUser.Id != user.Id)
+            {
+                return BadRequest(new { error = "DUPLICATE_USERNAME", message = $"The username '{newUsername}' is already taken." });
             }
 
             user.UserName = newUsername;
             var result = await _userManager.UpdateAsync(user);
-
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, "UPDATE_FAILED");
-                return ValidationProblem(ModelState);
-            }
-
-            return NoContent();
+            return result.Succeeded ? NoContent() : BadRequest(new { error = "UPDATE_FAILED", message = "Failed to update username." });
         }
-
-        [Authorize]
-        [HttpPatch("UserChanges/UpdateEmail")]
-        public async Task<ActionResult> UpdateEmail(string userId, [FromBody] string newEmail)
+        [HttpPatch("UpdateEmail")]
+        public async Task<IActionResult> UpdateEmail([FromBody] string newEmail)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await GetAuthenticatedUser();
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "USER_NOT_FOUND");
-                return ValidationProblem(ModelState);
+                return NotFound(new { error = "USER_NOT_FOUND", message = "User not found." });
+            }
+
+            var existingUser = await _userManager.FindByEmailAsync(newEmail);
+            if (existingUser != null && existingUser.Id != user.Id)
+            {
+                return BadRequest(new { error = "DUPLICATE_EMAIL", message = $"The email '{newEmail}' is already in use." });
             }
 
             user.Email = newEmail;
             var result = await _userManager.UpdateAsync(user);
-
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, "UPDATE_FAILED");
-                return ValidationProblem(ModelState);
-            }
-
-            return NoContent();
+            return result.Succeeded ? NoContent() : BadRequest(new { error = "UPDATE_FAILED", message = "Failed to update email." });
         }
 
-        [Authorize]
-        [HttpPatch("UserChanges/UpdateProfilePicture")]
-        public async Task<ActionResult> UpdateProfilePicture(string userId, [FromBody] string profilePictureUrl)
+        [HttpPatch("UpdatePassword")]
+        public async Task<IActionResult> UpdatePassword([FromBody] UpdateUserPasswordModel model)
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await GetAuthenticatedUser();
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "USER_NOT_FOUND");
-                return ValidationProblem(ModelState);
-            }
-
-            user.ProfilePictureUrl = profilePictureUrl;
-            var result = await _userManager.UpdateAsync(user);
-
-            if (!result.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, "UPDATE_FAILED");
-                return ValidationProblem(ModelState);
-            }
-
-            return NoContent();
-        }
-
-        [Authorize]
-        [HttpPatch("UserChanges/UpdatePassword")]
-        public async Task<ActionResult> UpdatePassword(string userId, [FromBody] UpdateUserPasswordModel model)
-        {
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                ModelState.AddModelError(string.Empty, "USER_NOT_FOUND");
-                return ValidationProblem(ModelState);
+                return NotFound(new { error = "USER_NOT_FOUND", message = "User not found." });
             }
 
             var passwordCheck = await _userManager.CheckPasswordAsync(user, model.OldPassword);
             if (!passwordCheck)
             {
-                ModelState.AddModelError(string.Empty, "INVALID_OLD_PASSWORD");
-                return ValidationProblem(ModelState);
+                return BadRequest(new { error = "INVALID_OLD_PASSWORD", message = "The old password is incorrect." });
             }
 
             var passwordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-            if (!passwordResult.Succeeded)
-            {
-                ModelState.AddModelError(string.Empty, "PASSWORD_CHANGE_FAILED");
-                return ValidationProblem(ModelState);
-            }
-
-            return NoContent();
+            return passwordResult.Succeeded ? NoContent() : BadRequest(new { error = "PASSWORD_CHANGE_FAILED", message = "Failed to update password." });
         }
     }
 }

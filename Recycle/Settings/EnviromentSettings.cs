@@ -6,4 +6,6 @@ public class EnviromentSettings
     public required string FrontendConfirmUrl { get; set; }
     public required string SenderEmail { get; set; }
     public required string SenderName { get; set; }
+    public string FrontendResetPasswordUrl { get; set; } = string.Empty;
+
 }

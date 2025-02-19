@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NodaTime;
 using Recycle.Api.Models.Authorization;
+using Recycle.Api.Models.Authorization.PasswordReset;
 using Recycle.Api.Services;
 using Recycle.Api.Settings;
 using Recycle.Api.Utilities;
@@ -257,7 +258,6 @@ public class AuthController : ControllerBase
             name = user.UserName,
             isAuthenticated = true,
             isAdmin = user.IsAdmin,
-            FirstName = user.FirstName,
         };
 
         return loggedModel;
@@ -327,6 +327,91 @@ public class AuthController : ControllerBase
     public ActionResult TestMeBeforeLoginAndAfter()
     {
         return Ok("Succesfully reached endpoint!");
+    }
+    [HttpPost("api/v1/Auth/ForgotPassword")]
+    public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel model)
+    {
+        var user = await _userManager.FindByEmailAsync(model.Email);
+        if (user == null)
+        {
+            ModelState.AddModelError(string.Empty, "USER_NOT_FOUND");
+            return ValidationProblem(ModelState);
+        }
+
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+        var escapedToken = Uri.EscapeDataString(token);
+        var resetUrl = $"{_environmentSettings.FrontendHostUrl}/{_environmentSettings.FrontendResetPasswordUrl}?token={escapedToken}&email={model.Email}";
+
+        await _emailService.AddEmailToSendAsync(
+            model.Email,
+            "Password Reset Request",
+            $@"
+    <html>
+    <head>
+        <style>
+            body {{
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                padding: 20px;
+            }}
+            .container {{
+                max-width: 600px;
+                margin: 0 auto;
+                background: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }}
+            .button {{
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px;
+                color: #fff;
+                background-color: #dc3545;
+                text-decoration: none;
+                border-radius: 5px;
+                margin-top: 20px;
+            }}
+            .footer {{
+                margin-top: 20px;
+                font-size: 12px;
+                color: #777;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <h2>Password Reset Request</h2>
+            <p>If you requested a password reset, click the button below:</p>
+            <a href='{resetUrl}' class='button'>Reset Password</a>
+            <p class='footer'>If you did not request a password reset, please ignore this email.</p>
+        </div>
+    </body>
+    </html>"
+        );
+
+        return Ok(new { message = "Password reset email sent successfully." });
+    }
+
+    [HttpPost("api/v1/Auth/ResetPassword")]
+    public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
+    {
+        var user = await _userManager.FindByEmailAsync(model.Email);
+        if (user == null)
+        {
+            ModelState.AddModelError(string.Empty, "USER_NOT_FOUND");
+            return ValidationProblem(ModelState);
+        }
+
+        var resetResult = await _userManager.ResetPasswordAsync(user, model.Token, model.NewPassword);
+        if (!resetResult.Succeeded)
+        {
+            ModelState.AddModelError(string.Empty, "RESET_FAILED");
+            return ValidationProblem(ModelState);
+        }
+
+        return Ok(new { message = "Password reset successful." });
     }
 
     private async Task<string> GenerateRefreshTokenAsync(Guid userId, int expirationInDays)
