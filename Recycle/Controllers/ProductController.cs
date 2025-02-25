@@ -59,6 +59,7 @@ public class ProductController : ControllerBase
             Id = Guid.NewGuid(),
             Name = model.Name,
             EAN = model.EAN,
+            IsVerified = false,
             Description = model.Description,
             PicturePath = model.PicturePath,
             ProductParts = new List<ProductPart>()
@@ -80,6 +81,7 @@ public class ProductController : ControllerBase
         newProduct = await _dbContext
             .Products
             .Include(x => x.ProductParts)
+            .ThenInclude(x => x.Part)
             .FirstAsync(x => x.Id == newProduct.Id);
 
         var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
@@ -93,6 +95,7 @@ public class ProductController : ControllerBase
         var dbEntities = _dbContext
             .Products
             .Include(x => x.ProductParts)
+            .ThenInclude(x => x.Part)
             .FilterDeleted()
             .Select(_mapper.ToDetail);
 
@@ -128,6 +131,7 @@ public class ProductController : ControllerBase
         var dbEntities = await _dbContext
             .Set<Product>()
             .Include (x => x.ProductParts)
+            .ThenInclude(x => x.Part)
             .FilterDeleted() 
             .Where(x => x.EAN == ean)
             .ToListAsync();
@@ -141,9 +145,9 @@ public class ProductController : ControllerBase
     }
     [Authorize]
     [HttpPatch("api/v1/Product/{id:guid}")]
-    public async Task<ActionResult<ProductDetailModel>> UpdateProduct(
+    public async Task<ActionResult<ProductUpdateModel>> UpdateProduct(
         [FromRoute] Guid id,
-        [FromBody] JsonPatchDocument<ProductDetailModel> patch)
+        [FromBody] JsonPatchDocument<ProductUpdateModel> patch)
     {
         var dbEntity = await _dbContext
             .Set<Product>()
@@ -155,7 +159,7 @@ public class ProductController : ControllerBase
             return NotFound();
         }
 
-        var productToUpdate = _mapper.ToDetail(dbEntity);
+        var productToUpdate = _mapper.ToUpdate(dbEntity);
         patch.ApplyTo(productToUpdate);
         var uniqueCheck = await _dbContext
             .Set<Product>()

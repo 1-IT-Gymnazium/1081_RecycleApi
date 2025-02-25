@@ -3,6 +3,7 @@ using Recycle.Data.Entities.Identity;
 using Recycle.Data.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -15,8 +16,9 @@ public class Product : ITrackable
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     public string Name { get; set; }
-    public string EAN { get; set; }
 
+    [RegularExpression(@"^\d+$", ErrorMessage = "EAN must be numeric.")]
+    public string EAN { get; set; }
     public string? Description { get; set; }
     public bool IsVerified { get; set; }
     public string? PicturePath { get; set; }

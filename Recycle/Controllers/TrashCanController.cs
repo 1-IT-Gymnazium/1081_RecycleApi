@@ -36,6 +36,7 @@ public class TrashCanController : ControllerBase
     {
         var checkTrashCan = await _dbContext
         .Set<TrashCan>()
+        .FilterDeleted()
         .AnyAsync(x => x.Name == model.Name);
         if (checkTrashCan)
         {
@@ -64,7 +65,7 @@ public class TrashCanController : ControllerBase
     {
         var dbEntities = _dbContext
             .TrashCans
-             .FilterDeleted()
+            .FilterDeleted()
             .Select(_mapper.ToDetail);
         return Ok(dbEntities);
     }
@@ -99,6 +100,7 @@ public class TrashCanController : ControllerBase
     {
         var dbEntity = await _dbContext
             .Set<TrashCan>()
+            .FilterDeleted()
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
         {
