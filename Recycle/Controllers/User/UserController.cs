@@ -147,9 +147,8 @@ namespace Recycle.Api.Controllers
             var passwordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
             return passwordResult.Succeeded ? NoContent() : BadRequest(new { error = "PASSWORD_CHANGE_FAILED", message = "Failed to update password." });
         }
-        // fixni tohle more
-        /*
-        [HttpPatch("UpdateProfilePicture")]
+
+        [HttpPatch("api/v1/User/UpdateProfilePicture")]
         public async Task<IActionResult> UpdateProfilePicture(IFormFile profilePicture)
         {
             var user = await GetAuthenticatedUser();
@@ -163,22 +162,21 @@ namespace Recycle.Api.Controllers
                 return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No profile picture uploaded." });
             }
 
-            // Save new profile picture
-            var newImagePath = await _imageService.SaveImageAsync(profilePicture, "ProfilePictures");
+            // Save the new profile picture
+            var newImagePath = await _imageService.SaveImageAsync(profilePicture, "UserProfileImages");
 
-            // Delete old profile picture if it exists
+            // Delete old profile picture if exists
             if (!string.IsNullOrEmpty(user.ProfilePictureUrl))
             {
                 await _imageService.DeleteImageAsync(user.ProfilePictureUrl);
             }
 
-            // Update user profile picture
+            // Update user profile picture path
             user.ProfilePictureUrl = newImagePath;
             _dbContext.Users.Update(user);
             await _dbContext.SaveChangesAsync();
 
             return Ok(new { message = "Profile picture updated successfully.", imagePath = newImagePath });
         }
-        */
     }
 }

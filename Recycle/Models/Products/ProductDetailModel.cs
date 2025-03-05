@@ -14,18 +14,20 @@ public class ProductDetailModel
     public bool IsVerified { get; set; }
     public string? PicturePath { get; set; }
     public IEnumerable<IdNameModel> Parts { get; set; } = [];
-    public IFormFile Image { get; set; }
 }
 public static class ProductDetailModelExtensions
 {
     public static ProductDetailModel ToDetail(this IApplicationMapper mapper, Product source)
-        => new()
+    {
+        string baseUrl = "http://localhost:5100";
+
+        return new ProductDetailModel
         {
             Id = source.Id,
             Name = source.Name,
             Description = source.Description,
             EAN = source.EAN,
-            PicturePath = source.PicturePath,// ZDE PRACDEPODOBNE BUDE PRIDANI ADRESYS ERVERU IDK COOK WITH CHAT
+            PicturePath = string.IsNullOrEmpty(source.PicturePath) ? null : $"{baseUrl}{source.PicturePath}",
             IsVerified = source.IsVerified,
             Parts = source.ProductParts.Select(p => new IdNameModel
             {
@@ -33,4 +35,5 @@ public static class ProductDetailModelExtensions
                 Name = p.Part.Name,
             })
         };
+    }
 }

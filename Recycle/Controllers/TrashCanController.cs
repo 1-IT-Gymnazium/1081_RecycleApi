@@ -54,6 +54,7 @@ public class TrashCanController : ControllerBase
             Id = Guid.NewGuid(),
             Name = model.Name,
             Type = model.Type,
+            PicturePath = model.PicturePath,
             Description = model.Description,
         }
         .SetCreateBySystem(now);
@@ -62,39 +63,21 @@ public class TrashCanController : ControllerBase
         await _dbContext.SaveChangesAsync();
         return NoContent();
     }
-    //fixni tohle more
-    /*
-    [HttpPost("api/v1/TrashCan/UploadTrashcanImage/{trashcanId:guid}")]
-    public async Task<IActionResult> UploadTrashcanImage([FromRoute] Guid trashcanId, IFormFile trashcanImage)
+
+    [HttpPost("api/v1/Trashcan/UploadTrashCanImage")]
+    public async Task<IActionResult> UploadProductImage(IFormFile trashCanImage)
     {
-        var trashcan = await _dbContext.TrashCans.FindAsync(trashcanId);
-        if (trashcan == null)
+        if (trashCanImage == null || trashCanImage.Length == 0)
         {
-            return NotFound(new { error = "TRASHCAN_NOT_FOUND", message = "Trashcan not found." });
+            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No product image uploaded." });
         }
 
-        if (trashcanImage == null || trashcanImage.Length == 0)
-        {
-            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No trashcan image uploaded." });
-        }
+        // Save the image using the ImageService
+        var newImagePath = await _imageService.SaveImageAsync(trashCanImage, "ProductImages");
 
-        // Save new trashcan image
-        var newImagePath = await _imageService.SaveImageAsync(trashcanImage, "TrashcanImages");
-
-        // Delete old image if it exists
-        if (!string.IsNullOrEmpty(trashcan.PicturePath))
-        {
-            await _imageService.DeleteImageAsync(trashcan.PicturePath);
-        }
-
-        // Update trashcan image path
-        trashcan.PicturePath = newImagePath;
-        _dbContext.TrashCans.Update(trashcan);
-        await _dbContext.SaveChangesAsync();
-
-        return Ok(new { message = "Trashcan image uploaded successfully.", imagePath = newImagePath });
+        // Return the stored image path
+        return Ok(new { message = "Product image uploaded successfully.", imagePath = newImagePath });
     }
-    */
 
     [HttpGet("api/v1/TrashCan/")]
     public async Task<ActionResult<List<TrashCanDetailModel>>> GetListTrashCan()
