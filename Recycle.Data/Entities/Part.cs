@@ -31,7 +31,6 @@ public class Part : ITrackable
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
 }
-
 public static class PartExtentions
 {
     public static IQueryable<Part> FilterDeleted(this IQueryable<Part> query)

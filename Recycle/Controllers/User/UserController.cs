@@ -22,17 +22,20 @@ namespace Recycle.Api.Controllers
         private readonly IClock _clock;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly AppDbContext _dbContext;
+        private readonly IImageService _imageService;
 
         public UserController(
             EmailSenderService emailSenderService,
             IClock clock,
             UserManager<ApplicationUser> userManager,
-            AppDbContext dbContext)
+            AppDbContext dbContext,
+            IImageService imageService)
         {
             _emailService = emailSenderService;
             _clock = clock;
             _userManager = userManager;
             _dbContext = dbContext;
+            _imageService = imageService;
         }
 
         [AllowAnonymous]
@@ -144,5 +147,38 @@ namespace Recycle.Api.Controllers
             var passwordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
             return passwordResult.Succeeded ? NoContent() : BadRequest(new { error = "PASSWORD_CHANGE_FAILED", message = "Failed to update password." });
         }
+        // fixni tohle more
+        /*
+        [HttpPatch("UpdateProfilePicture")]
+        public async Task<IActionResult> UpdateProfilePicture(IFormFile profilePicture)
+        {
+            var user = await GetAuthenticatedUser();
+            if (user == null)
+            {
+                return NotFound(new { error = "USER_NOT_FOUND", message = "User not found." });
+            }
+
+            if (profilePicture == null || profilePicture.Length == 0)
+            {
+                return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No profile picture uploaded." });
+            }
+
+            // Save new profile picture
+            var newImagePath = await _imageService.SaveImageAsync(profilePicture, "ProfilePictures");
+
+            // Delete old profile picture if it exists
+            if (!string.IsNullOrEmpty(user.ProfilePictureUrl))
+            {
+                await _imageService.DeleteImageAsync(user.ProfilePictureUrl);
+            }
+
+            // Update user profile picture
+            user.ProfilePictureUrl = newImagePath;
+            _dbContext.Users.Update(user);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(new { message = "Profile picture updated successfully.", imagePath = newImagePath });
+        }
+        */
     }
 }

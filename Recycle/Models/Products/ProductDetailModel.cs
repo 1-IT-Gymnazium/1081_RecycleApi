@@ -14,6 +14,7 @@ public class ProductDetailModel
     public bool IsVerified { get; set; }
     public string? PicturePath { get; set; }
     public IEnumerable<IdNameModel> Parts { get; set; } = [];
+    public IFormFile Image { get; set; }
 }
 public static class ProductDetailModelExtensions
 {
@@ -24,7 +25,7 @@ public static class ProductDetailModelExtensions
             Name = source.Name,
             Description = source.Description,
             EAN = source.EAN,
-            PicturePath = source.PicturePath,
+            PicturePath = source.PicturePath,// ZDE PRACDEPODOBNE BUDE PRIDANI ADRESYS ERVERU IDK COOK WITH CHAT
             IsVerified = source.IsVerified,
             Parts = source.ProductParts.Select(p => new IdNameModel
             {

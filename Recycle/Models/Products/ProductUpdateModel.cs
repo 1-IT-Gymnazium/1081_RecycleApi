@@ -12,6 +12,7 @@ public class ProductUpdateModel
     public bool IsVerified { get; set; }
     public string? PicturePath { get; set; }
     public IEnumerable<Guid> PartIds { get; set; } = [];
+    public IFormFile Image { get; set; }
 }
 public static class ProductUpdateModelExtensions
 {

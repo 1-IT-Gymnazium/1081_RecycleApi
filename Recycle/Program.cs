@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -35,6 +36,25 @@ public class Program
 
         builder.Services.AddSingleton<IClock>(SystemClock.Instance);
         builder.Services.AddScoped<IApplicationMapper, ApplicationMapper>();
+        builder.Services.AddScoped<IImageService, ImageService>();
+
+        var baseUploadsFolder = @"C:\Elareinstaluje\repos\RecycleApi\Recycle\Uploads";
+        var profilePicturesFolder = Path.Combine(baseUploadsFolder, "ProfilePictures");
+        var productImagesFolder = Path.Combine(baseUploadsFolder, "ProductImages");
+        var trashcanImagesFolder = Path.Combine(baseUploadsFolder, "TrashcanImages");
+
+        foreach (var folder in new[] { baseUploadsFolder, profilePicturesFolder, productImagesFolder, trashcanImagesFolder })
+        {
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+                Console.WriteLine($"Uploads folder created at: {folder}");
+            }
+            else
+            {
+                Console.WriteLine($"Uploads folder already exists at: {folder}");
+            }
+        }
 
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
@@ -125,6 +145,16 @@ public class Program
                 }
             });
         });
+        var uploadsFolder = @"C:\Elareinstaluje\repos\RecycleApi\Recycle\Uploads";
+        if (!Directory.Exists(uploadsFolder))
+        {
+            Directory.CreateDirectory(uploadsFolder);
+            Console.WriteLine($"Uploads folder created at: {uploadsFolder}");
+        }
+        else
+        {
+            Console.WriteLine($"Uploads folder already exists at: {uploadsFolder}");
+        }
 
         var app = builder.Build();
 
@@ -134,6 +164,11 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(baseUploadsFolder),
+            RequestPath = "/Uploads"
+        });
 
         //app.usehttpsredirection();
 

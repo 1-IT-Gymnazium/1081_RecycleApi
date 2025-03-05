@@ -11,6 +11,7 @@ public class TrashCanDetailModel
     public string Type { get; set; } = null!;
     public string Description { get; set; }
     public string? PicturePath { get; set; }
+    public IFormFile Image { get; set; }
 }
 public static class TrashCanDetailModelExtensions
 {

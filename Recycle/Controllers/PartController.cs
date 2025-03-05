@@ -8,6 +8,7 @@ using Recycle.Api.Utilities;
 using Recycle.Data;
 using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Recycle.Api.Controllers;
 [ApiController]
@@ -84,16 +85,25 @@ public class PartController : ControllerBase
         return Created(url, _mapper.ToDetail(newPart));
     }
     [HttpGet("api/v1/Part/")]
-    public async Task<ActionResult<List<PartDetailModel>>> GetListPart()
+    public async Task<ActionResult<List<PartDetailModel>>> GetListPart(
+        [FromQuery] PartFilter filter
+        )
     {
-        var dbEntities = _dbContext
-            .Parts
+        var dbEntities = await _dbContext
+            .Set<Part>()
             .Include(x => x.PartMaterials)
+              .ThenInclude(x => x.Material)
+                .ThenInclude(x => x.TrashCanMaterials)
+                    .ThenInclude(x => x.TrashCan)
             .FilterDeleted()
-            .Select(_mapper.ToDetail);
+            .ApplyFilter(filter)
+            .ToListAsync();
 
-        return Ok(dbEntities);
+        var models = dbEntities.Select(_mapper.ToDetail).ToList();
+
+        return Ok(models);
     }
+
     [HttpGet("api/v1/Part/{id:guid}")]
     public async Task<ActionResult<PartDetailModel>> GetPartById(
         [FromRoute] Guid id)

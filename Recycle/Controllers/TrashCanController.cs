@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NodaTime;
 using Recycle.Api.Models.TrashCans;
+using Recycle.Api.Services;
 using Recycle.Api.Utilities;
 using Recycle.Data;
 using Recycle.Data.Entities;
@@ -21,13 +22,15 @@ public class TrashCanController : ControllerBase
     private readonly IClock _clock;
     private readonly AppDbContext _dbContext;
     private readonly IApplicationMapper _mapper;
+    private readonly IImageService _imageService;
 
-    public TrashCanController(ILogger<TrashCanController> logger, IClock clock, AppDbContext dbContext, IApplicationMapper mapper)
+    public TrashCanController(ILogger<TrashCanController> logger, IClock clock, AppDbContext dbContext, IApplicationMapper mapper, IImageService imageService)
     {
         _logger = logger;
         _clock = clock;
         _dbContext = dbContext;
         _mapper = mapper;
+        _imageService = imageService;
     }
     [Authorize]
     [HttpPost("api/v1/TrashCan")]
@@ -52,7 +55,6 @@ public class TrashCanController : ControllerBase
             Name = model.Name,
             Type = model.Type,
             Description = model.Description,
-            PicturePath = model.PicturePath,
         }
         .SetCreateBySystem(now);
 
@@ -60,6 +62,40 @@ public class TrashCanController : ControllerBase
         await _dbContext.SaveChangesAsync();
         return NoContent();
     }
+    //fixni tohle more
+    /*
+    [HttpPost("api/v1/TrashCan/UploadTrashcanImage/{trashcanId:guid}")]
+    public async Task<IActionResult> UploadTrashcanImage([FromRoute] Guid trashcanId, IFormFile trashcanImage)
+    {
+        var trashcan = await _dbContext.TrashCans.FindAsync(trashcanId);
+        if (trashcan == null)
+        {
+            return NotFound(new { error = "TRASHCAN_NOT_FOUND", message = "Trashcan not found." });
+        }
+
+        if (trashcanImage == null || trashcanImage.Length == 0)
+        {
+            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No trashcan image uploaded." });
+        }
+
+        // Save new trashcan image
+        var newImagePath = await _imageService.SaveImageAsync(trashcanImage, "TrashcanImages");
+
+        // Delete old image if it exists
+        if (!string.IsNullOrEmpty(trashcan.PicturePath))
+        {
+            await _imageService.DeleteImageAsync(trashcan.PicturePath);
+        }
+
+        // Update trashcan image path
+        trashcan.PicturePath = newImagePath;
+        _dbContext.TrashCans.Update(trashcan);
+        await _dbContext.SaveChangesAsync();
+
+        return Ok(new { message = "Trashcan image uploaded successfully.", imagePath = newImagePath });
+    }
+    */
+
     [HttpGet("api/v1/TrashCan/")]
     public async Task<ActionResult<List<TrashCanDetailModel>>> GetListTrashCan()
     {

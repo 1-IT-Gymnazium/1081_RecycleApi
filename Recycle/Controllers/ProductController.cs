@@ -1,3 +1,4 @@
+using MailKit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using Recycle.Api.Models.Parts;
 using Recycle.Api.Models.Products;
+using Recycle.Api.Services;
 using Recycle.Api.Utilities;
 using Recycle.Data;
 using Recycle.Data.Entities;
@@ -22,13 +24,15 @@ public class ProductController : ControllerBase
     private readonly IClock _clock;
     private readonly AppDbContext _dbContext;
     private readonly IApplicationMapper _mapper;
+    private readonly IImageService _imageService;
 
-    public ProductController(ILogger<ProductController> logger, IClock clock, AppDbContext dbContext, IApplicationMapper mapper)
+    public ProductController(ILogger<ProductController> logger, IClock clock, AppDbContext dbContext, IApplicationMapper mapper, IImageService imageService)
     {
         _logger = logger;
         _clock = clock;
         _dbContext = dbContext;
         _mapper = mapper;
+        _imageService = imageService;
     }
     /// <summary>
     /// Creates a new product entity from model
@@ -87,6 +91,21 @@ public class ProductController : ControllerBase
         var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
             ?? throw new Exception("failed to generate url");
         return Created(url, _mapper.ToDetail(newProduct));
+    }
+
+    [HttpPost("api/v1/Product/UploadProductImage")]
+    public async Task<IActionResult> UploadProductImage(IFormFile productImage)
+    {
+        if (productImage == null || productImage.Length == 0)
+        {
+            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No product image uploaded." });
+        }
+
+        // Save the image using the ImageService
+        var newImagePath = await _imageService.SaveImageAsync(productImage, "ProductImages");
+
+        // Return the stored image path
+        return Ok(new { message = "Product image uploaded successfully.", imagePath = newImagePath });
     }
 
     [HttpGet("api/v1/Product/")]
