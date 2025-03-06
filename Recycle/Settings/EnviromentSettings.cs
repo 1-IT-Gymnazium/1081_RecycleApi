@@ -1,8 +1,8 @@
 namespace Recycle.Api.Settings;
 
-public class EnviromentSettings
+public class EnviromentSettings 
 {
-    //PRAVDEDPODOBNE TO PRIJDE I SEM adresa serveru
+    public required string BackendHostUrl { get; set; }
     public required string FrontendHostUrl { get; set; }
     public required string FrontendConfirmUrl { get; set; }
     public required string SenderEmail { get; set; }

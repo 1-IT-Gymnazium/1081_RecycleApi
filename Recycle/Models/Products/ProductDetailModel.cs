@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Options;
 using Recycle.Api.Models.Articles;
 using Recycle.Api.Utilities;
 using Recycle.Data.Entities;
@@ -17,9 +18,11 @@ public class ProductDetailModel
 }
 public static class ProductDetailModelExtensions
 {
-    public static ProductDetailModel ToDetail(this IApplicationMapper mapper, Product source)
+    public static ProductDetailModel ToDetail(
+    this IApplicationMapper mapper,
+        Product source)
     {
-        string baseUrl = "http://localhost:5100";
+        string baseUrl = mapper.EnviromentSettings.BackendHostUrl;
 
         return new ProductDetailModel
         {
