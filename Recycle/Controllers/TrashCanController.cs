@@ -69,14 +69,14 @@ public class TrashCanController : ControllerBase
     {
         if (trashCanImage == null || trashCanImage.Length == 0)
         {
-            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No product image uploaded." });
+            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No container image uploaded." });
         }
 
         // Save the image using the ImageService
-        var newImagePath = await _imageService.SaveImageAsync(trashCanImage, "ProductImages");
+        var newImagePath = await _imageService.SaveImageAsync(trashCanImage, "Container Images");
 
         // Return the stored image path
-        return Ok(new { message = "Product image uploaded successfully.", imagePath = newImagePath });
+        return Ok(new { message = "Container image uploaded successfully.", imagePath = newImagePath });
     }
 
     [HttpGet("api/v1/TrashCan/")]

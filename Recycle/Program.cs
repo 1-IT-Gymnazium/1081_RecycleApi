@@ -72,7 +72,7 @@ public class Program
             // Disable email confirmation requirement for sign-in
             options.SignIn.RequireConfirmedAccount = false;
         })
-            .AddEntityFrameworkStores<AppDbContext>() // No role needed
+            .AddEntityFrameworkStores<AppDbContext>() 
             .AddSignInManager()
             .AddDefaultTokenProviders();
 

@@ -173,6 +173,7 @@ public class ProductController : ControllerBase
             .Include(x => x.ProductParts)
             .ThenInclude(x => x.Part)
             .FirstOrDefaultAsync(x => x.Id == id);
+
         if (dbEntity == null)
         {
             return NotFound();
@@ -180,38 +181,51 @@ public class ProductController : ControllerBase
 
         var productToUpdate = _mapper.ToUpdate(dbEntity);
         patch.ApplyTo(productToUpdate);
+
         var uniqueCheck = await _dbContext
             .Set<Product>()
             .AnyAsync(x => x.Id != id && x.EAN == productToUpdate.EAN);
+
         if (uniqueCheck)
         {
             ModelState.AddModelError<ProductDetailModel>(x => x.EAN, "Ean is not unique");
         }
+
         if (!(ModelState.IsValid && TryValidateModel(productToUpdate)))
         {
             return ValidationProblem(ModelState);
         }
+
         dbEntity.IsVerified = productToUpdate.IsVerified;
         dbEntity.EAN = productToUpdate.EAN;
         dbEntity.Name = productToUpdate.Name;
         dbEntity.Description = productToUpdate.Description;
         dbEntity.PicturePath = productToUpdate.PicturePath;
 
-        var currentParts = dbEntity.ProductParts;
-        var updatedParts = productToUpdate.PartIds;
-        var removedParts = currentParts.Where(x => !updatedParts.Any(y => y == x.PartId));
-        var newParts = updatedParts.Where(x => !currentParts.Any(y => y.PartId == x));
+        // Handle Product Parts
+        var currentParts = dbEntity.ProductParts.ToList();
+        var updatedParts = productToUpdate.PartIds ?? new List<Guid>();
 
-        foreach (var part in removedParts) {
+        var removedParts = currentParts.Where(x => !updatedParts.Contains(x.PartId)).ToList();
+        var newParts = updatedParts.Where(x => !currentParts.Any(y => y.PartId == x)).ToList();
+
+        foreach (var part in removedParts)
+        {
             dbEntity.ProductParts.Remove(part);
         }
-        foreach (var part in newParts)
+
+        foreach (var partId in newParts)
         {
-            dbEntity.ProductParts.Add(new() { PartId = part });
+            var partExists = await _dbContext.Parts.AnyAsync(x => x.Id == partId);
+            if (!partExists)
+            {
+                ModelState.AddModelError(nameof(productToUpdate.PartIds), $"Part with id {partId} not found");
+                return ValidationProblem(ModelState);
+            }
+            dbEntity.ProductParts.Add(new ProductPart { PartId = partId, ProductId = dbEntity.Id });
         }
 
         dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
-
         await _dbContext.SaveChangesAsync();
 
         dbEntity = await _dbContext
