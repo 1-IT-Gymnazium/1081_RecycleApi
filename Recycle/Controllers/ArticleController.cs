@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using Recycle.Api.Models.Articles;
+using Recycle.Api.Services;
 using Recycle.Api.Utilities;
 using Recycle.Data;
 using Recycle.Data.Entities;
@@ -18,16 +19,23 @@ public class ArticleController : ControllerBase
     private readonly ILogger<ArticleController> _logger;
     private readonly IClock _clock;
     private readonly AppDbContext _dbContext;
+    private readonly IImageService _imageService;
+    private readonly IApplicationMapper _mapper;
 
     //TODO: Refactor
     public ArticleController(
         ILogger<ArticleController> logger,
         IClock clock,
-        AppDbContext dbContext)
+        AppDbContext dbContext,
+        IImageService imageService,
+        IApplicationMapper mapper
+        )
     {
         _logger = logger;
         _clock = clock;
         _dbContext = dbContext;
+        _imageService = imageService;
+        _mapper = mapper;
     }
     /// <summary>
     /// Creates a new article by checking if the article heading already exists, 
@@ -77,7 +85,22 @@ public class ArticleController : ControllerBase
            .FirstAsync(x => x.Id == newArticle.Id);
         var url = Url.Action(nameof(Get), new { newArticle.Id }) ??
         throw new Exception("Failed to generate url");
-        return Created(url, newArticle.ToDetail());
+        return Created(url, _mapper.ToDetail(newArticle));
+    }
+
+    [HttpPost("api/v1/Article/UploadArticleImage")]
+    public async Task<IActionResult> UploadArticleImage(IFormFile articleImage)
+    {
+        if (articleImage == null || articleImage.Length == 0)
+        {
+            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No article image uploaded." });
+        }
+
+        // Save the image using the ImageService
+        var newImagePath = await _imageService.SaveImageAsync(articleImage, "Article Images");
+
+        // Return the stored image path
+        return Ok(new { message = "Article image uploaded successfully.", imagePath = newImagePath });
     }
 
     /// <summary>
@@ -91,13 +114,14 @@ public class ArticleController : ControllerBase
     [HttpGet("api/v1/Article/")]
     public async Task<ActionResult<List<ArticleDetailModel>>> GetList()
     {
-        var dbEntities = await _dbContext
+        var dbEntities = ( await _dbContext
             .Articles
             .Include(x => x.Author)
             .FilterDeleted()
-            .ToListAsync();
+            .ToListAsync())
+            .Select(_mapper.ToDetail);
 
-        return Ok(dbEntities.Select(x => x.ToDetail()));
+        return Ok(dbEntities);
     }
 
     /// <summary>
@@ -124,15 +148,7 @@ public class ArticleController : ControllerBase
             return NotFound();
         }
 
-        var result = new ArticleDetailModel
-        {
-            Id = dbEntity.Id,
-            Heading = dbEntity.Heading,
-            AuthorsName = dbEntity.Author.UserName,
-            Annotation = dbEntity.Annotation,
-            Text = dbEntity.Text,
-        };
-        return Ok(result);
+        return Ok(_mapper.ToDetail(dbEntity));
     }
 
     /// <summary>
@@ -162,7 +178,7 @@ public class ArticleController : ControllerBase
         {
             return NotFound();
         }
-        var toUpdate = dbEntity.ToDetail();
+        var toUpdate = _mapper.ToDetail(dbEntity);
         patch.ApplyTo(toUpdate);
 
         var uniqueCheck = await _dbContext
@@ -190,7 +206,7 @@ public class ArticleController : ControllerBase
         dbEntity = await _dbContext
             .Set<Article>()
             .FirstAsync(x => x.Id == id);
-        return Ok(dbEntity.ToDetail());
+        return Ok(_mapper.ToDetail(dbEntity));
     }
 
     /// <summary>

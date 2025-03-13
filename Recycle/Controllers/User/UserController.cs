@@ -23,19 +23,22 @@ namespace Recycle.Api.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly AppDbContext _dbContext;
         private readonly IImageService _imageService;
+        private readonly IApplicationMapper _mapper;
 
         public UserController(
             EmailSenderService emailSenderService,
             IClock clock,
             UserManager<ApplicationUser> userManager,
             AppDbContext dbContext,
-            IImageService imageService)
+            IImageService imageService,
+            IApplicationMapper mapper)
         {
             _emailService = emailSenderService;
             _clock = clock;
             _userManager = userManager;
             _dbContext = dbContext;
             _imageService = imageService;
+            _mapper = mapper;
         }
 
         [AllowAnonymous]
@@ -69,7 +72,7 @@ namespace Recycle.Api.Controllers
                 LastName = user.LastName,
                 Email = user.Email,
                 DateOfBirth = user.DateOfBirth,
-                ProfilePictureUrl = user.ProfilePictureUrl,
+                ProfilePictureUrl = $"{_mapper.EnviromentSettings.BackendHostUrl}{user.ProfilePictureUrl}",
                 IsAdmin = user.IsAdmin,
             };
         }

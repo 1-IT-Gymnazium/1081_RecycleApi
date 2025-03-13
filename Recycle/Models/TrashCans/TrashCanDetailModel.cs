@@ -11,7 +11,6 @@ public class TrashCanDetailModel
     public string Type { get; set; } = null!;
     public string Description { get; set; }
     public string? PicturePath { get; set; }
-    public IFormFile Image { get; set; }
 }
 public static class TrashCanDetailModelExtensions
 {
@@ -22,6 +21,6 @@ public static class TrashCanDetailModelExtensions
             Name = source.Name,
             Type = source.Type,
             Description = source.Description,
-            PicturePath = source.PicturePath,
+            PicturePath = string.IsNullOrEmpty(source.PicturePath) ? null : $"{mapper.EnviromentSettings.BackendHostUrl}{source.PicturePath}",
         };
 }

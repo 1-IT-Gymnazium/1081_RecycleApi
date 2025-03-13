@@ -11,6 +11,5 @@ public class PartCreateModel
     public string? Description { get; set; }
     public string? PicturePath { get; set; }
     public string Type { get; set; }
-    public IEnumerable<Guid> MaterialIds{ get; set; } = [];
-
+    public Guid MaterialId { get; set; }
 }

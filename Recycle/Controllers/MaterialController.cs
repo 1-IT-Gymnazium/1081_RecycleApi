@@ -75,14 +75,6 @@ public class MaterialController : ControllerBase
             .Include(x => x.TrashCanMaterials)
             .FirstAsync(x => x.Id == newMaterial.Id);
 
-        //create MaterialTrashCan in DB
-        //var newMaterialTrashCan = newMaterial.TrashCanMaterials.Select(materialTrashCan => new TrashCanMaterial
-        //{
-        //    Id = Guid.NewGuid(),
-        //    MaterialId = materialTrashCan.MaterialId,
-        //    TrashCanId = materialTrashCan.TrashCanId
-        //}).ToList();
-
         var url = Url.Action(nameof(GetMaterialById), new { newMaterial.Id })
             ?? throw new Exception("failed to generate url");
         return Created(url, _mapper.ToDetail(newMaterial));

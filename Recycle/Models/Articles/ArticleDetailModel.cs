@@ -1,4 +1,5 @@
 using NodaTime.Text;
+using Recycle.Api.Utilities;
 using Recycle.Data.Entities;
 
 namespace Recycle.Api.Models.Articles;
@@ -15,7 +16,7 @@ public class ArticleDetailModel
 }
 public static class ArticleDetailModelExtensions
 {
-    public static ArticleDetailModel ToDetail(this Article source)
+    public static ArticleDetailModel ToDetail(this IApplicationMapper mapper, Article source)
         => new()
         {
             Id = source.Id,
@@ -23,7 +24,7 @@ public static class ArticleDetailModelExtensions
             Annotation = source.Annotation,
             AuthorsName = source.Author.UserName ?? string.Empty,
             Text = source.Text,
-            PicturePath = source.PicturePath,
+            PicturePath = string.IsNullOrEmpty(source.PicturePath) ? null : $"{mapper.EnviromentSettings.BackendHostUrl}{source.PicturePath}",
             CreatedAt = InstantPattern.ExtendedIso.Format(source.CreatedAt),
         };
 }

@@ -14,14 +14,15 @@ public class Part : ITrackable
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Description { get; set; }
     public bool IsVerified { get; set; }  
     public string? PicturePath { get; set; }
 
     public string Type { get; set; }
 
-    public ICollection<ProductPart> ProductParts { get; set; }
-    public ICollection<PartMaterial> PartMaterials { get; set; } = new HashSet<PartMaterial>();
+    public ICollection<ProductPart> ProductParts { get; set; } = [];
+    public Material PartMaterial { get; set; } = null!;
+    public Guid PartMaterialId { get; set; }
     public Instant CreatedAt { get; set; }
     public string CreatedBy { get; set; } = null!;
 

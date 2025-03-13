@@ -59,13 +59,20 @@ public class TrashCanController : ControllerBase
         }
         .SetCreateBySystem(now);
 
-        _dbContext.Add(newTrashCan);
+        await _dbContext.AddAsync(newTrashCan);
         await _dbContext.SaveChangesAsync();
-        return NoContent();
+
+        newTrashCan = await _dbContext
+            .TrashCans
+            .FirstAsync(x => x.Id == newTrashCan.Id);
+
+        var url = Url.Action(nameof(GetById), new { newTrashCan.Id })
+            ?? throw new Exception("failed to generate url");
+        return Created(url, _mapper.ToDetail(newTrashCan));
     }
 
-    [HttpPost("api/v1/Trashcan/UploadTrashCanImage")]
-    public async Task<IActionResult> UploadProductImage(IFormFile trashCanImage)
+    [HttpPost("api/v1/TrashCan/UploadTrashCanImage")]
+    public async Task<IActionResult> UploadContainerImage(IFormFile trashCanImage)
     {
         if (trashCanImage == null || trashCanImage.Length == 0)
         {
@@ -73,7 +80,7 @@ public class TrashCanController : ControllerBase
         }
 
         // Save the image using the ImageService
-        var newImagePath = await _imageService.SaveImageAsync(trashCanImage, "Container Images");
+        var newImagePath = await _imageService.SaveImageAsync(trashCanImage, "TrashCanImages");
 
         // Return the stored image path
         return Ok(new { message = "Container image uploaded successfully.", imagePath = newImagePath });
@@ -100,15 +107,7 @@ public class TrashCanController : ControllerBase
         {
             return NotFound();
         }
-        var trashCan = new TrashCanDetailModel
-        {
-            Id = dbEntity.Id,
-            Name = dbEntity.Name,
-            Type = dbEntity.Type,
-            Description = dbEntity.Description,
-            PicturePath = dbEntity.PicturePath,
-        };
-        return Ok(trashCan);
+        return Ok(_mapper.ToDetail(dbEntity));
     }
     [Authorize]
     [HttpPatch("api/v1/TrashCan/{id:guid}")]
@@ -152,6 +151,7 @@ public class TrashCanController : ControllerBase
             .FirstOrDefaultAsync(x => x.Id == id);
         return Ok(_mapper.ToDetail(dbEntity));
     }
+
     [Authorize]
     [HttpDelete("api/v1/TrashCan/{id:guid}")]
     public async Task<IActionResult> DeleteTrashCan(

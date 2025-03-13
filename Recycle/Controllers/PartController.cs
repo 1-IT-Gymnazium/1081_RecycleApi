@@ -30,17 +30,26 @@ public class PartController : ControllerBase
     [HttpPost("api/v1/Part/")]
     public async Task<ActionResult> CreatePart([FromBody] PartCreateModel model)
     {
-    var checkPart = await _dbContext
-    .Set<Part>()
-    .AnyAsync(x => x.Name == model.Name);
+        var checkPart = await _dbContext
+            .Set<Part>()
+            .AnyAsync(x => x.Name == model.Name);
         if (checkPart)
         {
             ModelState
                    .AddModelError(nameof(model.Name), $"Part with the name of {model.Name} already exists!");
             return ValidationProblem(ModelState);
         }
+        var checkMaterial = await _dbContext
+            .Set<Material>()
+            .AnyAsync(x => x.Id == model.MaterialId);
+        if (checkMaterial == null)
+        {
+            ModelState
+                   .AddModelError(nameof(model.MaterialId), $"Part with the name of {model.Name} already exists!");
+            return ValidationProblem(ModelState);
+        }
 
-        var now =_clock.GetCurrentInstant();
+        var now = _clock.GetCurrentInstant();
         var newPart = new Part
         {
             Id = Guid.NewGuid(),
@@ -48,36 +57,18 @@ public class PartController : ControllerBase
             Description = model.Description,
             PicturePath = model.PicturePath,
             Type = model.Type,
-            PartMaterials = new List<PartMaterial>()
-
+            PartMaterialId = model.MaterialId,
         }
         .SetCreateBySystem(now);
-        foreach (var id in model.MaterialIds)
-        {
-            var material = await _dbContext.Materials.FirstOrDefaultAsync(x => x.Id == id);
-            if (material == null)
-            {
-                ModelState
-                    .AddModelError(nameof(model.MaterialIds), $"Material with id {id} not found");
-            }
-            newPart.PartMaterials.Add(new() { MaterialId = id, PartId = newPart.Id });
-        }
+
         await _dbContext.AddAsync(newPart);
         await _dbContext.SaveChangesAsync();
 
         newPart = await _dbContext
             .Parts
+            .Include(x => x.PartMaterial)
             .FirstAsync(x => x.Id == newPart.Id);
 
-        //create PartsMaterial in DB
-        var newPartMaterial = newPart.PartMaterials.Select(partMaterial => new PartMaterial
-        {
-            Id = Guid.NewGuid(),
-            PartId = partMaterial.PartId,
-            MaterialId = partMaterial.MaterialId
-        }).ToList();
-
-        await _dbContext.AddRangeAsync(newPartMaterial);
         await _dbContext.SaveChangesAsync();
 
         var url = Url.Action(nameof(GetPartById), new { newPart.Id })
@@ -91,8 +82,7 @@ public class PartController : ControllerBase
     {
         var dbEntities = await _dbContext
             .Set<Part>()
-            .Include(x => x.PartMaterials)
-              .ThenInclude(x => x.Material)
+            .Include(x => x.PartMaterial)
                 .ThenInclude(x => x.TrashCanMaterials)
                     .ThenInclude(x => x.TrashCan)
             .FilterDeleted()
@@ -110,8 +100,7 @@ public class PartController : ControllerBase
     {
         var dbEntity = await _dbContext
             .Set<Part>()
-            .Include(x => x.PartMaterials)
-            .ThenInclude(x => x.Material)
+            .Include(x => x.PartMaterial)
             .FilterDeleted()
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
@@ -123,20 +112,19 @@ public class PartController : ControllerBase
 
     [Authorize]
     [HttpPatch("api/v1/Part/{id:guid}")]
-    public async Task<ActionResult<PartDetailModel>> UpdatePart(
+    public async Task<ActionResult<PartUpdateModel>> UpdatePart(
         [FromRoute] Guid id,
-        [FromBody] JsonPatchDocument<PartDetailModel> patch)
+        [FromBody] JsonPatchDocument<PartUpdateModel> patch)
     {
         var dbEntity = await _dbContext
             .Set<Part>()
-            .Include(x => x.PartMaterials)
-            .ThenInclude(x => x.Material)
+            .Include(x => x.PartMaterial)
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
         {
             return NotFound();
         }
-        var partToUpdate = _mapper.ToDetail(dbEntity);
+        var partToUpdate = _mapper.ToUpdate(dbEntity);
         patch.ApplyTo(partToUpdate);
         if (!(ModelState.IsValid && TryValidateModel(partToUpdate)))
         {
@@ -146,28 +134,27 @@ public class PartController : ControllerBase
         dbEntity.Description = partToUpdate.Description;
         dbEntity.IsVerified = partToUpdate.IsVerified;
         dbEntity.PicturePath = partToUpdate.PicturePath;
-
-        var currentMaterials = dbEntity.PartMaterials;
-        var updatedMaterials = partToUpdate.MaterialIds;
-        var removedMaterials = currentMaterials.Where(x => !updatedMaterials.Any(y => y == x.PartId));
-        var newMaterials = updatedMaterials.Where(x => !currentMaterials.Any(y => y.PartId == x));
-
-        foreach (var material in removedMaterials)
+        if (partToUpdate.MaterialId != dbEntity.PartMaterialId)
         {
-            dbEntity.PartMaterials.Remove(material);
-        }
-        foreach (var material in newMaterials)
-        {
-            dbEntity.PartMaterials.Add(new() { MaterialId = material });
-        }
+            var materialExists = await _dbContext
+                .Set<Material>()
+                .AnyAsync(m => m.Id == partToUpdate.MaterialId);
 
+            if (!materialExists)
+            {
+                ModelState
+                    .AddModelError(nameof(partToUpdate.MaterialId), "The specified Material does not exist.");
+                return ValidationProblem(ModelState);
+            }
+
+            dbEntity.PartMaterialId = partToUpdate.MaterialId;
+        }
         dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
         await _dbContext.SaveChangesAsync();
 
         dbEntity = await _dbContext
             .Set<Part>()
-            .Include(x => x.PartMaterials)
-            .ThenInclude(x => x.Material)
+            .Include(x => x.PartMaterial)
             .FirstAsync(x => x.Id == id);
 
         return Ok(_mapper.ToDetail(dbEntity));

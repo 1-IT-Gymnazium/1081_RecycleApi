@@ -85,7 +85,10 @@ public class ProductController : ControllerBase
         newProduct = await _dbContext
             .Products
             .Include(x => x.ProductParts)
-            .ThenInclude(x => x.Part)
+                .ThenInclude(x => x.Part)
+                    .ThenInclude(x => x.PartMaterial)
+                        .ThenInclude(x => x.TrashCanMaterials)
+                            .ThenInclude(x => x.TrashCan)
             .FirstAsync(x => x.Id == newProduct.Id);
 
         var url = Url.Action(nameof(GetProductById), new { newProduct.Id })
@@ -114,7 +117,10 @@ public class ProductController : ControllerBase
         var dbEntities = _dbContext
             .Products
             .Include(x => x.ProductParts)
-            .ThenInclude(x => x.Part)
+                .ThenInclude(x => x.Part)
+                    .ThenInclude(x => x.PartMaterial)
+                        .ThenInclude(x => x.TrashCanMaterials)
+                            .ThenInclude(x => x.TrashCan)
             .FilterDeleted()
             .Select(_mapper.ToDetail);
 
@@ -128,7 +134,10 @@ public class ProductController : ControllerBase
         var dbEntity = await _dbContext
             .Set<Product>()
             .Include(x => x.ProductParts)
-            .ThenInclude(x => x.Part)
+                .ThenInclude(x => x.Part)
+                    .ThenInclude(x => x.PartMaterial)
+                        .ThenInclude(x => x.TrashCanMaterials)
+                            .ThenInclude(x => x.TrashCan)
             .FilterDeleted()
             .FirstOrDefaultAsync(x => x.Id == id);
         if (dbEntity == null)
@@ -171,7 +180,11 @@ public class ProductController : ControllerBase
         var dbEntity = await _dbContext
             .Set<Product>()
             .Include(x => x.ProductParts)
-            .ThenInclude(x => x.Part)
+                .ThenInclude(x => x.Part)
+                    .ThenInclude(x => x.PartMaterial)
+                        .ThenInclude(x => x.TrashCanMaterials)
+                            .ThenInclude(x => x.TrashCan)
+
             .FirstOrDefaultAsync(x => x.Id == id);
 
         if (dbEntity == null)
@@ -231,7 +244,11 @@ public class ProductController : ControllerBase
         dbEntity = await _dbContext
             .Set<Product>()
             .Include(x => x.ProductParts)
-            .ThenInclude(x => x.Part)
+                .ThenInclude(x => x.Part)
+                    .ThenInclude(x => x.PartMaterial)
+                        .ThenInclude(x => x.TrashCanMaterials)
+                            .ThenInclude(x => x.TrashCan)
+
             .FirstAsync(x => x.Id == id);
 
         return Ok(_mapper.ToDetail(dbEntity));

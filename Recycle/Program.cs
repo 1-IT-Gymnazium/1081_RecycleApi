@@ -41,9 +41,10 @@ public class Program
         var baseUploadsFolder = @"C:\Elareinstaluje\repos\RecycleApi\Recycle\Uploads";
         var profilePicturesFolder = Path.Combine(baseUploadsFolder, "ProfilePictures");
         var productImagesFolder = Path.Combine(baseUploadsFolder, "ProductImages");
-        var trashcanImagesFolder = Path.Combine(baseUploadsFolder, "TrashcanImages");
+        var trashCanImagesFolder = Path.Combine(baseUploadsFolder, "TrashCanImages");
+        var articleImagesFolder = Path.Combine(baseUploadsFolder, "ArticleImages");
 
-        foreach (var folder in new[] { baseUploadsFolder, profilePicturesFolder, productImagesFolder, trashcanImagesFolder })
+        foreach (var folder in new[] { baseUploadsFolder, profilePicturesFolder, productImagesFolder, trashCanImagesFolder, articleImagesFolder })
         {
             if (!Directory.Exists(folder))
             {

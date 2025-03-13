@@ -23,8 +23,6 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<TrashCanMaterial> TrashCansMaterials { get; set; }
     public DbSet<ProductPart> ProductParts { get; set; }
-    public DbSet<PartMaterial> PartMaterials { get; set; }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Ignore<IdentityUserLogin<Guid>>();
@@ -39,10 +37,5 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, IdentityRole<Guid
     .HasForeignKey(pp => pp.ProductId)
     .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<Part>()
-    .HasMany(p => p.PartMaterials)
-    .WithOne(p => p.Part)
-    .HasForeignKey(pp => pp.PartId)
-    .OnDelete(DeleteBehavior.Cascade);
     }
 }
