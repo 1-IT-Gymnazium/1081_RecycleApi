@@ -35,8 +35,9 @@ public static class ProductDetailModelExtensions
             {
                 Id = p.Part.Id,
                 Name = p.Part.Name,
-                TrashCans = p.Part.PartMaterial.TrashCanMaterials.Select(x => new IdNameModel() { Id = x.TrashCan.Id, Name = x.TrashCan.Name }),
                 MaterialName = p.Part.PartMaterial.Name,
+                TrashCans = p.Part.PartMaterial.TrashCanMaterials.Select(x => new IdNameModel() { Id = x.TrashCan.Id, Name = x.TrashCan.Name }),
+
             })
         };
     }

@@ -97,7 +97,7 @@ public class ArticleController : ControllerBase
         }
 
         // Save the image using the ImageService
-        var newImagePath = await _imageService.SaveImageAsync(articleImage, "Article Images");
+        var newImagePath = await _imageService.SaveImageAsync(articleImage, "ArticleImages");
 
         // Return the stored image path
         return Ok(new { message = "Article image uploaded successfully.", imagePath = newImagePath });

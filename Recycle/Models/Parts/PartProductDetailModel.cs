@@ -15,7 +15,3 @@ public class PartProductDetailModel
     public string MaterialName { get; set; } = null!;
 }
 
-public static class PartProductDetailModelExtensions
-{
-    
-}
