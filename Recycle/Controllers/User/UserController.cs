@@ -72,7 +72,7 @@ namespace Recycle.Api.Controllers
                 LastName = user.LastName,
                 Email = user.Email,
                 DateOfBirth = user.DateOfBirth,
-                ProfilePictureUrl = $"{_mapper.EnviromentSettings.BackendHostUrl}{user.ProfilePictureUrl}",
+                ProfilePictureUrl = (string.IsNullOrEmpty(user.ProfilePictureUrl))? string.Empty : $"{_mapper.EnviromentSettings.BackendHostUrl}{user.ProfilePictureUrl}",
                 IsAdmin = user.IsAdmin,
             };
         }
@@ -166,7 +166,7 @@ namespace Recycle.Api.Controllers
             }
 
             // Save the new profile picture
-            var newImagePath = await _imageService.SaveImageAsync(profilePicture, "UserProfileImages");
+            var newImagePath = await _imageService.SaveImageAsync(profilePicture, "ProfilePictures");
 
             // Delete old profile picture if exists
             if (!string.IsNullOrEmpty(user.ProfilePictureUrl))

@@ -32,6 +32,7 @@ public class AuthController : ControllerBase
     private readonly JwtSettings _jwtSettings;
     private readonly AppDbContext _dbContext;
     private readonly EnviromentSettings _environmentSettings;
+    private readonly IApplicationMapper _mapper;
 
     public AuthController(
         EmailSenderService emailSenderService,
@@ -41,6 +42,9 @@ public class AuthController : ControllerBase
         IOptions<JwtSettings> options,
         AppDbContext dbContext,
         IOptions<EnviromentSettings> enviromentSettings
+        ,
+
+        IApplicationMapper mapper
         )
     {
         _emailService = emailSenderService;
@@ -50,6 +54,7 @@ public class AuthController : ControllerBase
         _jwtSettings = options.Value;
         _dbContext = dbContext;
         _environmentSettings = enviromentSettings.Value;
+        _mapper = mapper;
     }
 
     /// <summary>
@@ -80,7 +85,7 @@ public class AuthController : ControllerBase
             LastName = model.LastName,
             DateOfBirth = model.DateOfBirth,
             UserName = model.UserName,
-            Email = model.Email
+            Email = model.Email,
         }.SetCreateBySystem(now);
 
         var checkPassword = await validator.ValidateAsync(_userManager, newUser, model.Password);
