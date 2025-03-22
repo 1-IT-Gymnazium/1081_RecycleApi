@@ -16,6 +16,10 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Recycle.Api.Controllers;
 
+/// <summary>
+/// Controller for managing product entities, including creation, editing, searching by EAN,
+/// part composition, image uploads and soft deletes.
+/// </summary>
 [ApiController]
 
 public class ProductController : ControllerBase
@@ -26,6 +30,9 @@ public class ProductController : ControllerBase
     private readonly IApplicationMapper _mapper;
     private readonly IImageService _imageService;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ProductController"/> class with required services.
+    /// </summary>
     public ProductController(ILogger<ProductController> logger, IClock clock, AppDbContext dbContext, IApplicationMapper mapper, IImageService imageService)
     {
         _logger = logger;
@@ -35,14 +42,13 @@ public class ProductController : ControllerBase
         _imageService = imageService;
     }
     /// <summary>
-    /// Creates a new product entity from model
+    /// Creates a new product with its assigned parts.
     /// </summary>
-    /// <param name="model">
-    ///Data model which is providing informations about the created Product
-    /// </param>
+    /// <param name="model">The product creation model containing name, description, EAN, image and part IDs.</param>
     /// <returns>
-    /// ActionResult is idicating 
+    /// Returns 201 (Created) with product detail, or 400 (Bad Request) if name or parts are invalid.
     /// </returns>
+
     [Authorize]
     [HttpPost("api/v1/Product/")]
     public async Task<ActionResult> CreateProduct([FromBody] ProductCreateModel model)
@@ -96,6 +102,13 @@ public class ProductController : ControllerBase
         return Created(url, _mapper.ToDetail(newProduct));
     }
 
+    /// <summary>
+    /// Uploads an image for a product and saves it to the server.
+    /// </summary>
+    /// <param name="productImage">The uploaded product image file.</param>
+    /// <returns>
+    /// Returns 200 (OK) with the saved image path, or 400 (Bad Request) if upload fails.
+    /// </returns>
     [HttpPost("api/v1/Product/UploadProductImage")]
     public async Task<IActionResult> UploadProductImage(IFormFile productImage)
     {
@@ -111,6 +124,12 @@ public class ProductController : ControllerBase
         return Ok(new { message = "Product image uploaded successfully.", imagePath = newImagePath });
     }
 
+    /// <summary>
+    /// Retrieves a list of all products, including their parts and related materials and trash cans.
+    /// </summary>
+    /// <returns>
+    /// Returns 200 (OK) with the list of products.
+    /// </returns>
     [HttpGet("api/v1/Product/")]
     public async Task<ActionResult<List<ProductDetailModel>>> GetListProduct()
     {
@@ -126,6 +145,14 @@ public class ProductController : ControllerBase
 
         return Ok(dbEntities);
     }
+
+    /// <summary>
+    /// Retrieves a specific product by its ID, including parts, materials, and trash can info.
+    /// </summary>
+    /// <param name="id">The unique identifier of the product.</param>
+    /// <returns>
+    /// Returns 200 (OK) with product detail, or 404 (Not Found) if the product does not exist.
+    /// </returns>
     [HttpGet("api/v1/Product/{id:guid}")]
     public async Task<ActionResult<ProductDetailModel>> GetProductById(
         [FromRoute] Guid id
@@ -146,6 +173,14 @@ public class ProductController : ControllerBase
         }
         return Ok (_mapper.ToDetail(dbEntity));
     }
+
+    /// <summary>
+    /// Searches for products based on the given EAN code.
+    /// </summary>
+    /// <param name="ean">The EAN code to search by.</param>
+    /// <returns>
+    /// Returns 200 (OK) with matching products, or 404 (Not Found) if no match is found.
+    /// </returns>
     [HttpGet("api/v1/Product/search")]
     public async Task<ActionResult<IEnumerable<ProductDetailModel>>> SearchProductsByEAN(
         [FromQuery] string ean
@@ -171,6 +206,16 @@ public class ProductController : ControllerBase
 
         return Ok(dbEntities.Select(x => _mapper.ToDetail(x)));
     }
+
+    /// <summary>
+    /// Updates a product using a JSON Patch document. Also updates part assignments.
+    /// </summary>
+    /// <param name="id">The ID of the product to update.</param>
+    /// <param name="patch">Patch document containing updated fields.</param>
+    /// <returns>
+    /// Returns 200 (OK) with updated product detail, 404 (Not Found) if not found, 
+    /// or 400 (Bad Request) if validation fails.
+    /// </returns>
     [Authorize]
     [HttpPatch("api/v1/Product/{id:guid}")]
     public async Task<ActionResult<ProductUpdateModel>> UpdateProduct(
@@ -181,10 +226,6 @@ public class ProductController : ControllerBase
             .Set<Product>()
             .Include(x => x.ProductParts)
                 .ThenInclude(x => x.Part)
-                    .ThenInclude(x => x.PartMaterial)
-                        .ThenInclude(x => x.TrashCanMaterials)
-                            .ThenInclude(x => x.TrashCan)
-
             .FirstOrDefaultAsync(x => x.Id == id);
 
         if (dbEntity == null)
@@ -201,7 +242,7 @@ public class ProductController : ControllerBase
 
         if (uniqueCheck)
         {
-            ModelState.AddModelError<ProductDetailModel>(x => x.EAN, "Ean is not unique");
+            ModelState.AddModelError<ProductUpdateModel>(x => x.EAN, "Ean is not unique");
         }
 
         if (!(ModelState.IsValid && TryValidateModel(productToUpdate)))
@@ -217,7 +258,7 @@ public class ProductController : ControllerBase
 
         // Handle Product Parts
         var currentParts = dbEntity.ProductParts.ToList();
-        var updatedParts = productToUpdate.PartIds ?? new List<Guid>();
+        var updatedParts = productToUpdate.Parts.Select(p => p.Id) ?? new List<Guid>();
 
         var removedParts = currentParts.Where(x => !updatedParts.Contains(x.PartId)).ToList();
         var newParts = updatedParts.Where(x => !currentParts.Any(y => y.PartId == x)).ToList();
@@ -232,7 +273,7 @@ public class ProductController : ControllerBase
             var partExists = await _dbContext.Parts.AnyAsync(x => x.Id == partId);
             if (!partExists)
             {
-                ModelState.AddModelError(nameof(productToUpdate.PartIds), $"Part with id {partId} not found");
+                ModelState.AddModelError(nameof(productToUpdate.Parts), $"Part with id {partId} not found");
                 return ValidationProblem(ModelState);
             }
             dbEntity.ProductParts.Add(new ProductPart { PartId = partId, ProductId = dbEntity.Id });
@@ -255,10 +296,12 @@ public class ProductController : ControllerBase
     }
 
     /// <summary>
-    /// 
+    /// Soft deletes a product by marking it as deleted.
     /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
+    /// <param name="id">The ID of the product to delete.</param>
+    /// <returns>
+    /// Returns 204 (No Content) on success, or 404 (Not Found) if product does not exist.
+    /// </returns>
     [Authorize]
     [HttpDelete("api/v1/Product/{id:guid}")]
     public async Task<IActionResult> DeleteProduct(

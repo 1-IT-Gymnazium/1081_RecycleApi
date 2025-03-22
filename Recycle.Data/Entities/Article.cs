@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
 
+/// <summary>
+/// Represents a written article authored by a user, with content, annotation, image, and audit info.
+/// </summary>
 public class Article : ITrackable
 {
     public Guid Id { get; set; }
@@ -28,6 +31,10 @@ public class Article : ITrackable
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
 }
+
+/// <summary>
+/// Filters out deleted articles (soft delete).
+/// </summary>
 public static class ArticleExtensions
 {
     public static IQueryable<Article> FilterDeleted(this IQueryable<Article> query)
@@ -35,6 +42,10 @@ public static class ArticleExtensions
         .Where(x => x.DeletedAt == null)
         ;
 }
+
+/// <summary>
+/// Static metadata constants for article-related database configuration.
+/// </summary>
 public static class Metadata
 {
     public const int ContentLength = DatabaseConstants.ContentLength;

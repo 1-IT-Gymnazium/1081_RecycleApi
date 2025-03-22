@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
+
+/// <summary>
+/// Represents an email message queued for delivery, including scheduling and tracking metadata.
+/// </summary>
 [Table(nameof(EmailMessage))]
 
 public class EmailMessage: ITrackable

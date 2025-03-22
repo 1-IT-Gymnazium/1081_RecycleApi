@@ -11,6 +11,8 @@ using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
 
 namespace Recycle.Api.Controllers;
+// not used in latest version of this application
+// might be used in future when improving application
 [ApiController]
 public class LocationController : ControllerBase
 {

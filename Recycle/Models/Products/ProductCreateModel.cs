@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Recycle.Api.Models.Products;
 
+/// <summary>
+/// Data required to create a new product, including name, EAN, parts, and optional image or description.
+/// </summary>
 public class ProductCreateModel
 {
     [Required(AllowEmptyStrings = false, ErrorMessage = "Product must contain text!")]

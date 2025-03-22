@@ -14,6 +14,9 @@ using Recycle.Data.Interfaces;
 namespace Recycle.Api.Controllers;
 
 [ApiController]
+/// <summary>
+/// Initializes a new instance of the <see cref="ArticleController"/> class with required services.
+/// </summary>
 public class ArticleController : ControllerBase
 {
     private readonly ILogger<ArticleController> _logger;
@@ -88,6 +91,14 @@ public class ArticleController : ControllerBase
         return Created(url, _mapper.ToDetail(newArticle));
     }
 
+    /// <summary>
+    /// Uploads an image for an article and stores it using the image service.
+    /// </summary>
+    /// <param name="articleImage">The image file to upload.</param>
+    /// <returns>
+    /// Returns 200 (OK) with the saved image path if successful, 
+    /// or 400 (Bad Request) if no file was uploaded.
+    /// </returns>
     [HttpPost("api/v1/Article/UploadArticleImage")]
     public async Task<IActionResult> UploadArticleImage(IFormFile articleImage)
     {

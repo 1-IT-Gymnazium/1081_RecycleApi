@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities.Identity;
 
+/// <summary>
+/// Extended Identity user with additional profile and audit information.
+/// </summary>
 public class ApplicationUser : IdentityUser<Guid>, ITrackable
 {
     public ICollection<Article> Articles { get; set; } = [];
@@ -25,6 +28,10 @@ public class ApplicationUser : IdentityUser<Guid>, ITrackable
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
 }
+
+/// <summary>
+/// Filters out deleted users (soft delete).
+/// </summary>
 public static class UserExtentions
 {
     public static IQueryable<ApplicationUser> FilterDeleted(this IQueryable<ApplicationUser> query)

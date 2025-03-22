@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
 
+/// <summary>
+/// Represents the many-to-many relationship between trash cans and materials.
+/// </summary>
 public class TrashCanMaterial
 {
     public Guid Id { get; set; }

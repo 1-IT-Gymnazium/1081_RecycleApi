@@ -5,16 +5,25 @@ using System.Threading.Tasks;
 
 namespace Recycle.Api.Services
 {
+    /// <summary>
+    /// Defines operations for saving and deleting uploaded images.
+    /// </summary>
     public interface IImageService
     {
         Task<string> SaveImageAsync(IFormFile image, string folderName);
         Task<bool> DeleteImageAsync(string filePath);
     }
 
+    /// <summary>
+    /// Provides methods to handle saving and deleting image files on disk.
+    /// </summary>
     public class ImageService : IImageService
     {
         private readonly string _baseUploadsFolder = @"C:\Elareinstaluje\repos\RecycleApi\Recycle\Uploads";
 
+        /// <summary>
+        /// Saves the uploaded image to a specified folder and returns its relative path.
+        /// </summary>
         public async Task<string> SaveImageAsync(IFormFile image, string folderName)
         {
             if (image == null || image.Length == 0)
@@ -38,6 +47,9 @@ namespace Recycle.Api.Services
             return $"/Uploads/{folderName}/{uniqueFileName}";
         }
 
+        /// <summary>
+        /// Deletes an image file based on its relative path.
+        /// </summary>
         public async Task<bool> DeleteImageAsync(string filePath)
         {
             if (string.IsNullOrEmpty(filePath)) return false;

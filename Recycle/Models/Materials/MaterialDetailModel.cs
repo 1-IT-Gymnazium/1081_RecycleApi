@@ -3,6 +3,9 @@ using Recycle.Data.Entities;
 
 namespace Recycle.Api.Models.Materials;
 
+/// <summary>
+/// Data returned when requesting material details, including name, description and related trash cans.
+/// </summary>
 public class MaterialDetailModel
 {
     public Guid Id { get; set; }
@@ -13,6 +16,9 @@ public class MaterialDetailModel
 }
 public static class MaterialDetailModelExtentions
 {
+    /// <summary>
+    /// Maps a Material entity to a MaterialDetailModel for API responses.
+    /// </summary>
     public static MaterialDetailModel ToDetail(this IApplicationMapper mapper, Material source)
         => new()
         {

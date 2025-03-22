@@ -1,5 +1,8 @@
 namespace Recycle.Api.Models.Users;
 
+/// <summary>
+/// Data returned when requesting user account details, including profile info and admin status.
+/// </summary>
 public class UserDetailModel
 {
     public string UserName { get; set; } = null!;

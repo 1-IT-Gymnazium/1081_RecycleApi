@@ -13,6 +13,10 @@ using System.Security.Claims;
 
 namespace Recycle.Api.Controllers
 {
+    /// <summary>
+    /// Controller for managing user-related actions such as updating profile info,
+    /// retrieving user details, and handling profile picture uploads.
+    /// </summary>
     [ApiController]
     [Authorize] // Ensures user is authenticated for protected routes
     [Route("api/v1/User")]
@@ -25,6 +29,9 @@ namespace Recycle.Api.Controllers
         private readonly IImageService _imageService;
         private readonly IApplicationMapper _mapper;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserController"/> class with required services.
+        /// </summary>
         public UserController(
             EmailSenderService emailSenderService,
             IClock clock,
@@ -41,6 +48,13 @@ namespace Recycle.Api.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Retrieves basic account info of the currently authenticated user.
+        /// If the user is not authenticated, returns null fields and IsAdmin = false.
+        /// </summary>
+        /// <returns>
+        /// Returns 200 (OK) with user detail model or default empty data if not logged in.
+        /// </returns>
         [AllowAnonymous]
         [HttpGet("UserInfo")]
         public async Task<ActionResult<UserDetailModel>> GetAccountInfo()
@@ -79,7 +93,7 @@ namespace Recycle.Api.Controllers
 
         private async Task<ApplicationUser?> GetAuthenticatedUser()
         {
-            var userId = User?.FindFirst("sub")?.Value; // Try finding "sub" claim first
+            var userId = User?.FindFirst("sub")?.Value; 
 
             if (string.IsNullOrEmpty(userId))
             {
@@ -93,6 +107,14 @@ namespace Recycle.Api.Controllers
 
             return await _userManager.FindByIdAsync(userId);
         }
+
+        /// <summary>
+        /// Updates the username of the currently authenticated user.
+        /// </summary>
+        /// <param name="newUsername">The new username to be assigned.</param>
+        /// <returns>
+        /// Returns 204 (NoContent) on success, 400 (BadRequest) if taken or failed.
+        /// </returns>
         [HttpPatch("UpdateUsername")]
         public async Task<IActionResult> UpdateUsername([FromBody] string newUsername)
         {
@@ -112,6 +134,14 @@ namespace Recycle.Api.Controllers
             var result = await _userManager.UpdateAsync(user);
             return result.Succeeded ? NoContent() : BadRequest(new { error = "UPDATE_FAILED", message = "Failed to update username." });
         }
+
+        /// <summary>
+        /// Updates the email of the currently authenticated user.
+        /// </summary>
+        /// <param name="newEmail">The new email to be assigned.</param>
+        /// <returns>
+        /// Returns 204 (NoContent) on success, 400 (BadRequest) if taken or failed.
+        /// </returns>
         [HttpPatch("UpdateEmail")]
         public async Task<IActionResult> UpdateEmail([FromBody] string newEmail)
         {
@@ -131,7 +161,13 @@ namespace Recycle.Api.Controllers
             var result = await _userManager.UpdateAsync(user);
             return result.Succeeded ? NoContent() : BadRequest(new { error = "UPDATE_FAILED", message = "Failed to update email." });
         }
-
+        /// <summary>
+        /// Updates the password of the currently authenticated user after verifying the old password.
+        /// </summary>
+        /// <param name="model">Model containing old and new passwords.</param>
+        /// <returns>
+        /// Returns 204 (NoContent) on success, 400 (BadRequest) if old password is incorrect or update fails.
+        /// </returns>
         [HttpPatch("UpdatePassword")]
         public async Task<IActionResult> UpdatePassword([FromBody] UpdateUserPasswordModel model)
         {
@@ -150,7 +186,13 @@ namespace Recycle.Api.Controllers
             var passwordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
             return passwordResult.Succeeded ? NoContent() : BadRequest(new { error = "PASSWORD_CHANGE_FAILED", message = "Failed to update password." });
         }
-
+        /// <summary>
+        /// Updates the profile picture of the currently authenticated user.
+        /// </summary>
+        /// <param name="profilePicture">Uploaded image file as profile picture.</param>
+        /// <returns>
+        /// Returns 200 (OK) with new image path or 400 (BadRequest) if upload fails.
+        /// </returns>
         [HttpPatch("api/v1/User/UpdateProfilePicture")]
         public async Task<IActionResult> UpdateProfilePicture(IFormFile profilePicture)
         {

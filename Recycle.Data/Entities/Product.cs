@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
 
+/// <summary>
+/// Represents a product composed of multiple parts, identified by an EAN code and supporting audit metadata.
+/// </summary>
 public class Product : ITrackable
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -34,6 +37,10 @@ public class Product : ITrackable
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
 }
+
+/// <summary>
+/// Filters out soft-deleted products from a query.
+/// </summary>
 public static class ProductExtentions
 {
     public static IQueryable<Product> FilterDeleted(this IQueryable<Product> query)

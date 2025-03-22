@@ -1,5 +1,8 @@
 namespace Recycle.Api.Models.Authorization;
 
+/// <summary>
+/// Data required to register a new user account.
+/// </summary>
 public class RegisterModel
 {
     public string FirstName { get; set; } = null!;

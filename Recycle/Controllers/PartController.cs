@@ -11,6 +11,11 @@ using Recycle.Data.Interfaces;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Recycle.Api.Controllers;
+
+/// <summary>
+/// Controller responsible for managing parts and their relationships to materials.
+/// Includes CRUD operations and filtering support.
+/// </summary>
 [ApiController]
 public class PartController : ControllerBase
 {
@@ -19,6 +24,9 @@ public class PartController : ControllerBase
     private readonly AppDbContext _dbContext;
     private readonly IApplicationMapper _mapper;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PartController"/> class with required services.
+    /// </summary>
     public PartController(ILogger<ProductController> logger, IClock clock, AppDbContext dbContext, IApplicationMapper mapper)
     {
         _logger = logger;
@@ -26,6 +34,14 @@ public class PartController : ControllerBase
         _dbContext = dbContext;
         _mapper = mapper;
     }
+
+    /// <summary>
+    /// Creates a new part and assigns it to a material.
+    /// </summary>
+    /// <param name="model">Model containing part name, description, type, material ID, and image.</param>
+    /// <returns>
+    /// Returns 201 (Created) with the part detail, or 400 (Bad Request) if the part already exists or material is invalid.
+    /// </returns>
     [Authorize]
     [HttpPost("api/v1/Part/")]
     public async Task<ActionResult> CreatePart([FromBody] PartCreateModel model)
@@ -75,6 +91,15 @@ public class PartController : ControllerBase
             ?? throw new Exception("failed to generate url");
         return Created(url, _mapper.ToDetail(newPart));
     }
+
+    /// <summary>
+    /// Retrieves a list of parts with optional filters applied.
+    /// Includes material and trash can associations.
+    /// </summary>
+    /// <param name="filter">Filtering options for the parts list.</param>
+    /// <returns>
+    /// Returns 200 (OK) with a list of parts matching the filter.
+    /// </returns>
     [HttpGet("api/v1/Part/")]
     public async Task<ActionResult<List<PartDetailModel>>> GetListPart(
         [FromQuery] PartFilter filter
@@ -94,6 +119,13 @@ public class PartController : ControllerBase
         return Ok(models);
     }
 
+    /// <summary>
+    /// Retrieves a specific part by its ID including related material.
+    /// </summary>
+    /// <param name="id">The ID of the part.</param>
+    /// <returns>
+    /// Returns 200 (OK) with part detail, or 404 (Not Found) if not found.
+    /// </returns>
     [HttpGet("api/v1/Part/{id:guid}")]
     public async Task<ActionResult<PartDetailModel>> GetPartById(
         [FromRoute] Guid id)
@@ -110,6 +142,17 @@ public class PartController : ControllerBase
         return Ok(_mapper.ToDetail(dbEntity));
     }
 
+    /// <summary>
+    /// Updates a part's properties using a JSON Patch document.
+    /// Also allows reassigning the material if valid.
+    /// </summary>
+    /// <param name="id">The ID of the part to update.</param>
+    /// <param name="patch">Patch document containing updated fields.</param>
+    /// <returns>
+    /// Returns 200 (OK) with the updated part detail, 
+    /// or 404 (Not Found) if part does not exist, 
+    /// or 400 (Bad Request) if validation fails.
+    /// </returns>
     [Authorize]
     [HttpPatch("api/v1/Part/{id:guid}")]
     public async Task<ActionResult<PartUpdateModel>> UpdatePart(
@@ -160,6 +203,13 @@ public class PartController : ControllerBase
         return Ok(_mapper.ToDetail(dbEntity));
     }
 
+    /// <summary>
+    /// Deletes a part by marking it as deleted (soft delete).
+    /// </summary>
+    /// <param name="id">The ID of the part to delete.</param>
+    /// <returns>
+    /// Returns 204 (No Content) if successful, or 404 (Not Found) if the part is not found.
+    /// </returns>
     [Authorize]
     [HttpDelete("api/v1/Part/{id:guid}")]
     public async Task<IActionResult> DeletePart(

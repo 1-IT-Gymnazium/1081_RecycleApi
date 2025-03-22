@@ -12,6 +12,9 @@ using System.Threading;
 
 namespace Recycle.Api.Services;
 
+/// <summary>
+/// Handles queuing and sending of emails using configured SMTP settings.
+/// </summary>
 public class EmailSenderService
 {
     private readonly SmtpSettings _smtpSettings;
@@ -29,6 +32,9 @@ public class EmailSenderService
         _smtpSettings = smtpSettings.Value;
     }
 
+    /// <summary>
+    /// Queues an email to be sent later by saving it to the database.
+    /// </summary>
     public async Task AddEmailToSendAsync(
         string receiver,
         string subject,
@@ -50,6 +56,9 @@ public class EmailSenderService
         await _dbContext.SaveChangesAsync();
     }
 
+    /// <summary>
+    /// Sends all unsent emails from the database using the configured SMTP server.
+    /// </summary>
     public async Task SendEmailsAsync()
     {
         var mails = await _dbContext.Set<EmailMessage>().Where(x => x.SentAt == null).ToListAsync();

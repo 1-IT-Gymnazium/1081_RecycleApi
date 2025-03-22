@@ -4,12 +4,15 @@ using Recycle.Data.Entities;
 
 namespace Recycle.Api.Models.Parts;
 
+/// <summary>
+/// Data used to update an existing part, including name, material, image, and verification status.
+/// </summary>
 public class PartUpdateModel
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = null;
     public string Type { get; set; }
-    public string Description { get; set; }
+    public string? Description { get; set; } 
     public bool IsVerified { get; set; }
     public string? PicturePath { get; set; }
     public List<IdNameModel> TrashCans { get; set; } = new List<IdNameModel>();
@@ -17,7 +20,10 @@ public class PartUpdateModel
 }
 public static class PartUpdateModelExtensions
     {
-        public static PartUpdateModel ToUpdate(this IApplicationMapper mapper, Part source)
+    /// <summary>
+    /// Maps a Part entity to an update model with editable fields.
+    /// </summary>
+    public static PartUpdateModel ToUpdate(this IApplicationMapper mapper, Part source)
         {
             var result = new PartUpdateModel()
             {

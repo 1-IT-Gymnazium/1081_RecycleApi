@@ -1,5 +1,8 @@
 namespace Recycle.Api.Settings;
 
+/// <summary>
+/// Configuration for JWT authentication, including secret key, issuer, audience, and token lifetimes.
+/// </summary>
 public class JwtSettings
 {
     public required string SecretKey { get; set; }

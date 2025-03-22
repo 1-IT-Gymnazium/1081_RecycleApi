@@ -6,6 +6,9 @@ using System.Xml.Linq;
 
 namespace Recycle.Api.Models.Parts;
 
+/// <summary>
+/// Data returned when requesting part details, including material info, verification state, and connected trash cans.
+/// </summary>
 public class PartDetailModel
 {
     public Guid Id { get; set; }
@@ -17,6 +20,10 @@ public class PartDetailModel
     public List<IdNameModel> TrashCans { get; set; } = [];
     public MaterialSimple Material { get; set; } = new();
 }
+
+/// <summary>
+/// Optional filter used when retrieving parts, e.g., to limit by product ID.
+/// </summary>
 public class PartFilter
 {
     public Guid? ProductId { get; set; }
@@ -24,6 +31,9 @@ public class PartFilter
 
 public static class PartDetailModelExtensions
 {
+    /// <summary>
+    /// Extensions for filtering and mapping part entities.
+    /// </summary>
     public static IQueryable<Part> ApplyFilter(this IQueryable<Part> query, PartFilter? filter)
     {
         if (filter != null)

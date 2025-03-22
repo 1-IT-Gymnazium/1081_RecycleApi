@@ -7,6 +7,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Recycle.Api.Models.Products;
 
+/// <summary>
+/// Data returned when requesting product details, including parts, EAN, image, and verification state.
+/// </summary>
 public class ProductDetailModel
 {
     public Guid Id { get; set; }
@@ -17,6 +20,10 @@ public class ProductDetailModel
     public string? PicturePath { get; set; }
     public IEnumerable<PartProductDetailModel>? Parts { get; set; } = [];
 }
+
+/// <summary>
+/// Maps a Product entity to a detailed view model for API responses.
+/// </summary>
 public static class ProductDetailModelExtensions
 {
     public static ProductDetailModel ToDetail(

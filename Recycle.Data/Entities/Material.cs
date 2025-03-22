@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
 
+/// <summary>
+/// Represents a recyclable material, including its associations with parts and trash cans.
+/// </summary>
 public class Material : ITrackable
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,6 +32,9 @@ public class Material : ITrackable
     public ICollection<TrashCanMaterial> TrashCanMaterials { get; set; } = [];
 }
 
+/// <summary>
+/// Filters out soft-deleted materials from a query.
+/// </summary>
 public static class MaterialExtentions
 {
     public static IQueryable<Material> FilterDeleted(this IQueryable<Material> query)

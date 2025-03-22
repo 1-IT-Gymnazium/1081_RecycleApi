@@ -1,5 +1,8 @@
 namespace Recycle.Api.Settings;
 
+/// <summary>
+/// Configuration for SMTP email delivery, including server credentials and sender address.
+/// </summary>
 public class SmtpSettings
 {
     public required string Host { get; set; }

@@ -4,6 +4,9 @@ using Recycle.Data.Entities;
 
 namespace Recycle.Api.Models.Articles;
 
+/// <summary>
+/// Represents full article details returned to clients, including content, author info, and creation date.
+/// </summary>
 public class ArticleDetailModel
 {
     public Guid Id { get; set; }
@@ -16,6 +19,9 @@ public class ArticleDetailModel
 }
 public static class ArticleDetailModelExtensions
 {
+    /// <summary>
+    /// Provides a mapping method to convert an <see cref="Article"/> entity into a detailed view model.
+    /// </summary>
     public static ArticleDetailModel ToDetail(this IApplicationMapper mapper, Article source)
         => new()
         {

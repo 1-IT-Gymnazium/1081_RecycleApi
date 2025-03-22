@@ -4,6 +4,9 @@ using Recycle.Api.Settings;
 
 namespace Recycle.Api.Utilities;
 
+/// <summary>
+/// Provides access to system-wide utilities like current time and environment configuration.
+/// </summary>
 public interface IApplicationMapper
 {
     public Instant Now { get; }

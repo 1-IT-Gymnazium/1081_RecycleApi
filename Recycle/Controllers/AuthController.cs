@@ -34,8 +34,11 @@ public class AuthController : ControllerBase
     private readonly EnviromentSettings _environmentSettings;
     private readonly IApplicationMapper _mapper;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AuthController"/> class with all required services.
+    /// </summary>
     public AuthController(
-        EmailSenderService emailSenderService,
+    EmailSenderService emailSenderService,
         IClock clock,
         UserManager<ApplicationUser> userManager,
         SignInManager<ApplicationUser> signInManager,
@@ -206,10 +209,13 @@ public class AuthController : ControllerBase
     }
 
     /// <summary>
-    /// unescape token before sending
+    /// Validates the email confirmation token for user registration.
     /// </summary>
-    /// <param name="model"></param>
-    /// <returns></returns>
+    /// <param name="model">Model containing the token and email to validate.</param>
+    /// <returns>
+    /// Returns 204 (No Content) if token is valid, or 400 (Bad Request) if token is invalid or expired.
+    /// </returns>
+
     [HttpPost("api/v1/Auth/ValidateToken")]
     public async Task<ActionResult> ValidateToken(
         [FromBody] TokenModel model
@@ -236,6 +242,12 @@ public class AuthController : ControllerBase
         return NoContent();
     }
 
+    /// <summary>
+    /// Retrieves basic information about the currently authenticated user.
+    /// </summary>
+    /// <returns>
+    /// Returns 200 (OK) with user info, or default values if user is not authenticated.
+    /// </returns>
     [AllowAnonymous]
     [HttpGet("api/v1/Auth/UserInfo")]
     public async Task<ActionResult<LoggedUserModel>> GetUserInfo()
@@ -268,6 +280,12 @@ public class AuthController : ControllerBase
         return loggedModel;
     }
 
+    /// <summary>
+    /// Generates a new access token and refresh token using the existing refresh token cookie.
+    /// </summary>
+    /// <returns>
+    /// Returns 200 (OK) with the new access token, or 401 (Unauthorized) if refresh token is invalid.
+    /// </returns>
     [HttpPost("api/v1/Auth/Refresh")]
     public async Task<IActionResult> RefreshToken()
     {
@@ -333,6 +351,14 @@ public class AuthController : ControllerBase
     {
         return Ok("Succesfully reached endpoint!");
     }
+
+    /// <summary>
+    /// Initiates password reset by generating a reset token and sending a reset email.
+    /// </summary>
+    /// <param name="model">Model containing the email address.</param>
+    /// <returns>
+    /// Returns 200 (OK) if email is sent successfully, or 400 (Bad Request) if user is not found.
+    /// </returns>
     [HttpPost("api/v1/Auth/ForgotPassword")]
     public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordModel model)
     {
@@ -399,6 +425,13 @@ public class AuthController : ControllerBase
         return Ok(new { message = "Password reset email sent successfully." });
     }
 
+    /// <summary>
+    /// Resets the user's password using a valid reset token.
+    /// </summary>
+    /// <param name="model">Model containing email, reset token, and new password.</param>
+    /// <returns>
+    /// Returns 200 (OK) on success, or 400 (Bad Request) if token is invalid or user not found.
+    /// </returns>
     [HttpPost("api/v1/Auth/ResetPassword")]
     public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
     {
@@ -419,6 +452,14 @@ public class AuthController : ControllerBase
         return Ok(new { message = "Password reset successful." });
     }
 
+    /// <summary>
+    /// Generates a secure refresh token and stores it in the database.
+    /// </summary>
+    /// <param name="userId">The ID of the user.</param>
+    /// <param name="expirationInDays">How many days until the token expires.</param>
+    /// <returns>
+    /// Returns the plain refresh token string.
+    /// </returns>
     private async Task<string> GenerateRefreshTokenAsync(Guid userId, int expirationInDays)
     {
         var refreshToken = Guid.NewGuid().ToString();
@@ -436,6 +477,17 @@ public class AuthController : ControllerBase
         await _dbContext.SaveChangesAsync();
         return refreshToken;
     }
+
+    /// <summary>
+    /// Generates a signed JWT access token for the given user.
+    /// </summary>
+    /// <param name="userId">User ID to include in token claims.</param>
+    /// <param name="email">User's email address.</param>
+    /// <param name="username">User's username.</param>
+    /// <param name="expirationInMinutes">Token expiration time in minutes.</param>
+    /// <returns>
+    /// Returns a string representation of the JWT token.
+    /// </returns>
     private string GenerateAccessToken(Guid userId, string email, string username, int expirationInMinutes)
     {
         var claims = new List<Claim>
@@ -457,6 +509,13 @@ public class AuthController : ControllerBase
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
+    /// <summary>
+    /// Hashes a given token using SHA256 for secure storage.
+    /// </summary>
+    /// <param name="token">The token to hash.</param>
+    /// <returns>
+    /// Returns the Base64-encoded SHA256 hash of the token.
+    /// </returns>
     public static string Hash(string token)
     {
         var bytes = Encoding.UTF8.GetBytes(token);

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
 
+/// Represents a physical trash can used for collecting recyclable materials. 
+/// Includes type, description, image, and links to associated materials.
+/// </summary>
 public class TrashCan : ITrackable
 {
     public Guid Id { get; set; }
@@ -28,6 +31,10 @@ public class TrashCan : ITrackable
 
     public ICollection<TrashCanMaterial> TrashCanMaterials { get; set; }
 }
+
+/// <summary>
+/// Filters out soft-deleted products from a query.
+/// </summary>
 public static class TrashCanExtentions
 {
     public static IQueryable<TrashCan> FilterDeleted(this IQueryable<TrashCan> query)

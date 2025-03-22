@@ -32,12 +32,14 @@ public class Program
 
         // Add services to the container.
 
+        // Required for dependency injection and utilities
         builder.Host.UseContentRoot(ContentRootPath);
 
         builder.Services.AddSingleton<IClock>(SystemClock.Instance);
         builder.Services.AddScoped<IApplicationMapper, ApplicationMapper>();
         builder.Services.AddScoped<IImageService, ImageService>();
 
+        // Ensure upload folders exist
         var baseUploadsFolder = @"C:\Elareinstaluje\repos\RecycleApi\Recycle\Uploads";
         var profilePicturesFolder = Path.Combine(baseUploadsFolder, "ProfilePictures");
         var productImagesFolder = Path.Combine(baseUploadsFolder, "ProductImages");
@@ -57,6 +59,7 @@ public class Program
             }
         }
 
+        // DB context + NodaTime config
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -68,6 +71,7 @@ public class Program
 
         builder.Services.AddControllers().AddNewtonsoftJson();
 
+        // Identity setup (with disabled email confirmation)
         builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
         {
             // Disable email confirmation requirement for sign-in
@@ -77,6 +81,7 @@ public class Program
             .AddSignInManager()
             .AddDefaultTokenProviders();
 
+        // Identity password config
         builder.Services.Configure<IdentityOptions>(options =>
         {
             options.Password.RequireDigit = true;
@@ -87,6 +92,7 @@ public class Program
             options.Password.RequiredUniqueChars = 1;
         });
 
+        // JWT Auth setup
         builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(nameof(JwtSettings)));
 
         var jwtSettings = builder.Configuration.GetRequiredSection(nameof(JwtSettings)).Get<JwtSettings>();
@@ -109,12 +115,13 @@ public class Program
             };
         });
 
+        // App settings
         builder.Services.Configure<EnviromentSettings>(builder.Configuration.GetSection("EnvironmentSettings"));
         builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
         builder.Services.AddScoped<EmailSenderService>();
         builder.Services.AddHostedService<EmailSenderBackgroundService>();
 
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        // Swagger + JWT support
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(options =>
         {
@@ -159,25 +166,31 @@ public class Program
 
         var app = builder.Build();
 
+        // Dev-only: enable Swagger UI
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        // Serve uploaded static files
         app.UseStaticFiles(new StaticFileOptions
         {
             FileProvider = new PhysicalFileProvider(baseUploadsFolder),
             RequestPath = "/Uploads"
         });
 
-        //app.usehttpsredirection();
+        // Middleware
 
+        //app.usehttpsredirection();
         app.UseAuthentication();
         app.UseAuthorization();
 
+        // Routes
         app.MapControllers();
 
+        // Start app
         app.Run();
 
     }

@@ -15,6 +15,10 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static Recycle.Data.Entities.TrashCan;
 
 namespace Recycle.Api.Controllers;
+/// <summary>
+/// Controller responsible for managing trash cans in the system, 
+/// including creation, listing, image uploads, updating and soft deletion.
+/// </summary>
 [ApiController]
 public class TrashCanController : ControllerBase
 {
@@ -24,6 +28,9 @@ public class TrashCanController : ControllerBase
     private readonly IApplicationMapper _mapper;
     private readonly IImageService _imageService;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="TrashCanController"/> class with required services.
+    /// </summary>
     public TrashCanController(ILogger<TrashCanController> logger, IClock clock, AppDbContext dbContext, IApplicationMapper mapper, IImageService imageService)
     {
         _logger = logger;
@@ -32,6 +39,15 @@ public class TrashCanController : ControllerBase
         _mapper = mapper;
         _imageService = imageService;
     }
+
+    /// <summary>
+    /// Creates a new trash can in the database.
+    /// </summary>
+    /// <param name="model">Model containing trash can name, type, image, and description.</param>
+    /// <returns>
+    /// Returns 201 (Created) with the created trash can detail, or 
+    /// 400 (Bad Request) if a trash can with the same name already exists.
+    /// </returns>
     [Authorize]
     [HttpPost("api/v1/TrashCan")]
     public async Task<ActionResult> CreateTrashCan(
@@ -71,6 +87,13 @@ public class TrashCanController : ControllerBase
         return Created(url, _mapper.ToDetail(newTrashCan));
     }
 
+    /// <summary>
+    /// Uploads an image for a trash can and stores it using the image service.
+    /// </summary>
+    /// <param name="trashCanImage">Uploaded image file.</param>
+    /// <returns>
+    /// Returns 200 (OK) with the saved image path, or 400 (Bad Request) if no file is uploaded.
+    /// </returns>
     [HttpPost("api/v1/TrashCan/UploadTrashCanImage")]
     public async Task<IActionResult> UploadContainerImage(IFormFile trashCanImage)
     {
@@ -86,6 +109,12 @@ public class TrashCanController : ControllerBase
         return Ok(new { message = "Container image uploaded successfully.", imagePath = newImagePath });
     }
 
+    /// <summary>
+    /// Retrieves a list of all non-deleted trash cans.
+    /// </summary>
+    /// <returns>
+    /// Returns 200 (OK) with a list of trash can details.
+    /// </returns>
     [HttpGet("api/v1/TrashCan/")]
     public async Task<ActionResult<List<TrashCanDetailModel>>> GetListTrashCan()
     {
@@ -95,6 +124,14 @@ public class TrashCanController : ControllerBase
             .Select(_mapper.ToDetail);
         return Ok(dbEntities);
     }
+
+    /// <summary>
+    /// Retrieves a specific trash can by its ID.
+    /// </summary>
+    /// <param name="id">The unique identifier of the trash can.</param>
+    /// <returns>
+    /// Returns 200 (OK) with trash can details, or 404 (Not Found) if not found.
+    /// </returns>
     [HttpGet("api/v1/TrashCan/{id:guid}")]
     public async Task<ActionResult<TrashCanDetailModel>> GetById(
         [FromRoute] Guid id)
@@ -109,6 +146,16 @@ public class TrashCanController : ControllerBase
         }
         return Ok(_mapper.ToDetail(dbEntity));
     }
+
+    /// <summary>
+    /// Updates an existing trash can using a JSON patch document.
+    /// </summary>
+    /// <param name="id">The ID of the trash can to update.</param>
+    /// <param name="patch">Patch document containing updated fields.</param>
+    /// <returns>
+    /// Returns 200 (OK) with updated details, 404 (Not Found) if trash can does not exist, 
+    /// or 400 (Bad Request) if validation fails.
+    /// </returns>
     [Authorize]
     [HttpPatch("api/v1/TrashCan/{id:guid}")]
     public async Task<ActionResult<TrashCanDetailModel>> UpdateTrashCan(
@@ -152,6 +199,13 @@ public class TrashCanController : ControllerBase
         return Ok(_mapper.ToDetail(dbEntity));
     }
 
+    /// <summary>
+    /// Soft deletes a trash can by marking it as deleted in the system.
+    /// </summary>
+    /// <param name="id">The ID of the trash can to delete.</param>
+    /// <returns>
+    /// Returns 204 (No Content) if successfully deleted, or 404 (Not Found) if not found.
+    /// </returns>
     [Authorize]
     [HttpDelete("api/v1/TrashCan/{id:guid}")]
     public async Task<IActionResult> DeleteTrashCan(

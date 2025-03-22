@@ -6,6 +6,9 @@ using System.Xml.Linq;
 
 namespace Recycle.Api.Models.Parts;
 
+/// <summary>
+/// Data used when displaying a part inside a product, including name, material, image, and related trash cans.
+/// </summary>
 public class PartProductDetailModel
 {
     public Guid Id { get; set; }

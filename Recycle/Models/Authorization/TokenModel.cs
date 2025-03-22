@@ -2,6 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Recycle.Api.Models.Authorization;
 
+/// <summary>
+/// Data required to validate a user's email confirmation token.
+/// </summary>
 public class TokenModel
 {
     [Required]

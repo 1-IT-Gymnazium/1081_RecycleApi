@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Recycle.Api.Models.Authorization;
 
+/// <summary>
+/// Login credentials submitted by a user during authentication.
+/// </summary>
 public class LogInModel
 {
     [Required]

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities;
 
+/// <summary>
+/// Represents a product part, including its material, verification status, and audit metadata.
+/// </summary>
 public class Part : ITrackable
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -32,6 +35,10 @@ public class Part : ITrackable
     public Instant? DeletedAt { get; set; }
     public string? DeletedBy { get; set; }
 }
+
+/// <summary>
+/// Filters out soft-deleted parts from a query.
+/// </summary>
 public static class PartExtentions
 {
     public static IQueryable<Part> FilterDeleted(this IQueryable<Part> query)

@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Recycle.Api.Models.Articles;
 
+/// <summary>
+/// Represents the data required to create a new article, including basic metadata like heading, author name, annotation, content and image path.
+/// </summary>
 public class ArticleCreateModel
 {
     [Required(ErrorMessage = "{0} is required.", AllowEmptyStrings = false)]
@@ -15,6 +18,9 @@ public class ArticleCreateModel
     }
 public static class ArticleCreateModelExtensions
 {
+    /// <summary>
+    /// Provides mapping extensions for converting article entities into model objects.
+    /// </summary>
     public static ArticleCreateModel ToUpdate(this Article source) => new()
     {
         Heading = source.Heading,

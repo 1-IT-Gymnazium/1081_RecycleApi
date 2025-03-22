@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Recycle.Data.Entities.Identity;
+
+/// <summary>
+/// Represents a refresh token issued to a user, including expiration and revocation metadata.
+/// </summary>
 [Table(nameof(RefreshToken))]
 public class RefreshToken
 {

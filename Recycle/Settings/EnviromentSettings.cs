@@ -1,5 +1,8 @@
 namespace Recycle.Api.Settings;
 
+/// <summary>
+/// Configuration for backend and frontend URLs, email sender info, and password reset paths.
+/// </summary>
 public class EnviromentSettings 
 {
     public required string BackendHostUrl { get; set; }
