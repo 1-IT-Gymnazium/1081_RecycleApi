@@ -12,11 +12,10 @@ using Recycle.Data.Entities;
 using Recycle.Data.Interfaces;
 
 namespace Recycle.Api.Controllers;
-
-[ApiController]
 /// <summary>
 /// Initializes a new instance of the <see cref="ArticleController"/> class with required services.
 /// </summary>
+[ApiController]
 public class ArticleController : ControllerBase
 {
     private readonly ILogger<ArticleController> _logger;

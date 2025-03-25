@@ -22,6 +22,9 @@ using System.Security.Cryptography;
 using System.Text;
 
 namespace Recycle.Api.Controllers;
+/// <summary>
+/// Initializes a new instance of the <see cref="AuthController"/> class with all required services.
+/// </summary>
 [ApiController]
 public class AuthController : ControllerBase
 {
@@ -34,9 +37,6 @@ public class AuthController : ControllerBase
     private readonly EnviromentSettings _environmentSettings;
     private readonly IApplicationMapper _mapper;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="AuthController"/> class with all required services.
-    /// </summary>
     public AuthController(
     EmailSenderService emailSenderService,
         IClock clock,
