@@ -23,19 +23,27 @@ public class ProductUpdateModel
 /// </summary>
 public static class ProductUpdateModelExtensions
 {
-    public static ProductUpdateModel ToUpdate(this IApplicationMapper mapper, Product source)
-        => new()
+    public static ProductUpdateModel ToUpdate(
+    this IApplicationMapper mapper,
+        Product source)
+    {
+        return new ProductUpdateModel
         {
+            Id = source.Id,
             Name = source.Name,
             Description = source.Description,
             EAN = source.EAN,
-            PicturePath = source.PicturePath,
+            PicturePath = string.IsNullOrEmpty(source.PicturePath) ? null : $"{mapper.EnviromentSettings.BackendHostUrl}{source.PicturePath}",
             IsVerified = source.IsVerified,
             Parts = source.ProductParts.Select(p => new PartProductUpdateModel
             {
                 Id = p.Part.Id,
                 Name = p.Part.Name,
+                MaterialName = p.Part.PartMaterial.Name,
+                TrashCans = p.Part.PartMaterial.TrashCanMaterials.Select(x => new IdNameModel() { Id = x.TrashCan.Id, Name = x.TrashCan.Name }),
+
             })
         };
+    }
 }
 

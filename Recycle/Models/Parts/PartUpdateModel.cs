@@ -18,11 +18,12 @@ public class PartUpdateModel
     public List<IdNameModel> TrashCans { get; set; } = new List<IdNameModel>();
     public Guid MaterialId { get; set; }
 }
+
+/// <summary>
+/// Maps a Part entity to an update model with editable fields.
+/// </summary>
 public static class PartUpdateModelExtensions
     {
-    /// <summary>
-    /// Maps a Part entity to an update model with editable fields.
-    /// </summary>
     public static PartUpdateModel ToUpdate(this IApplicationMapper mapper, Part source)
         {
             var result = new PartUpdateModel()

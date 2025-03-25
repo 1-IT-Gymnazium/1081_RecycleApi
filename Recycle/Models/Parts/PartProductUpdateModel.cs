@@ -13,5 +13,8 @@ public class PartProductUpdateModel
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = null!;
+    public IEnumerable<IdNameModel> TrashCans { get; set; } = [];
+    public string MaterialName { get; set; } = null!;
+
 }
 
