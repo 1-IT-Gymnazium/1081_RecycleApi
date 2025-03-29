@@ -194,7 +194,7 @@ namespace Recycle.Api.Controllers
         /// Returns 200 (OK) with new image path or 400 (BadRequest) if upload fails.
         /// </returns>
         [HttpPatch("api/v1/User/UpdateProfilePicture")]
-        public async Task<IActionResult> UpdateProfilePicture(IFormFile profilePicture)
+        public async Task<IActionResult> UpdateProfilePicture([FromForm] IFormFile profilePicture) 
         {
             var user = await GetAuthenticatedUser();
             if (user == null)
@@ -207,21 +207,21 @@ namespace Recycle.Api.Controllers
                 return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No profile picture uploaded." });
             }
 
-            // Save the new profile picture
+            // ✅ Save the new profile picture
             var newImagePath = await _imageService.SaveImageAsync(profilePicture, "ProfilePictures");
 
-            // Delete old profile picture if exists
+            // ✅ Delete old profile picture if exists
             if (!string.IsNullOrEmpty(user.ProfilePictureUrl))
             {
                 await _imageService.DeleteImageAsync(user.ProfilePictureUrl);
             }
 
-            // Update user profile picture path
+            // ✅ Update user profile picture path
             user.ProfilePictureUrl = newImagePath;
             _dbContext.Users.Update(user);
             await _dbContext.SaveChangesAsync();
 
-            return Ok(new { message = "Profile picture updated successfully.", imagePath = newImagePath });
+            return Ok(new { message = "✅ Profile picture updated successfully.", imagePath = newImagePath });
         }
     }
 }

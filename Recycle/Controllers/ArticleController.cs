@@ -72,7 +72,7 @@ public class ArticleController : ControllerBase
             Id = Guid.NewGuid(),
             Heading = model.Heading,
             Annotation = model.Annotation,
-            Text = model.Text,
+            Text = model.Text?.Replace("\r\n", "\n"),
             AuthorId = User.GetUserId(),
             PicturePath = model.PicturePath,
         }

@@ -216,6 +216,7 @@ public class ProductController : ControllerBase
     /// Returns 200 (OK) with updated product detail, 404 (Not Found) if not found, 
     /// or 400 (Bad Request) if validation fails.
     /// </returns>
+    /*
     [Authorize]
     [HttpPatch("api/v1/Product/{id:guid}")]
     public async Task<ActionResult<ProductUpdateModel>> UpdateProduct(
@@ -234,46 +235,45 @@ public class ProductController : ControllerBase
         }
 
         var productToUpdate = _mapper.ToUpdate(dbEntity);
-        patch.ApplyTo(productToUpdate);
 
-        var uniqueCheck = await _dbContext
-            .Set<Product>()
-            .AnyAsync(x => x.Id != id && x.EAN == productToUpdate.EAN);
+        // ✅ Extract partIds from the JSON Patch document
+        // ✅ Extract `partIds` from the PATCH request, if available
+        var patchPartIds = patch.Operations
+            .FirstOrDefault(op => op.path == "/partIds")?.value as List<Guid>;
 
-        if (uniqueCheck)
-        {
-            ModelState.AddModelError<ProductUpdateModel>(x => x.EAN, "Ean is not unique");
-        }
+        // ✅ Apply JSON Patch only to non-part fields
+        patch.ApplyTo(productToUpdate, ModelState);
 
-        if (!(ModelState.IsValid && TryValidateModel(productToUpdate)))
+        if (!ModelState.IsValid)
         {
             return ValidationProblem(ModelState);
         }
 
+        // ✅ Update main product properties
         dbEntity.IsVerified = productToUpdate.IsVerified;
         dbEntity.EAN = productToUpdate.EAN;
         dbEntity.Name = productToUpdate.Name;
         dbEntity.Description = productToUpdate.Description;
-        dbEntity.PicturePath = productToUpdate.PicturePath;
 
-        // Handle Product Parts
-        var currentParts = dbEntity.ProductParts.ToList();
-        var updatedParts = productToUpdate.Parts.Select(p => p.Id) ?? new List<Guid>();
+        // ✅ Handle Product Parts Updates
+        var updatedParts = patchPartIds ?? productToUpdate.PartIds ?? new List<Guid>();
+        var currentParts = dbEntity.ProductParts?.ToList() ?? new List<ProductPart>();
 
+        // ✅ Find parts to remove
         var removedParts = currentParts.Where(x => !updatedParts.Contains(x.PartId)).ToList();
-        var newParts = updatedParts.Where(x => !currentParts.Any(y => y.PartId == x)).ToList();
-
         foreach (var part in removedParts)
         {
             dbEntity.ProductParts.Remove(part);
         }
 
+        // ✅ Find parts to add
+        var newParts = updatedParts.Except(currentParts.Select(y => y.PartId)).ToList();
         foreach (var partId in newParts)
         {
             var partExists = await _dbContext.Parts.AnyAsync(x => x.Id == partId);
             if (!partExists)
             {
-                ModelState.AddModelError(nameof(productToUpdate.Parts), $"Part with id {partId} not found");
+                ModelState.AddModelError(nameof(productToUpdate.PartIds), $"Part with id {partId} not found");
                 return ValidationProblem(ModelState);
             }
             dbEntity.ProductParts.Add(new ProductPart { PartId = partId, ProductId = dbEntity.Id });
@@ -291,6 +291,51 @@ public class ProductController : ControllerBase
                             .ThenInclude(x => x.TrashCan)
 
             .FirstAsync(x => x.Id == id);
+
+        return Ok(_mapper.ToDetail(dbEntity));
+    }
+    */
+    [Authorize]
+    [HttpPatch("api/v1/Product/{id:guid}")]
+    public async Task<ActionResult<ProductUpdateModel>> UpdateProduct(
+    [FromRoute] Guid id,
+    [FromBody] JsonPatchDocument<ProductUpdateModel> patch)
+    {
+        var dbEntity = await _dbContext
+            .Set<Product>()
+            .FirstOrDefaultAsync(x => x.Id == id);
+
+        if (dbEntity == null)
+        {
+            return NotFound();
+        }
+
+        // ✅ Create a new model with only allowed fields
+        var productToUpdate = new ProductUpdateModel
+        {
+            Name = dbEntity.Name,
+            Description = dbEntity.Description,
+            EAN = dbEntity.EAN
+        };
+
+        // ✅ Apply PATCH only to Name, Description, and EAN
+        patch.ApplyTo(productToUpdate, ModelState);
+
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem(ModelState);
+        }
+
+        // ✅ Update only allowed fields
+        dbEntity.Name = productToUpdate.Name;
+        dbEntity.Description = productToUpdate.Description;
+        dbEntity.EAN = productToUpdate.EAN;
+
+        // ✅ Automatically verify the product
+        dbEntity.IsVerified = true;
+
+        dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());
+        await _dbContext.SaveChangesAsync();
 
         return Ok(_mapper.ToDetail(dbEntity));
     }
