@@ -58,6 +58,7 @@ public class ArticleController : ControllerBase
         var checkArticle =
             await _dbContext
             .Set<Article>()
+            .FilterDeleted()
             .AnyAsync(x => x.Heading == model.Heading);
         if (checkArticle)
         {

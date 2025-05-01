@@ -53,13 +53,21 @@ public class ProductController : ControllerBase
     [HttpPost("api/v1/Product/")]
     public async Task<ActionResult> CreateProduct([FromBody] ProductCreateModel model)
     {
+
         var checkProduct = await _dbContext
             .Set<Product>()
+            .FilterDeleted()
             .AnyAsync(x => x.Name == model.Name);
         if (checkProduct)
         {
             ModelState
                    .AddModelError(nameof(model.Name), $"Product with the name of {model.Name} already exists!");
+            return ValidationProblem(ModelState);
+        }
+        if (!EanValidator.IsValidEAN13(model.EAN))
+        {
+            ModelState
+                .AddModelError(nameof(model.EAN), "EAN code is invalid. It must be a 13-digit number with a valid check digit.");
             return ValidationProblem(ModelState);
         }
 
@@ -236,12 +244,12 @@ public class ProductController : ControllerBase
 
         var productToUpdate = _mapper.ToUpdate(dbEntity);
 
-        // ✅ Extract partIds from the JSON Patch document
-        // ✅ Extract `partIds` from the PATCH request, if available
+        //  Extract partIds from the JSON Patch document
+        //  Extract `partIds` from the PATCH request, if available
         var patchPartIds = patch.Operations
             .FirstOrDefault(op => op.path == "/partIds")?.value as List<Guid>;
 
-        // ✅ Apply JSON Patch only to non-part fields
+        //  Apply JSON Patch only to non-part fields
         patch.ApplyTo(productToUpdate, ModelState);
 
         if (!ModelState.IsValid)
@@ -249,24 +257,24 @@ public class ProductController : ControllerBase
             return ValidationProblem(ModelState);
         }
 
-        // ✅ Update main product properties
+        //  Update main product properties
         dbEntity.IsVerified = productToUpdate.IsVerified;
         dbEntity.EAN = productToUpdate.EAN;
         dbEntity.Name = productToUpdate.Name;
         dbEntity.Description = productToUpdate.Description;
 
-        // ✅ Handle Product Parts Updates
+        //  Handle Product Parts Updates
         var updatedParts = patchPartIds ?? productToUpdate.PartIds ?? new List<Guid>();
         var currentParts = dbEntity.ProductParts?.ToList() ?? new List<ProductPart>();
 
-        // ✅ Find parts to remove
+        //  Find parts to remove
         var removedParts = currentParts.Where(x => !updatedParts.Contains(x.PartId)).ToList();
         foreach (var part in removedParts)
         {
             dbEntity.ProductParts.Remove(part);
         }
 
-        // ✅ Find parts to add
+        //  Find parts to add
         var newParts = updatedParts.Except(currentParts.Select(y => y.PartId)).ToList();
         foreach (var partId in newParts)
         {
@@ -310,7 +318,7 @@ public class ProductController : ControllerBase
             return NotFound();
         }
 
-        // ✅ Create a new model with only allowed fields
+        //  Create a new model with only allowed fields
         var productToUpdate = new ProductUpdateModel
         {
             Name = dbEntity.Name,
@@ -318,7 +326,7 @@ public class ProductController : ControllerBase
             EAN = dbEntity.EAN
         };
 
-        // ✅ Apply PATCH only to Name, Description, and EAN
+        //  Apply PATCH only to Name, Description, and EAN
         patch.ApplyTo(productToUpdate, ModelState);
 
         if (!ModelState.IsValid)
@@ -326,12 +334,12 @@ public class ProductController : ControllerBase
             return ValidationProblem(ModelState);
         }
 
-        // ✅ Update only allowed fields
+        //  Update only allowed fields
         dbEntity.Name = productToUpdate.Name;
         dbEntity.Description = productToUpdate.Description;
         dbEntity.EAN = productToUpdate.EAN;
 
-        // ✅ Automatically verify the product
+        //  Automatically verify the product
         dbEntity.IsVerified = true;
 
         dbEntity.SetModifyBySystem(_clock.GetCurrentInstant());

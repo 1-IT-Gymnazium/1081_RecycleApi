@@ -48,6 +48,7 @@ public class PartController : ControllerBase
     {
         var checkPart = await _dbContext
             .Set<Part>()
+            .FilterDeleted()
             .AnyAsync(x => x.Name == model.Name);
         if (checkPart)
         {

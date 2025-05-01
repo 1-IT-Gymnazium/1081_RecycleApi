@@ -54,6 +54,7 @@ public class MaterialController : ControllerBase
     {
         var checkMaterial = await _dbContext
             .Set<Material>()
+            .FilterDeleted()
             .AnyAsync(x => x.Name == model.Name);
         if (checkMaterial)
         {

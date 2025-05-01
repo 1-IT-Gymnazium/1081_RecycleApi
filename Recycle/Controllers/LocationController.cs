@@ -34,6 +34,7 @@ public class LocationController : ControllerBase
     {
     var checkLocation = await _dbContext
     .Set<Location>()
+    .FilterDeleted()
     .AnyAsync(x => x.Name == model.Name);
         if (checkLocation)
         {
