@@ -1,4 +1,5 @@
 
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder.Extensions;
@@ -11,6 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NodaTime;
 using Recycle.Api.BackgroundServices;
+using Recycle.Api.Models.Articles;
 using Recycle.Api.Services;
 using Recycle.Api.Settings;
 using Recycle.Api.Utilities;
@@ -71,6 +73,9 @@ public class Program
 
         builder.Services.AddControllers().AddNewtonsoftJson();
 
+        //Validate properties of objects
+        builder.Services.AddValidatorsFromAssemblyContaining<ArticleCreateModelValidator>();
+
         // Identity setup (with disabled email confirmation)
         builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
         {
@@ -119,6 +124,7 @@ public class Program
         builder.Services.Configure<EnviromentSettings>(builder.Configuration.GetSection("EnvironmentSettings"));
         builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
         builder.Services.AddScoped<EmailSenderService>();
+        builder.Services.AddScoped<IAuthEmailService, AuthEmailService>();
         builder.Services.AddHostedService<EmailSenderBackgroundService>();
 
         // Swagger + JWT support

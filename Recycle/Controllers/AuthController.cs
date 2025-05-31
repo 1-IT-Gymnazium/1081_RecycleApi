@@ -36,6 +36,7 @@ public class AuthController : ControllerBase
     private readonly AppDbContext _dbContext;
     private readonly EnviromentSettings _environmentSettings;
     private readonly IApplicationMapper _mapper;
+    private readonly IAuthEmailService _authEmailService;
 
     public AuthController(
     EmailSenderService emailSenderService,
@@ -44,9 +45,8 @@ public class AuthController : ControllerBase
         SignInManager<ApplicationUser> signInManager,
         IOptions<JwtSettings> options,
         AppDbContext dbContext,
-        IOptions<EnviromentSettings> enviromentSettings
-        ,
-
+        IOptions<EnviromentSettings> enviromentSettings,
+        IAuthEmailService authEmailService,
         IApplicationMapper mapper
         )
     {
@@ -58,6 +58,7 @@ public class AuthController : ControllerBase
         _dbContext = dbContext;
         _environmentSettings = enviromentSettings.Value;
         _mapper = mapper;
+        _authEmailService = authEmailService;
     }
 
     /// <summary>
@@ -78,7 +79,21 @@ public class AuthController : ControllerBase
        [FromBody] RegisterModel model
        )
     {
-        var validator = new PasswordValidator<ApplicationUser>();
+        var normalizedEmail = model.Email.ToUpperInvariant();
+        var normalizedUserName = model.UserName.ToUpperInvariant();
+
+        if (await _userManager.Users.AnyAsync(x => x.NormalizedEmail == normalizedEmail))
+        {
+            ModelState.AddModelError(nameof(model.Email), "Email is already in use.");
+            return ValidationProblem(ModelState);
+        }
+
+        if (await _userManager.Users.AnyAsync(x => x.NormalizedUserName == normalizedUserName))
+        {
+            ModelState.AddModelError(nameof(model.UserName), "UserName is already taken.");
+            return ValidationProblem(ModelState);
+        }
+
         var now = _clock.GetCurrentInstant();
 
         var newUser = new ApplicationUser
@@ -91,7 +106,9 @@ public class AuthController : ControllerBase
             Email = model.Email,
         }.SetCreateBySystem(now);
 
-        var checkPassword = await validator.ValidateAsync(_userManager, newUser, model.Password);
+        var passwordValidator = new PasswordValidator<ApplicationUser>();
+
+        var checkPassword = await passwordValidator.ValidateAsync(_userManager, newUser, model.Password);
 
         if (!checkPassword.Succeeded)
         {
@@ -108,60 +125,8 @@ public class AuthController : ControllerBase
         var token = string.Empty;
         token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
 
-        //var url = _environmentSettings.FrontendHostUrl + "/" + _environmentSettings.FrontendConfirmUrl;
-        //var escapedToken = Uri.EscapeDataString(token);
-        //await _emailService.AddEmail("Registrace", $"<a href=\"{url}?token={escapedToken}&email={newUser.Email}\">Not a scam! Click me</a>", model.Email);
-        //var url = $"{_environmentSettings.FrontendHostUrl}/{_environmentSettings.FrontendConfirmUrl}";
-        //var escapedToken = Uri.EscapeDataString(token);
+        await _authEmailService.SendRegistrationConfirmationEmailAsync(newUser, token);
 
-        await _emailService.AddEmailToSendAsync(
-            model.Email,
-            "Confirmation of registration",
-            $@"
-    <html>
-    <head>
-        <style>
-            body {{
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                padding: 20px;
-            }}
-            .container {{
-                max-width: 600px;
-                margin: 0 auto;
-                background: #ffffff;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                text-align: center;
-            }}
-            .button {{
-                display: inline-block;
-                padding: 10px 20px;
-                font-size: 16px;
-                color: #fff;
-                background-color: #28a745;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-top: 20px;
-            }}
-            .footer {{
-                margin-top: 20px;
-                font-size: 12px;
-                color: #777;
-            }}
-        </style>
-    </head>
-    <body>
-        <div class='container'>
-            <h2>Confirm of registration</h2>
-            <p>Click on the button to verify the email address:</p>
-<a href='http://localhost:4200/confirm?token={Uri.EscapeDataString(token)}&email={model.Email}' class='button'>Potvrdit e-mail</a>
-<p class='footer'>If you did not register on Recycle!, please ignore this email.</p>
-        </div>
-    </body>
-    </html>"
-        );
         return Ok();
     }
 
@@ -373,54 +338,7 @@ public class AuthController : ControllerBase
         var escapedToken = Uri.EscapeDataString(token);
         var resetUrl = $"{_environmentSettings.FrontendHostUrl}/{_environmentSettings.FrontendResetPasswordUrl}?token={escapedToken}&email={model.Email}";
 
-        await _emailService.AddEmailToSendAsync(
-            model.Email,
-            "Password Reset Request",
-            $@"
-    <html>
-    <head>
-        <style>
-            body {{
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                padding: 20px;
-            }}
-            .container {{
-                max-width: 600px;
-                margin: 0 auto;
-                background: #ffffff;
-                padding: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                text-align: center;
-            }}
-            .button {{
-                display: inline-block;
-                padding: 10px 20px;
-                font-size: 16px;
-                color: #fff;
-                background-color: #dc3545;
-                text-decoration: none;
-                border-radius: 5px;
-                margin-top: 20px;
-            }}
-            .footer {{
-                margin-top: 20px;
-                font-size: 12px;
-                color: #777;
-            }}
-        </style>
-    </head>
-    <body>
-        <div class='container'>
-            <h2>Password Reset Request</h2>
-            <p>If you requested a password reset, click the button below:</p>
-            <a href='{resetUrl}' class='button'>Reset Password</a>
-            <p class='footer'>If you did not request a password reset, please ignore this email.</p>
-        </div>
-    </body>
-    </html>"
-        );
+        await _authEmailService.SendPasswordResetEmailAsync(model.Email, token);
 
         return Ok(new { message = "Password reset email sent successfully." });
     }
