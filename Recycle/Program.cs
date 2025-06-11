@@ -74,7 +74,7 @@ public class Program
         builder.Services.AddControllers().AddNewtonsoftJson();
 
         //Validate properties of objects
-        builder.Services.AddValidatorsFromAssemblyContaining<ArticleCreateModelValidator>();
+        builder.Services.AddValidatorsFromAssemblyContaining<ValidationAssemblyMarker>();
 
         // Identity setup (with disabled email confirmation)
         builder.Services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
