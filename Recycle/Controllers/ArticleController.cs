@@ -102,16 +102,37 @@ public class ArticleController : ControllerBase
     [HttpPost("api/v1/Article/UploadArticleImage")]
     public async Task<IActionResult> UploadArticleImage(IFormFile articleImage)
     {
+        // Validate that a file was provided
         if (articleImage == null || articleImage.Length == 0)
         {
-            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No article image uploaded." });
+            return BadRequest(new
+            {
+                error = "NO_FILE_UPLOADED",
+                message = "No article image was uploaded."
+            });
         }
 
-        // Save the image using the ImageService
+        // Validate the file type (only allow jpg and png)
+        var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+        var extension = Path.GetExtension(articleImage.FileName).ToLowerInvariant();
+
+        if (!allowedExtensions.Contains(extension))
+        {
+            return BadRequest(new
+            {
+                error = "INVALID_FILE_TYPE",
+                message = "Only .jpg, .jpeg, and .png image files are allowed."
+            });
+        }
+
+        // Save the image using the image service
         var newImagePath = await _imageService.SaveImageAsync(articleImage, "ArticleImages");
 
-        // Return the stored image path
-        return Ok(new { message = "Article image uploaded successfully.", imagePath = newImagePath });
+        return Ok(new
+        {
+            message = "Article image uploaded successfully.",
+            imagePath = newImagePath
+        });
     }
 
     /// <summary>

@@ -97,18 +97,39 @@ public class TrashCanController : ControllerBase
     [HttpPost("api/v1/TrashCan/UploadTrashCanImage")]
     public async Task<IActionResult> UploadContainerImage(IFormFile trashCanImage)
     {
+        // Validate that a file was provided
         if (trashCanImage == null || trashCanImage.Length == 0)
         {
-            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No container image uploaded." });
+            return BadRequest(new
+            {
+                error = "NO_FILE_UPLOADED",
+                message = "No container image was uploaded."
+            });
         }
 
-        // Save the image using the ImageService
+        // Validate allowed file extensions
+        var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+        var extension = Path.GetExtension(trashCanImage.FileName).ToLowerInvariant();
+
+        if (!allowedExtensions.Contains(extension))
+        {
+            return BadRequest(new
+            {
+                error = "INVALID_FILE_TYPE",
+                message = "Only .jpg, .jpeg, and .png image files are allowed."
+            });
+        }
+
+        // Save the image using the image service
         var newImagePath = await _imageService.SaveImageAsync(trashCanImage, "TrashCanImages");
 
         // Return the stored image path
-        return Ok(new { message = "Container image uploaded successfully.", imagePath = newImagePath });
+        return Ok(new
+        {
+            message = "Container image uploaded successfully.",
+            imagePath = newImagePath
+        });
     }
-
     /// <summary>
     /// Retrieves a list of all non-deleted trash cans.
     /// </summary>

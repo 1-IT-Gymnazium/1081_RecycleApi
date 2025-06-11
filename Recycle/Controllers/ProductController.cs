@@ -120,16 +120,38 @@ public class ProductController : ControllerBase
     [HttpPost("api/v1/Product/UploadProductImage")]
     public async Task<IActionResult> UploadProductImage(IFormFile productImage)
     {
+        // Validate that a file was provided
         if (productImage == null || productImage.Length == 0)
         {
-            return BadRequest(new { error = "NO_FILE_UPLOADED", message = "No product image uploaded." });
+            return BadRequest(new
+            {
+                error = "NO_FILE_UPLOADED",
+                message = "No product image was uploaded."
+            });
         }
 
-        // Save the image using the ImageService
+        // Validate allowed file extensions
+        var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+        var extension = Path.GetExtension(productImage.FileName).ToLowerInvariant();
+
+        if (!allowedExtensions.Contains(extension))
+        {
+            return BadRequest(new
+            {
+                error = "INVALID_FILE_TYPE",
+                message = "Only .jpg, .jpeg, and .png image files are allowed."
+            });
+        }
+
+        // Save the image using the image service
         var newImagePath = await _imageService.SaveImageAsync(productImage, "ProductImages");
 
         // Return the stored image path
-        return Ok(new { message = "Product image uploaded successfully.", imagePath = newImagePath });
+        return Ok(new
+        {
+            message = "Product image uploaded successfully.",
+            imagePath = newImagePath
+        });
     }
 
     /// <summary>

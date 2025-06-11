@@ -42,7 +42,7 @@ public class Program
         builder.Services.AddScoped<IImageService, ImageService>();
 
         // Ensure upload folders exist
-        var baseUploadsFolder = @"C:\Elareinstaluje\repos\RecycleApi\Recycle\Uploads";
+        var baseUploadsFolder = Path.Combine(builder.Environment.ContentRootPath, "wwwroot", "Uploads");
         var profilePicturesFolder = Path.Combine(baseUploadsFolder, "ProfilePictures");
         var productImagesFolder = Path.Combine(baseUploadsFolder, "ProductImages");
         var trashCanImagesFolder = Path.Combine(baseUploadsFolder, "TrashCanImages");
@@ -54,10 +54,6 @@ public class Program
             {
                 Directory.CreateDirectory(folder);
                 Console.WriteLine($"Uploads folder created at: {folder}");
-            }
-            else
-            {
-                Console.WriteLine($"Uploads folder already exists at: {folder}");
             }
         }
 
@@ -159,16 +155,6 @@ public class Program
                 }
             });
         });
-        var uploadsFolder = @"C:\Elareinstaluje\repos\RecycleApi\Recycle\Uploads";
-        if (!Directory.Exists(uploadsFolder))
-        {
-            Directory.CreateDirectory(uploadsFolder);
-            Console.WriteLine($"Uploads folder created at: {uploadsFolder}");
-        }
-        else
-        {
-            Console.WriteLine($"Uploads folder already exists at: {uploadsFolder}");
-        }
 
         var app = builder.Build();
 

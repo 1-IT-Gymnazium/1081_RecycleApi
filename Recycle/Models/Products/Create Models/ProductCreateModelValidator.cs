@@ -24,7 +24,14 @@ public class ProductCreateModelValidator : AbstractValidator<ProductCreateModel>
             .MaximumLength(500).WithMessage("Description must be at most 500 characters.");
 
         RuleFor(x => x.PicturePath)
-            .MaximumLength(500).WithMessage("Picture path is too long.");
+            .MaximumLength(500).WithMessage("Picture path is too long.")
+            .Must(path =>
+                string.IsNullOrWhiteSpace(path) ||
+                path.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                path.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                path.EndsWith(".png", StringComparison.OrdinalIgnoreCase)
+            )
+            .WithMessage("Picture must be a .jpg, .jpeg or .png image.");
 
         RuleFor(x => x.PartIds)
             .NotNull().WithMessage("PartIds are required.")
